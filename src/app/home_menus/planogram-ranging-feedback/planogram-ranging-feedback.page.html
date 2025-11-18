@@ -1,0 +1,423 @@
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <a href="#" class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/planogram-ranging']"></ion-icon>
+          </a>
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="/assets/icon/homeicons/sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="/assets/icon/homeicons/sony_dark.svg" alt="" class="SONY_mail_logo light_pta">
+        </ion-col>
+        <ion-col size="4" class="toolbar-col">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content class="main-content dark light" *ngIf="usertype === '1'">
+
+  <div class="heading-div">
+    <h6 class="home-headings">Ranging Feedback</h6>
+    <!-- <p>(Choose exam type)</p> -->
+  </div>
+  <div class="fieldsclassdiv">
+    <ion-grid *ngIf = "userRole == 4 || userRole ==13">
+      <ion-row>
+        <ion-col>
+          <div class="notification-message">
+            Feedback data module access is not given to your user role.
+            Please contact management for assistance.
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+    <ion-grid *ngIf="userRole === 14">
+      <ion-row>
+        <ion-col size="6">
+          <ion-label position="stacked" class="labels">Country</ion-label>
+          <ion-item button (click)="openCountrySelectModal()" class="custom-dropdown">
+            <ion-text class="dropdown-text">{{ selectedCountry?.name || 'Select Country' }}</ion-text>
+            <ion-icon name="chevron-down" class=" select-icon select-iconplanotwo down-arrow"></ion-icon>
+          </ion-item>
+
+          <!-- </ion-item> -->
+        </ion-col>
+        <ion-col size="6">
+          <ion-label position="stacked" class="labels">Retailer</ion-label>
+          <ion-item button (click)="openRetailerSelectModal()" class="custom-dropdown" [disabled]="!selectedCountry">
+            <ion-text class="dropdown-text">{{ selectedRetailer?.name || 'Select Retailer' }}</ion-text>
+            <ion-icon name="chevron-down" class="select-icon  select-iconplanotwo down-arrow"></ion-icon>
+          </ion-item>
+          <!-- </ion-item> -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6" class="storemargin">
+          <ion-label position="stacked" class="labels">Store</ion-label>
+          <ion-item button (click)="openOutletSelectModal()" [disabled]="!selectedRetailer" class="custom-dropdown">
+            <ion-text class="dropdown-text">{{ selectedOutlet?.name || 'Select Store' }}</ion-text>
+            <ion-icon name="chevron-down" class="select-icon select-iconplanotwo down-arrow"></ion-icon>
+          </ion-item>
+       
+        </ion-col>
+        <ion-col size="6">
+          <ion-item class="minecontent " lines="none">
+            <ion-label position="stacked" class="labels categoryyyy">Category</ion-label>
+            <ion-select placeholder="Select Category" class="custom-select fieldss" [(ngModel)]="selectedCategory"
+              (ionChange)="onCategoryChange(selectedCategory?.id)" [interfaceOptions]="categoryOptions">
+              <ion-select-option *ngFor="let category of categories" [value]="category">{{ category.category_name
+                }}</ion-select-option>
+            </ion-select>
+            <ion-icon name="chevron-down" class="select-iconplanocat down-arrow"></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      
+      
+
+      <ion-row>
+
+        <ion-col size="6">
+          <!-- <ion-item class="custom-input-item" lines="none">
+            <ion-label position="stacked" class="labels">Model</ion-label>
+            <app-custom-product-dropdown [products]="products" (productSelected)="onProductSelected($event)">
+            </app-custom-product-dropdown>
+          </ion-item> -->
+        </ion-col>
+
+        <ion-col size="6" class="viewbutton">
+          <div class="checkbutton">
+            <ion-button expand="full_screen" class="products_buttons" size="default"
+              (click)="fetchLatestFeedback_superadmin()" [disabled]="!selectedCategory">
+              <span class="spanbuttontext">View</span>
+            </ion-button>
+          </div>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+
+    <ion-grid *ngIf="userRole === 3">
+      <ion-row>
+        <ion-col size="6">
+          <ion-item class=" minecontent" lines="none">
+            <ion-label position="stacked" class="labels categoryyyy">Category</ion-label>
+            <ion-select placeholder="Select Category" class="custom-select fieldss" [(ngModel)]="selectedCategory"
+              (ionChange)="onCategoryChange(selectedCategory?.id)" [interfaceOptions]="categoryOptions">
+              <ion-select-option *ngFor="let category of categories" [value]="category">{{ category.category_name
+                }}</ion-select-option>
+            </ion-select>
+            <ion-icon name="chevron-down" class="select-iconplanocat down-arrow"></ion-icon>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6" class="viewbutton">
+          <div class="checkbutton">
+            <ion-button expand="full" class="products_buttons" size="default" (click)="fetchLatestFeedback()"
+              [disabled]="!selectedCategory">
+              <span class="spanbuttontext">View</span>
+            </ion-button>
+          </div>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+  
+  <!-- <ion-button class="back-button-bottom-right" color="dark" [routerLink]="['/planogram-ranging']">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </ion-button> -->
+
+
+</ion-content>
+
+
+
+<ion-content class="main-content dark light" *ngIf="usertype === '2'">
+
+  <div class="heading-div">
+    <h6 class="home-headings">Ranging Feedback</h6>
+  </div>
+  <div class="fieldsclassdiv">
+    <ion-grid>
+      <!-- Promoter(18) and Guest(17) user role -->
+      <!-- 
+      <ion-row *ngIf="hpuserType == 18 || hpuserType == 17">
+        <h1>Query as no store assign to them</h1>
+        <ion-col size="6">
+          <ion-item class="custom-input-item" lines="none">
+            <ion-label position="stacked" class="labels">Category</ion-label>
+            <ion-select placeholder="Select Category" class="custom-select fieldss" [(ngModel)]="selectedCategory"
+              (ionChange)="onCategoryChange(selectedCategory?.id)" [interfaceOptions]="categoryOptions">
+              <ion-select-option *ngFor="let category of categories" [value]="category">{{ category.category_name
+                }}</ion-select-option>
+            </ion-select>
+            <ion-icon name="chevron-down" class="select-iconplanotwo down-arrow"></ion-icon>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6" class="viewbutton">
+          <div class="checkbutton">
+            <ion-button expand="full_screen" class="products_buttons" size="default"
+              (click)="fetchLatestFeedback_superadmin()" [disabled]="!selectedCategory">
+              <span class="spanbuttontext">Update Ranging</span>
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+       -->
+
+      <!-- Promoter(18) and Guest(17) user role -->
+      <ion-row *ngIf="hpuserType == 18 || hpuserType == 17">
+        <!-- <ion-col>
+          <div class="notification-message">
+            Feedback data module access is not given to your user role.
+            Please contact management for assistance.
+          </div>
+        </ion-col> -->
+
+         <ion-col size="6">
+          <ion-item class="custom-input-item" lines="none">
+            <ion-label position="stacked" class="labels categoryyyy">Category</ion-label>
+            <ion-select placeholder="Select Category" class="custom-select fieldss" [(ngModel)]="selectedCategory"
+              (ionChange)="onCategoryChange(selectedCategory?.id)" [interfaceOptions]="categoryOptions">
+              <ion-select-option *ngFor="let category of categories" [value]="category">{{ category.category_name
+                }}</ion-select-option>
+            </ion-select>
+            <ion-icon name="chevron-down" class="select-icon down-arrow"></ion-icon>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6" class="viewbutton">
+          <div class="checkbutton">
+            <ion-button expand="full" class="products_buttons" size="default" (click)="fetchLatestFeedback()"
+              [disabled]="!selectedCategory">
+              <span class="spanbuttontext">View</span>
+            </ion-button>
+          </div>
+        </ion-col>
+
+      </ion-row>
+
+
+      <!-- RETAIL HQ MGT(14) and SOMEA Mgmt(15) user role -->
+      <ion-row *ngIf="hpuserType == 14 || hpuserType == 15">
+        <ion-col size="6">
+          <ion-label position="stacked" class="labels">Country</ion-label>
+          <ion-item button (click)="openCountrySelectModal()" class="custom-dropdown">
+            <ion-text class="dropdown-text">{{ selectedCountry?.name || 'Select Country' }}</ion-text>
+            <ion-icon name="chevron-down" class="select-icon select-iconplanotwo down-arrow"></ion-icon>
+          </ion-item>
+
+        </ion-col>
+        <ion-col size="6">
+          <ion-label position="stacked" class="labels">Retailer</ion-label>
+          <ion-item button (click)="openRetailerSelectModal()" class="custom-dropdown" [disabled]="!selectedCountry">
+            <ion-text class="dropdown-text">{{ selectedRetailer?.name || 'Select Retailer' }}</ion-text>
+            <ion-icon name="chevron-down" class="select-icon select-iconplanotwo down-arrow"></ion-icon>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6" class="storemargin">
+          <ion-label position="stacked" class="labels">Store</ion-label>
+          <ion-item button (click)="openOutletSelectModal()" [disabled]="!selectedRetailer" class="custom-dropdown">
+            <ion-text class="dropdown-text">{{ selectedOutlet?.name || 'Select Store' }}</ion-text>
+            <ion-icon name="chevron-down" class="select-icon select-iconplanotwo down-arrow"></ion-icon>
+          </ion-item>
+
+        </ion-col>
+        <ion-col size="6">
+          <ion-item class="minecontent" lines="none">
+            <ion-label position="stacked" class="labels categoryyyy">Category</ion-label>
+            <ion-select placeholder="Select Category" class="custom-select fieldss" [(ngModel)]="selectedCategory"
+              (ionChange)="onCategoryChange(selectedCategory?.id)" [interfaceOptions]="categoryOptions">
+              <ion-select-option *ngFor="let category of categories" [value]="category">{{ category.category_name
+                }}</ion-select-option>
+            </ion-select>
+            <ion-icon name="chevron-down" class="select-iconplanocat down-arrow"></ion-icon>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6" class="viewbutton">
+          <div class="checkbutton">
+            <ion-button expand="full_screen" class="products_buttons" size="default"
+              (click)="fetchLatestFeedback_superadmin()" [disabled]="!selectedCategory">
+              <span class="spanbuttontext">Update Ranging</span>
+            </ion-button>
+          </div>
+        </ion-col>
+
+      </ion-row>
+
+      <!-- BP MGT/VMD(16) user role -->
+      <ion-row *ngIf="hpuserType == 16">
+
+        <ion-col size="6">
+          <ion-label position="stacked" class="labels">Retailer</ion-label>
+          <ion-item button (click)="openRetailerSelectModal()" class="custom-dropdown" [disabled]="!selectedCountry">
+            <ion-text class="dropdown-text">{{ selectedRetailer?.name || 'Select Retailer' }}</ion-text>
+            <ion-icon name="chevron-down" class="select-iconplanotwo down-arrow"></ion-icon>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6" class="storemargin">
+          <ion-label position="stacked" class="labels">Store</ion-label>
+          <ion-item button (click)="openOutletSelectModal()" [disabled]="!selectedRetailer" class="custom-dropdown">
+            <ion-text class="dropdown-text">{{ selectedOutlet?.name || 'Select Store' }}</ion-text>
+            <ion-icon name="chevron-down" class="select-iconplanotwo down-arrow"></ion-icon>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item class=" minecontent" lines="none">
+            <ion-label position="stacked" class="labels categoryyyy">Category</ion-label>
+            <ion-select placeholder="Select Category" class="custom-select fieldss" [(ngModel)]="selectedCategory"
+              (ionChange)="onCategoryChange(selectedCategory?.id)" [interfaceOptions]="categoryOptions">
+              <ion-select-option *ngFor="let category of categories" [value]="category">{{ category.category_name
+                }}</ion-select-option>
+            </ion-select>
+            <ion-icon name="chevron-down" class="select-iconplanocat down-arrow"></ion-icon>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6" class="viewbutton">
+          <div class="checkbutton">
+            <ion-button expand="full_screen" class="products_buttons" size="default"
+              (click)="fetchLatestFeedback_superadmin()" [disabled]="!selectedCategory">
+              <span class="spanbuttontext">Update Ranging</span>
+            </ion-button>
+          </div>
+        </ion-col>
+
+      </ion-row>
+
+      <!-- <ion-row *ngIf="hpuserType == 2">
+       
+        <ion-col size="12">
+          <ion-label position="stacked" class="labels">Retailer</ion-label>
+          <ion-item button (click)="openRetailerSelectModal()" class="custom-dropdown" [disabled]="!selectedCountry">
+            <ion-text class="dropdown-text">{{ selectedRetailer?.name || 'Select Retailer' }}</ion-text>
+            <ion-icon name="chevron-down" class="select-iconplanotwo down-arrow"></ion-icon>
+          </ion-item>
+
+        </ion-col>
+      </ion-row> -->
+
+      <!-- <ion-row *ngIf="hpuserType == 2">
+        <ion-col size="6">
+          <ion-label position="stacked" class="labels">Store</ion-label>
+          <ion-item button (click)="openOutletSelectModal()" [disabled]="!selectedRetailer" class="custom-dropdown">
+            <ion-text class="dropdown-text">{{ selectedOutlet?.name || 'Select Store' }}</ion-text>
+            <ion-icon name="chevron-down" class="select-iconplanotwo down-arrow"></ion-icon>
+          </ion-item>
+
+        </ion-col>
+        <ion-col size="6">
+          <ion-item class="custom-input-item" lines="none">
+            <ion-label position="stacked" class="labels">Category</ion-label>
+            <ion-select placeholder="Select Category" class="custom-select fieldss" [(ngModel)]="selectedCategory"
+              (ionChange)="onCategoryChange(selectedCategory?.id)" [interfaceOptions]="categoryOptions">
+              <ion-select-option *ngFor="let category of categories" [value]="category">{{ category.category_name
+                }}</ion-select-option>
+            </ion-select>
+            <ion-icon name="chevron-down" class="select-iconplanotwo down-arrow"></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row> -->
+
+      <!-- <ion-row> -->
+      <!-- <ion-col size="6"> -->
+      <!-- <ion-item class="custom-input-item" lines="none">
+            <ion-label position="stacked" class="labels">Model</ion-label>
+            <app-custom-product-dropdown [products]="products" (productSelected)="onProductSelected($event)">
+            </app-custom-product-dropdown>
+          </ion-item> -->
+      <!-- </ion-col> -->
+
+      <!-- <ion-col size="6" class="viewbutton">
+          <div class="checkbutton">
+            <ion-button expand="full_screen" class="products_buttons" size="default"
+              (click)="fetchLatestFeedback_superadmin()" [disabled]="!selectedCategory">
+              <span class="spanbuttontext">View</span>
+            </ion-button>
+          </div>
+        </ion-col> -->
+
+      <!-- </ion-row> -->
+    </ion-grid>
+
+  </div>
+  <!-- <div class="percentagediv">
+    <h3 class="percentagedivhead">{{ progressPercentage | number: '1.0-0'}}%</h3>
+  </div> -->
+
+
+
+
+
+  <!-- <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <div class="scrollable-table-container" *ngIf="feedbackData">
+    <table class="sales_data_table">
+      <thead>
+        <tr>
+          <th class="sales_table_header">#</th> 
+          <th class="sales_table_header">Retailer</th>
+          <th class="sales_table_header">Store</th>
+          
+          <th class="sales_table_header">Model</th>
+          <th class="sales_table_header">Box Display?</th>
+          <th class="sales_table_header">Open Display?</th>
+          <th class="sales_table_header">Remaining stock</th>
+         
+          <th class="sales_table_header">Last Update</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let detail of feedbackData.details; let i = index">
+          <td class="sales_table_data">{{ i + 1 }}</td> 
+          <td class="sales_table_data">{{ feedbackData.retailer_name }}</td>
+          <td class="sales_table_data">{{ feedbackData.store_name }}</td>
+          
+          <td class="sales_table_data">{{ detail.product_name || 'N/A' }}</td>
+          <td [ngClass]="{'yes': detail.available === '1', 'no': detail.available === '0'}" class="sales_table_data">
+            {{ detail.available === '1' ? 'YES' : 'NO' }}
+          </td>
+          <td [ngClass]="{'yes': detail.open_display === '1', 'no': detail.open_display === '0'}"
+            class="sales_table_data">
+            {{ detail.open_display === '1' ? 'YES' : 'NO' }}
+          </td>
+          <td class="sales_table_data">{{ detail.stock }}</td>
+          <td class="sales_table_data">{{ feedbackData.feedback_date }}</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div> -->
+
+  <!-- <div class="checkbutton2">
+    <ion-button expand="full_screen" class="products_buttons" [disabled]="!showupdatefeedbackbtn"
+      [routerLink]="['/update-ranging-feedback']"
+      [queryParams]="{ categoryId: selectedCategory?.id, outletId: selectedOutlet?.id }">
+   
+      Update Ranging
+    </ion-button>
+  </div> -->
+
+
+  <!-- <ion-button class="back-button-bottom-right" color="dark" [routerLink]="['/planogram-ranging']">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </ion-button> -->
+
+</ion-content>
+<app-footer></app-footer>

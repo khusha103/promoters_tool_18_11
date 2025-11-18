@@ -1,0 +1,50 @@
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <!-- <a href="#" class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/planogram-ranging']"></ion-icon>
+          </a> -->
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="\assets\icon\homeicons\sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="\assets\icon\homeicons\sony_dark.svg" alt="" class="SONY_mail_logo light_pta"> 
+        </ion-col>
+        <ion-col size="4" class="toolbar-col"></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content dark light">
+  <div class="heading-div text-center">
+    <h6 class="home-headings">Planogram Feedback</h6>
+    <p>Please select a category</p>
+  </div>
+
+  <!-- Dynamic Category Icons -->
+  <div class="icon-row icons-div_row">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let icon of icons; let i = index">
+          <div class="icon-container">
+            <ion-button class="product_icons_btn" (click)="selectIcon(i); onIconClick(icon.id)">
+              <!-- <ion-button class="product_icons_btn" (click)="selectIcon(i); navigateToFeedbackForm_WIP(icon.id)"> -->
+              <img [src]="icon.imageUrl" alt="{{ icon.name | titlecase }} Icon" class="product_icons" />
+            </ion-button>
+            <p class="pf_product_text">{{ icon.name }}</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <!-- <ion-button class="back-button-bottom-right" color="dark" [routerLink]="['/planogram-ranging']">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </ion-button> -->
+  
+</ion-content>
+
+<app-footer></app-footer>

@@ -1,0 +1,154 @@
+.maincontainer {
+  // height: 100%;
+  // width: 100%;
+  --background: url(../../assets/icon/chirag.jpg) no-repeat -160px 0px;
+  --background-size: 100% 100%;
+
+  // --background: url(../../assets/icon/home.png);
+  // --background-size: 100px !important;
+  // --background-repeat: no-repeat;
+  // --background-position: -swiper-slide100px 104px !important;
+  --opacity: 1 !important;
+  --border-style: none !important;
+  padding-top: 26px;
+  text-align: center;
+
+}
+
+
+
+
+ion-content{
+  --background: url(../../assets/icon/home.jpg) no-repeat center;
+  --background-size: 100% 100%;
+}
+
+// ion-header{
+  // background: url(../../assets/icon/home.png) no-repeat center center;
+// background-color: rgba(255, 0, 0, 0);
+// --background: url(../../assets/icon/home.png) no-repeat center center;
+
+// --background: rgba(181, 30, 30, 0.2); /* Adjust the transparency level */
+// }
+
+ion-header {
+  box-shadow: 0px 0px 0px 0px transparent !important;
+  --border-bottom: 0px soli !important;
+  
+  background: url(../../assets/icon/chirag.jpg) no-repeat -270px 0px;
+}
+ion-tab-bar.ios.hydrated {
+  --background: radial-gradient(circle, rgba(38, 85, 217, 1) 0%, rgba(24, 64, 136, 1) 100%);
+  padding: 6px 0px 20px 0px;
+}
+ion-tab-button {
+  background: transparent;
+  color: white;
+}
+
+
+
+img.homeicons {
+  // border: 1px solid #2452cd;
+  background: radial-gradient(circle, rgb(38, 85, 217) 0%, rgb(24, 64, 136) 100%);
+  padding: 8px;
+  // height: 55px;
+  border-radius: 14px;
+  // width: 55px;
+  // line-height: 55px;
+  cursor: pointer;
+  width: 62px;
+  height: auto;
+
+}
+ion-grid {
+  text-align: center;
+  padding: 0px 10px 0px 10px;
+  margin-top: 4%;
+}
+
+ion-row {
+  margin-top: 8px;
+}
+
+// .swiper-pagination-bullets {
+//   bottom: 10px; /* Adjust this value to position the bullets */
+//   left: 50%;
+//   transform: translateX(-50%);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .swiper-pagination-bullet {
+//   background: white; /* Color of the bullets */
+//   opacity: 0.8;
+//   width: 12px;
+//   height: 12px;
+// }
+
+// .swiper-pagination-bullet-active {
+//   background: #ff0000; /* Color of the active bullet */
+// }
+
+
+// /* Change the color of the pagination bullets */
+// .swiper-pagination {
+//   bottom: 10px; /* Adjust the position if needed */
+// }
+
+// .swiper-pagination-bullet {
+//   background-color: #ffffff; /* Change the bullet color */
+//   opacity: 1; /* Ensure the bullet is fully opaque */
+// }
+
+// .swiper-pagination-bullet-active {
+//   background-color: #ff0000; /* Change the active bullet color */
+// }
+
+
+swiper-container {
+  --swiper-pagination-bullet-inactive-color: var(--ion-color-step-200, #ffff);
+  --swiper-pagination-color: var(--ion-color-white, #fff);
+  --swiper-pagination-progressbar-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.25);
+  --swiper-scrollbar-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
+  --swiper-scrollbar-drag-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.5);
+  /* Add white border to inactive bullets */
+  --swiper-pagination-bullet-inactive-border: 1px solid var(--ion-color-white, #fff);
+  --swiper-pagination-bullet-inactive-border-color: var(--ion-color-white, #fff);
+}
+
+swiper-slide img {
+  position: relative;
+  // background-color: aliceblue;
+  width: 100%;
+  height: 240px!important;
+}
+
+// swiper-container::part(pagination) {
+//   // position: absolute;
+//   // bottom: -344px; /* Adjust this value to move the pagination down */
+//   // left: 0;
+//   // width: 100%;
+//   // --color: #ff0;
+//   // position: absolute;
+//   // top:149px;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+// black theme
+
+
+
+
+

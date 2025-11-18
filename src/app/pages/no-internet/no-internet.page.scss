@@ -1,0 +1,10 @@
+.centered-content {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  height: 100%;            /* Full height of the ion-content */
+}
+
+.content-wrapper {
+  text-align: center;      /* Centers text inside the wrapper */
+}

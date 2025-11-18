@@ -1,0 +1,109 @@
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <a href="#" class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/home']"></ion-icon>
+          </a>
+        </ion-col>
+        <!-- <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="/assets/icon/homeicons/SONY_logo_main.svg" alt="" class="SONY_mail_logo">
+        </ion-col> -->
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="/assets/icon/homeicons/sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="/assets/icon/homeicons/sony_dark.svg" alt="" class="SONY_mail_logo light_pta">
+        </ion-col>
+        <ion-col size="4" class="toolbar-col"></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content dark light">
+
+  <h5 *ngIf = "pagesource == 'p'">Promoter's Assessment</h5>
+  <h5 *ngIf = "pagesource == 'v'">Vmd Checklist</h5>
+
+  <ion-grid>
+    <ion-row>
+      <!-- Image Upload Section -->
+      <ion-col size="6">
+        <ion-button class="add-image-card-button" expand="block" fill="solid" (click)="selectImage()">
+          <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+          Add Image
+        </ion-button>
+      </ion-col>
+
+      <!-- Uploaded Images Section -->
+      <ion-col size="12">
+        <ion-row>
+          <ion-col size="12" *ngFor="let photo of photos; let i = index">
+            <ion-card>
+              <div class="image-container">
+                <img [src]="photo.url" alt="Uploaded Image" />
+                <!-- Remove Button -->
+                <div class="remove-icon-container" (click)="removeImage(i)">
+                  <ion-icon name="close" class="remove-icon"></ion-icon>
+                </div>
+              </div>
+              <ion-card-content>
+                <p *ngIf="photo.caption">{{ photo.caption }}</p>
+                <ion-item *ngIf="!photo.caption">
+                  <ion-input [(ngModel)]="temporaryCaptions[i]" placeholder="Enter caption"></ion-input>
+                </ion-item>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <!-- Feedback Input Area -->
+    <div class="feedback-area">
+      <ion-textarea
+        [(ngModel)]="feedback"
+        placeholder="Enter your feedback here..."
+        maxlength="500"
+        fill="outline"
+        label-placement="stacked"
+      ></ion-textarea>
+
+      <div class="submit-button margin-top-20" *ngIf = "pagesource == 'p'">
+        <ion-button expand="full" (click)="submitPromoterFeedback()" [disabled]="!isSubmitEnabled()">Submit Now</ion-button>
+      </div>
+
+      <div class="submit-button margin-top-20" *ngIf = "pagesource == 'v'">
+        <ion-button expand="full" (click)="submitFeedback()" [disabled]="!isSubmitEnabled()">Submit Now</ion-button>
+      </div>
+    </div>
+
+  </ion-grid>
+</ion-content>
+
+<style>
+  .main-content {
+    padding: 20px; /* Ensures padding around the main content */
+  }
+
+  .feedback-area {
+    margin-top: 20px; /* Space above the feedback area */
+    display: flex;
+    flex-direction: column; /* Aligns children vertically */
+    align-items: stretch; /* Ensures children take full width */
+  }
+
+  ion-textarea {
+    --background: #f0f8ff; /* Light background color */
+    --padding-start: 15px; /* Left padding */
+    --padding-end: 15px; /* Right padding */
+    --padding-top: 10px; /* Top padding */
+    --padding-bottom: 10px; /* Bottom padding */
+    --border-radius: 8px; /* Rounded corners */
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+
+  .submit-button {
+    margin-top: 20px; /* Space above the submit button */
+  }
+</style>

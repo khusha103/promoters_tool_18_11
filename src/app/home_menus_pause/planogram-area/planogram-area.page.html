@@ -1,0 +1,147 @@
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          
+            <ion-icon name="chevron-back-outline" class="back-button" (click)="BacktoFeedbackPage()"></ion-icon>
+        
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+         <img src="\assets\icon\homeicons\sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="\assets\icon\homeicons\sony_dark.svg" alt="" class="SONY_mail_logo light_pta">
+        </ion-col>
+        <ion-col size="4" class="toolbar-col"></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content dark light">
+  <!-- <ion-button>cxcxc</ion-button> -->
+  <swiper-container class="swiper_slider" loop="true" autoplay="true" autoplay-delay="3000"
+    autoplay-disable-on-interaction="true" slides-per-view="1" space-between="0" pagination="true" navigation="true">
+
+    <swiper-slide *ngFor="let planogram of planogramAreas; let i = index">
+      <div class="slider_div">
+        <p class="headone">{{ planogram.area_name }} {{ i + 1 }} of {{ planogramAreas.length }}</p>
+        <img [src]="planogram.image_name" alt="" class="slider_image">
+        <h2 class="headtwo">{{ planogram.area_name }} {{ i + 1 }} Feedback</h2>
+
+        <!-- Check if slide has existing feedback data -->
+
+        <div
+          *ngIf="slidefeedbackData && slidefeedbackData.slides && slidefeedbackData.slides[i]?.feedback_details?.length > 0"
+          class="readonly-feedback-section">
+
+          <!-- Loop through feedback details -->
+          <div *ngFor="let feedbackItem of slidefeedbackData.slides[i].feedback_details; let fIndex = index"
+            class="feedback-line">
+
+            <span class="index">{{ fIndex + 1 }}.</span>
+            <strong>Product:</strong> {{ feedbackItem.product_name }} <br>
+            <strong>Feedback:</strong> {{ feedbackItem.feedback_text || 'No feedback provided' }}
+          </div>
+
+          <!-- Display Uploaded Image if Available -->
+          <div *ngIf="slidefeedbackData.slides[i].image_name" class="image-container">
+            <img [src]="slidefeedbackData.slides[i].image_name" alt="Feedback Image" class="feedback-image">
+          </div>
+
+        </div>
+
+
+
+        <!-- Show form if no existing feedback -->
+        <div *ngIf="!slidefeedbackData?.slides[i]?.feedback_details?.length && feedbackList[i]"
+          class="feedback-container">
+          <div *ngIf="!feedbackList[i].submitted">
+            <div *ngFor="let feedback of feedbackList[i].feedbackItems; let fIndex = index" class="feedback-item">
+              <span class="feedback-number">{{ fIndex + 1 }}.</span>
+
+              <ion-grid class="feedback-grid">
+                <ion-row class="feedback-row">
+                  <ion-col size="6" class="dropdown-col">
+                    <app-custom-product-dropdown [products]="products" [restoreProduct]="feedback.product"
+                      (productSelected)="onProductSelected($event, i, fIndex)" class="custom-dropdown">
+                    </app-custom-product-dropdown>
+                  </ion-col>
+
+                  <ion-col size="6" class="input-col">
+                    <!-- <input type="text" [(ngModel)]="feedback.feedback" placeholder="Enter feedback"
+                      class="custom-feedback-input"> -->
+                      <ion-item>
+                        <ion-input type="text" [(ngModel)]="feedback.feedback" placeholder="Enter feedback"
+                        class="custom-feedback-input"></ion-input>
+                      </ion-item>
+
+                      <!-- <ion-item class="custom-feedback-item"> -->
+                        <!-- <ion-input type="text" [(ngModel)]="feedback.feedback" placeholder="Enter feedback"
+                          class="custom-feedback-input unique-feedback-input">
+                        </ion-input> -->
+                        
+                      <!-- </ion-item> -->
+                      
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+
+            <!-- Image Upload Section -->
+            <ion-button class="add-image-card-button products_buttons" expand="block" fill="solid" (click)="selectImage(i)">
+              <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+              Upload Image
+            </ion-button>
+
+            <div *ngIf="photos[i] && photos[i].length > 0">
+              <div *ngFor="let photo of photos[i]">
+                <img [src]="photos[i][0].base64" alt="Captured Image" class="w-full h-auto mt-2 rounded-lg shadow">
+              </div>
+            </div>
+            <div *ngIf="!photos[i] || photos[i].length === 0">
+              <p class="text-gray-500 italic">No images captured yet.</p>
+            </div>
+
+            <div class="button-group">
+              <!-- <button (click)="addFeedback(i)" class="add-more-btn products_buttons">+ Add More</button> -->
+                <ion-button class="add-more-btn products_buttons" expand="block" (click)="addFeedback(i)">
+              <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+              + Add More
+            </ion-button>
+
+              <ion-button class="delete-last-btn products_buttons" expand="block" (click)="deleteLastFeedback(i)">
+              <ion-icon slot="start" name=""></ion-icon>
+              Delete Last
+            </ion-button>
+              <!-- <button (click)="deleteLastFeedback(i)" class="delete-last-btn products_buttons">Delete Last</button> -->
+            </div>
+
+            <!-- <div class="button-group products_buttons">
+              <button *ngIf="!feedbackList[i].submitted" (click)="submitFeedback(i)" class="submit-btn">Submit</button>
+            </div> -->
+
+             <ion-button *ngIf="!feedbackList[i].submitted" class="submit-btn products_buttons" expand="block" (click)="submitFeedback(i)">
+              <ion-icon slot="start" name=""></ion-icon>
+             Submit
+            </ion-button>
+
+
+          </div>
+        </div>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+
+
+  <!-- <ion-button class="back-button-bottom-right" (click)="BacktoFeedbackPage()">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+    Back
+  </ion-button> -->
+  <!-- <ion-button class="back-button-bottom-right" color="dark" (click)="BacktoFeedbackPage()">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </ion-button> -->
+  
+</ion-content>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,146 @@
+
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <a href="#" class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/promoter-kpi']"></ion-icon>
+          </a>
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="/assets/icon/homeicons/sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="/assets/icon/homeicons/sony_dark.svg" alt="" class="SONY_mail_logo light_pta">
+        </ion-col>
+        <ion-col size="4" class="toolbar-col"> </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-content-bg dark light">
+  <div class="bg_banner">
+    <div class="product-main-div">
+      <div class="maindivv">
+        <!-- <div class="classforfixed"> -->
+        <div class="heading-div">
+          <h6 class="home-headings">Planogram<br />Guide</h6>
+          <!-- <p>Select a survey given below</p> -->
+        </div>
+
+        <div class="fieldsclassdiv">
+          <ion-item class="custom-input-item" lines="none">
+            <!-- <ion-label>Retailer</ion-label> -->
+            <ion-select
+              placeholder="Select Retailer"
+              [(ngModel)]="selectedRetailer"
+              (ionChange)="onRetailerChange()"
+              name="retailer"
+              [disabled]="!selectedCountry"
+              class="custom-select fieldss"
+              [interfaceOptions]="retailerOptions"
+            >
+              <ion-select-option
+                *ngFor="let retailer of retailers"
+                [value]="retailer"
+              >
+                {{ retailer.name }}
+              </ion-select-option>
+            </ion-select>
+            <ion-icon
+              name="chevron-down"
+              class=" down-arrow select-iconplano"
+            ></ion-icon>
+          </ion-item>
+
+          <ion-item class="custom-input-item" lines="none">
+            <!-- <ion-label>Outlet</ion-label> -->
+            <ion-select
+              placeholder="Select Store"
+              [(ngModel)]="selectedOutlet"
+              name="outlet"
+              (ionChange)="onOutletChange()"
+              [disabled]="!selectedRetailer"
+              class="custom-select fieldss"
+              [interfaceOptions]="storeOptions"
+            >
+              <ion-select-option
+                *ngFor="let outlet of outlets"
+                [value]="outlet"
+              >
+                {{ outlet.name }}
+              </ion-select-option>
+            </ion-select>
+            <ion-icon
+              name="chevron-down"
+              class=" down-arrow select-iconplano"
+            ></ion-icon>
+          </ion-item>
+        </div>
+
+        <div class="icon-row icons-div_row">
+          <ion-button
+            fill="clear"
+            *ngFor="let icon of icons; let i = index"
+            (click)="selectIcon(i)"
+            class="product_icons_btn"
+            [ngClass]="{ active: icon.isActive }"
+          >
+            <img
+              [src]="icon.imageUrl"
+              alt="Product Icon"
+              class="product_icons"
+              *ngIf="icon.imageUrl"
+            />
+          </ion-button>
+        </div>
+
+        <ion-card-title class="product_detail_heading">
+          {{ selectedContent?.title || 'No Title Available' }}
+        </ion-card-title>
+      </div>
+    </div>
+    <!-- </div> -->
+
+    <!-- <div class="product_detail_container">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4" *ngFor="let product of selectedContent.buttons">
+            <div class="product-item" (click)="selectProduct(product)">
+              <img [src]="getProductImage(product)" alt="{{ product }}">
+              <p>{{ product }}</p>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div> -->
+
+    <div class="product_detail_container">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4" *ngFor="let planogram of planograms">
+            <div class="planogram-item" (click)="openForm(planogram.pdf_url)">
+              <ion-button expand="full" class="products_buttons">
+                {{ planogram.title || 'Guide'}}
+                <ion-icon name="create" class="document-text-icon"></ion-icon>
+              </ion-button>
+
+              <!-- Conditionally display the 'New' badge -->
+              <span *ngIf="planogram.isNew" class="badge new-badge">New</span>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!-- Template for when there are no planograms -->
+      <!-- <ng-template #noPlanograms>
+        <p>No planograms available for the selected category.</p>
+      </ng-template> -->
+    </div>
+  </div>
+
+  <!-- <ion-button class="back-button-bottom-right" color="dark" [routerLink]="['/planogram-ranging']">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </ion-button> -->
+</ion-content>
+<app-footer></app-footer>

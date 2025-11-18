@@ -1,0 +1,7 @@
+{
+  "name": "PromoterTool",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

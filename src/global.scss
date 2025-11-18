@@ -1,0 +1,1534 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+// @import "@ionic/angular/css/palettes/dark.system.css";
+@font-face {
+  font-family: proxima_medium;
+  src: url('assets/fonts/proxima/FontsFree-Net-pr2.eot') format('eot'),
+      url('assets/fonts/proxima/FontsFree-Net-pr2.woff2') format('woff2'),
+      url('assets/fonts/proxima/FontsFree-Net-pr2.woff') format('woff'),
+      url('assets/fonts/proxima/FontsFree-Net-pr2.ttf') format('ttf'),
+      url('assets/fonts/proxima/FontsFree-Net-pr2.otf') format('otf');
+}
+@font-face {
+  font-family: proxima_regular;
+  src: url('assets/fonts/proxima/FontsFree-Net-proxima_nova_reg-webfont.eot') format('eot'),
+      url('assets/fonts/proxima/FontsFree-Net-proxima_nova_reg-webfont.woff2') format('woff2'),
+      url('assets/fonts/proxima/FontsFree-Net-proxima_nova_reg-webfont.woff') format('woff'),
+      url('assets/fonts/proxima/FontsFree-Net-proxima_nova_reg-webfont.ttf') format('ttf'),
+      url('assets/fonts/proxima/FontsFree-Net-proxima_nova_reg-webfont.otf') format('otf');
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-color-scheme: light;
+  }
+}
+
+// ion-content {
+//   --ion-safe-area-top: env(safe-area-inset-top);
+//   --ion-safe-area-bottom: env(safe-area-inset-bottom);
+// }
+.dark_pta{
+  p.slidericontext {
+  font-size: 10px;
+  margin-top: 6px;
+  font-weight: 500;
+  font-family: SST;
+  color: white;
+}
+}
+
+.small-modal {
+  --width: 300px; /* Adjust modal width */
+  --height: 400px; /* Adjust modal height */
+  --border-radius: 12px; /* Smooth rounded corners */
+  --box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+}
+
+.small-modal .modal-wrapper {
+  width: var(--width);
+  height: var(--height);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+
+// -------------------------------Custom font Sony------------------------------
+* {
+  font-family: 'Proxima_Regular'!important;
+}
+@font-face {
+  font-family: 'SST';
+  src: url('./assets/fonts/SST-Light.ttf') format('truetype'), 
+       url('./assets/fonts/SST-Light.otf') format('opentype');
+       
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --ion-font-family: 'SST', sans-serif;
+}
+
+//add font in laert controller
+
+.alert-wrapper {
+  font-family: var(--ion-font-family) !important;
+  font-size: 1rem !important; // optional
+}
+
+.alert-title,
+.alert-sub-title,
+.alert-message {
+  font-family: var(--ion-font-family) !important;
+}
+
+
+
+
+/* ---------------------------------Custom loaders ---------------------------------------- */
+.sony-promoters-loader {
+  .loading-wrapper {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .loading-content {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  ion-spinner {
+    color: #e87838; // Sony blue color
+    width: 40px;
+    height: 40px;
+  }
+}
+
+
+
+/* ---------------------------------alertcontroller---------------------------------------- */
+// .alertCustom {
+//     --background: #FAD460; 
+//     --color: #000; 
+//     --button-background: #FAD460; 
+//     --button-color: #000; 
+//     border-radius: 5px; 
+//   }
+  
+  .alertCustom .alert-button {
+    border-radius: 5px; 
+    color: #000000;
+  }
+  
+  .alertCustom .alert-title {
+    color: #000000;
+  }
+  
+  .alertCustom .alert-message {
+    color: #000000; 
+    font-size: 16px;
+   
+  }
+
+  // ----------------------------------------customer-information.page.scss----------------------------------------------------
+
+/* Toolbar grid styling */
+.toolbar-row {
+  align-items: center;
+  height: 100%;
+}
+
+.toolbar-col {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+}
+
+/* Back button styles */
+.back-button {
+  font-size: 16px;
+  border: 1px solid #000000;
+  border-radius: 50%;
+  --font-weight: 200 !important;
+  padding: 3px;
+  // margin-left: 12px;
+  --line-height: 10px !important;
+  margin-top: 8px;
+}
+
+.dss {
+  display: flex;
+}
+
+// ion-title.md.title-default.hydrated {
+//     margin-left: -20px;
+// }
+
+/* Back link styles */
+.back_link {
+  color: black;
+  cursor: pointer;
+}
+
+/* Title and image styles */
+ion-title.center-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+ion-title.center-title img {
+  max-height: 40px; /* Adjust the height as necessary */
+}
+
+
+
+
+
+
+.product_detail_container>img {
+  width: 100%;
+}
+
+
+.document-file-icon{
+  margin-left: auto;
+}
+
+
+// 
+
+
+
+.form_list {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 16px;
+  /* height: 100%; */
+}
+
+/* Header and Titles */
+.header-container {
+  display: flex;
+  align-items: center;
+}
+
+.arrow-icon {
+  // font-size: 14px;
+  margin-right: 14px;
+  margin-top: -8px;
+  border: 1px solid;
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+  padding: 1px;
+}
+
+
+
+.header-underline {
+  border-top: 1px dotted #d1d1d1; /* Dotted underline */
+  margin-top: 4px; /* Space between heading and underline */
+  margin-bottom: 14px;
+}
+
+/* Input and Select Fields */
+ion-item {
+  --highlight-color-focused: #4B54CF; /* Color of underline when focused */
+  // --min-height: 50px;
+  --border-color: transparent;
+  --padding-start: 0px;
+  margin-bottom: 8px;
+}
+
+ion-label {
+  font-weight: 500; /* Bold labels */
+}
+
+ion-input {
+  --padding-start: 8px; /* Padding inside input field */
+  --padding-end: 8px;
+}
+
+.custom-input-item ion-input {
+  border: 1px solid #d1d1d1; /* Light grey border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 8px; /* Padding inside input field */
+ 
+}
+
+/* Buttons and Terms */
+.tick {
+  font-size: 14px;
+  padding: -1px;
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+
+}
+
+.terms {
+  font-size: 11px !important;
+  font-family: SonyFont;
+  font-weight: 400;
+}
+
+.termscondition {
+  margin-top: 10px;
+}
+
+.anchortext {
+  font-weight: bold;
+  color: #4B54CF;
+}
+
+/* Select Fields */
+.fieldss {
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  color: #636363;
+  padding: 0px 0px 0px 10px;
+  height: 10px;
+  font-family: SonyFont;
+  font-size: 14px;
+  /* font-style: italic; */
+  font-weight: 400;
+}
+
+.select-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  color: var(--ion-color-step-650, var(--ion-text-color-step-350, #595959));
+  margin-left: 10rem;
+}
+
+
+
+/* Custom Alert Popup Styles */
+.custom-alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.alert-wrapper {
+  background-color: #fad460;
+  border-radius: 10px;
+  max-width: 300px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+// .alert-head {
+//   /* background-color: #4B54CF; */
+//   color: black;
+//   padding: 15px;
+//   text-align: center;
+//   font-family: SonyFont;
+// }
+h2#alert-1-hdr {
+font-weight: 400;
+}
+
+.alert-message {
+padding: 0px 40px 0px 40px;
+font-size: 14px;
+color: #333;
+text-align: center;
+/* border-bottom: 2px dashed #ffe5b0; */
+/* border-style: dashed; */
+font-family: SonyFont;
+font-weight: 400;
+
+}
+
+.alert-button-group {
+display: flex;
+justify-content: center;
+/* padding: 10px; */
+margin-top: 33px;
+// border-top: 2px dashed #ffbf3d;
+}
+
+.alert-button {
+background-color: #4b54cf00;
+color: black;
+/* border: none; */
+/* border-radius: 5px; */
+padding: 10px 20px;
+font-weight: 500;
+cursor: pointer;
+transition: background-color 0.3s ease;
+
+font-size: 18px;
+}
+.alert-button:hover {
+  background-color: #3a4a9e;
+}
+
+
+
+textarea#ion-textarea-0 {
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* vertical-align: middle; */
+  padding-top: 10px;
+}
+
+
+
+
+
+
+
+// ion-select::part(icon) {
+// display: none !important;
+// }
+
+// ion-select {
+// --padding-end: 15px;
+// }
+
+// .custom-input-item {
+// position: relative;
+// }
+
+// .select-icon {
+// position: absolute;
+// right: 30px;
+// top: 50%;
+// transform: translateY(-50%);
+// pointer-events: none;
+// color: #777777;
+// font-size: 1.2rem;
+// z-index: 2;
+// }
+
+// .custom-select.fieldss {
+// --padding-end: 35px; // Increase to make room for our custom icon
+// width: 100%;
+// }
+
+// // Optional: Style the select to match your design
+// ion-select.custom-select {
+// border: 1px solid #d1d1d1;
+// border-radius: 4px;
+// --padding-start: 10px;
+// --padding-top: 10px;
+// --padding-bottom: 10px;
+// }  
+
+
+// .alert-radio-icon {
+//   display: flex;
+//   align-items: center; /* Center align items vertically */
+// }
+
+// .alert-radio-inner {
+//   width: 20px; 
+//   height: 20px; 
+//   border-radius: 50%;
+//   border: 2px solid #007bff; 
+//   background-color: #007bff;
+//   position: relative; 
+// }
+
+// .alert-radio-inner::after {
+//   content: '';
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   width: 10px; 
+//   height: 10px;
+//   border-radius: 50%;
+//   background-color: #007bff; 
+//   transform: translate(-50%, -50%) scale(0);
+// }
+
+// .alert-radio-icon.selected .alert-radio-inner::after {
+//   transform: translate(-50%, -50%) scale(1); 
+// }
+
+
+
+//back button css present in bottom right corner
+.back-button-bottom-right {
+  position: fixed;
+  bottom: 80px; /* Adjusted for better placement */
+  right: 5px; /* Slightly moved for better reach */
+  z-index: 10;
+  background-color: #111212;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3); /* White shadow effect */
+  transition: all 0.3s ease;
+}
+
+.back-button-bottom-right:active {
+  transform: scale(0.92);
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.4); /* Stronger white shadow on press */
+}
+
+.back-button-bottom-right ion-icon {
+  font-size: 28px;
+  color: white;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); /* White glow effect around icon */
+}
+
+.back-button-bottom-right:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Hover effect for a glowing white outline */
+.back-button-bottom-right:hover {
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+
+
+
+
+
+
+
+.SONY_mail_logo {
+  width: 90px!important;
+  
+}
+
+//Both sides
+
+body.dark_pta img.light_pta {
+  display: none !important;
+}
+
+body.light_pta img.dark_pta {
+  display: none !important;
+}
+
+
+// HOME
+
+ion-header {
+  box-shadow: 0px 0px 0px 0px transparent !important;
+  --border-bottom: 0px soli !important;
+  background: #f1f2f2;
+}
+body.dark_pta .homeicontext {
+  font-size: 7PX;
+  padding-top: 7px;
+  letter-spacing: 0.5px;
+  /* font-family: SST; */
+  /* font-weight: 600; */
+  color: #ffffff !important;
+}
+
+body.light_pta .homeicontext {
+  font-size: 7PX;
+  padding-top: 7px;
+  letter-spacing: 0.5px;
+  /* font-family: SST; */
+  /* font-weight: 600; */
+  color: black !important;
+}
+
+
+body.dark_pta .dark{
+  //--background: url(home.jpg) no-repeat center;
+  --background-size: 100% 100%;
+  --background: #111111;
+}
+body.light_pta .dark{
+  //--background: url(home.jpg) no-repeat center;
+  --background-size: 100% 100%;
+  --background: #F1F2F2;
+}
+body.dark_pta .maincontainer{
+  --opacity: 1 !important;
+  --border-style: none !important;
+  padding-top: 0px;
+  text-align: center;
+  --background: #111111!important;
+}
+body.light_pta .maincontainer{
+  --opacity: 1 !important;
+  --border-style: none !important;
+  padding-top: 0px;
+  text-align: center;
+  --background: #F1F2F2!important;
+}
+
+body.dark_pta .homeicons{
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 60px;
+  height: auto;
+  background: linear-gradient(170deg, rgb(63 63 63) 42%, rgb(37 37 37) 100%)!important;
+  border: 1px solid grey;
+}
+body.light_pta .homeicons{
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 60px;
+  height: auto;
+  background: linear-gradient(170deg, rgb(233 233 233) 42%, rgb(182 182 182) 100%)!important;
+  
+}
+
+
+
+body.dark_pta .homeswiper {
+
+  background: #111111!important;
+}
+
+body.light_pta .homeswiper {
+
+  background: #F1F2F2!important;
+}
+//HOME
+
+
+
+
+// PRODUCT SPECIFICATION
+body.dark_pta .products_buttons {
+
+  --background: radial-gradient(circle, rgb(63 63 63) 0%, rgb(37 37 37) 100%)!important;
+
+  --color: white!important;
+}
+body.light_pta .products_buttons {
+
+  --background: radial-gradient(circle, rgb(233 233 233) 0%, rgb(182 182 182) 100%)!important;
+
+  --color: black!important;
+}
+
+
+body.dark_pta .product_icons {
+
+  background: radial-gradient(circle, rgb(63 63 63) 0%, rgb(37 37 37) 100%)!important;
+
+  
+}
+body.dark_pta .product_icons_btn.active .product_icons {
+  background: radial-gradient(circle, rgb(233 233 233) 0%, rgb(182 182 182) 100%)!important;
+}
+
+
+body.light_pta .product_icons {
+
+  background: radial-gradient(circle, rgb(233 233 233) 0%, rgb(182 182 182) 100%)!important;
+
+  
+}
+body.light_pta .product_icons_btn.active .product_icons {
+  background: radial-gradient(circle, rgb(255 255 255) 0%, rgb(200 200 200) 100%)!important;
+}
+// PRODUCT SPECIFICATION
+
+
+
+
+// DISPLAY GUIDELINES
+body.light_pta .home-headings {
+  color: #E66B24!important;
+  font-family: proxima_medium!important;
+  font-size: 20px;
+  
+}
+body.dark_pta .home-headings {
+  color: #E66B24!important;
+  font-family: proxima_medium!important;
+  font-size: 20px!important;
+  
+}
+body.light_pta .heading-div> p{
+
+  color: black;
+}
+body.dark_pta .heading-div> p{
+
+  color: white;
+}
+// DISPLAY GUIDELINES
+
+
+
+
+
+// COUNTER TALK
+
+body.dark_pta .product_detail_heading{
+  color: white!important;
+  padding: 12px!important;
+  margin-bottom: 15px!important;
+  width: 100%!important;
+  font-size: 14px!important;
+  --border-radius: 0px!important;
+  background: radial-gradient(circle, rgb(63 63 63) 0%, rgb(37 37 37) 100%)!important;
+  text-align: center!important;
+  }
+  body.light_pta .product_detail_heading{
+  color: black!important;
+  padding: 12px!important;
+  margin-bottom: 15px!important;
+  width: 100%!important;
+  font-size: 14px!important;
+  --border-radius: 0px!important;
+  background: radial-gradient(circle, rgb(233 233 233) 0%, rgb(182 182 182) 100%)!important;
+  text-align: center!important;
+  }
+
+
+// COUNTER TALK
+
+
+
+// CUSTOMER-INFORMATION
+  .header-title {
+  color: #E66B24!important;
+  font-family: proxima_medium!important;
+  font-size: 20px!important;
+}
+body.light_pta .header-title {
+  color: #E66B24!important;
+  font-family: proxima_medium!important;
+  font-size: 20px!important;
+}
+
+
+
+// PLANOGRAM RANGING FEEDBACK
+body.dark_pta .checkbutton {
+
+  --background: radial-gradient(circle, rgb(63 63 63) 0%, rgb(37 37 37) 100%)!important;
+
+  color: white!important;
+}
+body.light_pta .checkbutton {
+
+  --background: radial-gradient(circle, rgb(233 233 233) 0%, rgb(182 182 182) 100%)!important;
+
+  color: black!important;
+}
+// PLANOGRAM RANGING FEEDBACK
+
+
+// PROMOTER KPI INNER
+body.dark_pta .tick {
+  --background: radial-gradient(circle, rgb(63 63 63) 0%, rgb(37 37 37) 100%)!important;
+
+  color: white!important;
+}
+body.light_pta .tick {
+  --background: radial-gradient(circle, rgb(233 233 233) 0%, rgb(182 182 182) 100%)!important;
+
+  color: black!important;
+}
+
+body.dark_pta tr.tableheadingcss{
+  background: radial-gradient(circle, rgb(63 63 63) 0%, rgb(37 37 37) 100%)!important;
+}
+body.light_pta tr.tableheadingcss{
+  background: radial-gradient(circle, rgb(233 233 233) 0%, rgb(182 182 182) 100%)!important;
+}
+
+
+
+body.dark_pta .custom-table th {
+  color: white!important;
+}
+body.light_pta .custom-table th {
+  color: black!important;
+}
+
+body.dark_pta .ddetail-heading p {
+  color: white!important;
+}
+body.dark_pta .ddetail-text-p {
+  color: #ffffff!important;
+}
+// PROMOTER KPI INNER
+
+
+// INCENTIVE CALCULATOR
+body.dark_pta .head{
+  background: radial-gradient(circle, rgb(63 63 63) 0%, rgb(37 37 37) 100%)!important;
+}
+body.light_pta .head{
+  background: radial-gradient(circle, rgb(233 233 233) 0%, rgb(182 182 182) 100%)!important;
+}
+
+body.dark_pta .sales_table_header{
+  color: white!important;
+}
+body.light_pta .sales_table_header{
+  color: black!important;
+}
+
+// INCENTIVE CALCULATOR
+
+
+// UPLOAD YOUR SALES
+
+body.dark_pta .sales_grid_row{
+  background: radial-gradient(circle, rgb(63 63 63) 0%, rgb(37 37 37) 100%)!important;
+  color: white;
+}
+body.light_pta .sales_grid_row{
+  background: radial-gradient(circle, rgb(233 233 233) 0%, rgb(182 182 182) 100%)!important;
+  color: black;
+}
+// UPLOAD YOUR SALES
+
+
+
+// ONLINE EXAM CATEGORY
+body.dark_pta  .category-title{
+  color: #fff;
+}
+body.light_pta .category-title{
+  color: black;
+}
+
+
+// body.dark_pta ion-card-header{
+//   background: radial-gradient(circle, rgb(63 63 63) 0%, rgb(37 37 37) 100%)!important;
+//   color: white;
+// }
+
+// body.light_pta ion-card-header{
+//   background: radial-gradient(circle, rgb(233 233 233) 0%, rgb(182 182 182) 100%)!important;
+//   color: black;
+// }
+
+/* 🌙 Dark Mode */
+body.dark_pta ion-card-header {
+  // background: radial-gradient(circle at center, #3a3a3a 0%, #1e1e1e 100%) !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ☀️ Light Mode */
+body.light_pta ion-card-header {
+  background: radial-gradient(circle at center, #f5f5f5 0%, #d6d6d6 100%) !important;
+  color: #1a1a1a !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Optional: add smooth theme switch transition */
+ion-content, ion-card-header {
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+// ONLINE EXAM CATEGORY
+
+
+
+
+body.dark_pta .alertCustom {
+  --background: #111111!important; 
+  --color: white!important; 
+  border-radius: 5px; 
+}
+
+
+body.light_pta .alertCustom {
+  --background: #F1F2F2!important; 
+  --color: #000!important; 
+  border-radius: 5px; 
+}
+
+
+
+
+
+
+
+// LOGIN
+body.dark_pta .full_screen.container-fluid{
+  background-color: #111111;
+}
+body.light_pta .full_screen.container-fluid{
+  background-color: #F1F2F2;
+}
+
+body.dark_pta .first_div > p {
+  color: #E66B24!important;
+}
+body.light_pta .first_div > p {
+  color: #E66B24!important;
+}
+
+
+body.dark_pta .btn-1{
+  background: radial-gradient(circle, rgb(63 63 63) 0%, rgb(37 37 37) 100%)!important;
+  color: white!important;
+}
+body.light_pta .btn-1{
+  background: radial-gradient(circle, rgb(233 233 233) 0%, rgb(182 182 182) 100%)!important;
+  color: black!important;
+}
+
+body.dark_pta .forget{
+color: white!important;
+}
+body.light_pta .forget{
+color: black!important;
+}
+
+
+
+body.dark_pta .container-fluid.xyz{
+  background: #F1F2F2!important;
+}
+body.light_pta .container-fluid.xyz{
+  background: #ffffff!important;
+}
+
+
+body.light_pta .deletionp{
+  color: black!important;
+}
+
+
+body.light_pta .rca{
+  background: radial-gradient(circle, rgb(93, 93, 93) 40%, rgb(61, 61, 61) 80%);
+  color: white!important;
+}
+body.dark_pta .rca{
+  background: radial-gradient(circle, rgb(233, 233, 233) 0%, rgb(182, 182, 182) 100%) !important; 
+  color: black!important;
+}
+
+
+
+body.light_pta .dmac{
+  background: radial-gradient(circle, rgb(93, 93, 93) 40%, rgb(61, 61, 61) 80%);
+  color: white!important;
+}
+body.dark_pta .dmac{
+  background: radial-gradient(circle, rgb(233, 233, 233) 0%, rgb(182, 182, 182) 100%) !important;
+  color: black!important;
+}
+
+
+
+
+body.dark_pta .forplace::placeholder{
+color: white!important;
+}
+// LOGIN
+
+
+
+// LOGOUT
+body.dark_pta #alert-3-hdr {
+  color: white !important;
+}
+
+body.dark_pta div#alert-3-msg {
+  color: white!important;
+}
+body.dark_pta button.alert-button{
+  color: white;
+}
+
+
+body.dark_pta .alertCustom .alert-title {
+  color: white!important;
+  background: #111111!important;
+}
+
+body.dark_pta .alertCustom .alert-head  {
+  color: white!important;
+  background: #111111!important;
+}
+
+body.dark_pta .alertCustom .alert-message {
+  color: white!important;
+  background: #111111!important; 
+}
+
+body.dark_pta .terms{
+  color: #E66B24!important;
+}
+body.light_pta .terms{
+  color: #E66B24!important;
+}
+// LOGOUT
+
+
+
+
+// REGISTER ACCOUNT
+body.dark_pta .second-bg{
+  background: #000000!important;
+}
+body.light_pta .second-bg{
+  background: #F1F2F2!important;
+}
+body.dark_pta .upper-bg{
+  background-color: #000000!important;
+}
+body.light_pta .upper-bg{
+  background-color: #F1F2F2!important;
+}
+
+body.dark_pta .tick>p {
+  color: white;
+ 
+}
+// REGISTER ACCOUNT
+
+
+
+
+.product_icons{
+  width: 80px!important;
+}
+.product_icons_btn{
+  width: 80px!important;
+}
+
+
+
+// 
+// 
+// 
+// 
+body.dark_pta {
+  .form_list {
+    background-color: #000 !important;
+    padding: 20px !important;
+  }
+
+
+  .header-underline {
+    border-bottom: 1px solid #444 !important;
+    margin-bottom: 20px !important;
+  }
+
+  .custom-select,
+  .custom-input-item {
+    background-color: #111 !important;
+    --background: #111 !important;
+    --color: #fff !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .custom-select .selected-label,
+  .custom-input-item .selected-label {
+    color: #fff !important;
+  }
+
+  .dropdown-content {
+    background-color: #111 !important;
+    border: 1px solid #333 !important;
+    border-radius: 8px !important;
+    margin-top: 6px !important;
+    padding: 8px !important;
+  }
+
+  ion-item {
+    // --background: #000000 !important;
+    --color: #000000 !important;
+    // color: #fff !important;
+    // background-color: #111 !important;
+  }
+
+  .disabled-option {
+    color: #999 !important;
+  }
+
+  .custom-searchbar {
+    --background: #222 !important;
+    --color: #fff !important;
+    --placeholder-color: #aaa !important;
+    border-radius: 6px !important;
+    margin-bottom: 10px !important;
+    color: #fff !important;
+  }
+
+  .custom-textarea {
+    --background: #111 !important;
+    --color: #fff !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+  }
+
+
+
+  .truncate-text {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    color: #fff !important;
+  }
+
+  ion-icon {
+    color: #fff !important;
+  }
+}
+
+
+body.dark_pta .no-underline {
+  color: #e87838;
+}
+body.light_pta .no-underline {
+  color: #e87838;
+}
+
+
+body.light_pta button.alert-button {
+  color: black !important;
+}
+body.dark_pta button.alert-button.ion-focusable.ion-activatable.sc-ion-alert-md {
+  color: black !important;
+}
+body.dark_pta .alert-wrapper.ion-overlay-wrapper.sc-ion-alert-md {
+  background: black !important;
+}
+
+
+body.dark_pta #background-content {
+  background: #000000!important;
+}
+body.dark_pta .list-md {
+  background: #000000!important;
+}
+body.dark_pta ion-content#background-content {
+  background-color: #000000 !important;
+}
+
+body.dark_pta {
+  /* Backgrounds */
+  .main-div,
+  .upper-bg,
+  .second-bg,
+  .from-padding,
+  .form-content,
+  ion-content {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+
+  ion-content {
+    --background: #000 !important;
+  }
+
+  /* Input container */
+  ion-item.custom-input-item {
+    --background: transparent !important;
+    background-color: #111 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    margin-bottom: 16px !important;
+    box-shadow: 0 0 0 1px #222 inset;
+    padding: 0px 0px 8px 6px !important;
+  }
+
+  /* Labels */
+  ion-label.labels {
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  /* Inputs */
+  ion-input.fieldss,
+  ion-select.fieldss {
+    --background: transparent !important;
+    --color: #fff !important;
+    --placeholder-color: #666 !important;
+    background-color: transparent !important;
+    color: #fff !important;
+    font-size: 15px;
+  }
+
+  ion-input.fieldss::part(native) {
+    padding: 10px 0;
+    background: transparent !important;
+    color: #fff !important;
+    border: none !important;
+  }
+
+  ion-input.fieldss::part(native)::placeholder {
+    color: #666 !important;
+  }
+
+  /* Select display text and placeholder */
+  ion-select::part(text) {
+    color: #fff !important;
+  }
+
+  ion-select::part(placeholder) {
+    color: #777 !important;
+  }
+
+  .select-icon {
+    color: #fff !important;
+    font-size: 18px;
+  }
+
+  /* Dropdown options (inside alert) */
+  ion-select-option {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+
+  /* Alert modal styling */
+  .alert-wrapper {
+    background-color: #111 !important;
+    color: #fff !important;
+  }
+
+  .alert-button {
+    background-color: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Checkbox */
+  ion-checkbox {
+    --background: #111 !important;
+    --checkmark-color: #fff !important;
+    --border-color: #999 !important;
+  }
+
+  .terms {
+    color: #ccc !important;
+  }
+
+  .anchortext {
+    color: #e87838 !important;
+    
+  }
+
+  /* Alert dropdown selected + unselected options */
+  .alert-radio-label.sc-ion-alert-md,
+  .alert-radio-label.sc-ion-alert-ios {
+    color: #fff !important;
+  }
+
+  .alert-radio-label.sc-ion-alert-md[aria-checked="true"],
+  .alert-radio-label.sc-ion-alert-ios[aria-checked="true"] {
+    color: #fff !important;
+    font-weight: bold;
+  }
+  ion-select.fieldss::part(text) {
+    color: #fff !important; /* For selected value */
+  }
+  
+  ion-select.fieldss::part(placeholder) {
+    color: #ffffff !important; /* For placeholder like 'Select Retailer' */
+    opacity: 0.6; /* Optional: makes it feel like a placeholder */
+  }
+}
+
+
+
+
+
+body.dark_pta .form-control::placeholder{
+  color: black!important;
+}
+body.dark_pta #alert-2-hdr {
+  color: white !important;
+}
+body.dark_pta div#alert-2-msg {
+  color: white;
+}
+
+
+
+
+body.dark_pta .nointernethead {
+  color: white !important;
+}
+body.dark_pta .nointernetheadp {
+  color: white!important;
+}
+
+
+
+body.dark_pta input.form-control.forplace::placeholder {
+  color: white !important;
+}
+
+
+
+/* Red background for the ion-item container */
+body.dark_pta ion-item.mine {
+  --background: #cc0000;
+  background-color: #cc0000;
+  border-radius: 6px;
+  padding: 4px;
+  --color: #fff;
+}
+
+/* Optional: Ensure the dropdown text inside the custom component is white */
+body.dark_pta ion-item.mine app-custom-product-dropdown {
+  color: #fff;
+  width: 100%;
+  display: block;
+}
+
+/* Optional: Style the chevron icon if present inside the dropdown */
+body.dark_pta ion-item.mine ion-icon {
+  color: #fff;
+}
+
+/* Optional: Remove border or shadow if needed */
+body.dark_pta ion-item.mine::part(native) {
+  box-shadow: none;
+  border: none;
+}
+
+
+body.dark_pta .selectcountry{
+  background: radial-gradient(circle, rgb(93, 93, 93) 40%, rgb(61, 61, 61) 80%)!important;
+  color: white!important;
+}
+body.light_pta .selectcountry{
+  background: radial-gradient(circle, rgb(233, 233, 233) 0%, rgb(182, 182, 182) 100%) !important; 
+  color: black!important;
+}
+
+
+body.dark_pta .custom-toolbar{
+  background: radial-gradient(circle, rgb(93, 93, 93) 40%, rgb(61, 61, 61) 80%)!important;
+  color: white!important;
+}
+body.light_pta .custom-toolbar{
+  background: radial-gradient(circle, rgb(233, 233, 233) 0%, rgb(182, 182, 182) 100%) !important; 
+  color: black!important;
+}
+
+body.dark_pta .alert-title.sc-ion-alert-md {
+  color: white!important;
+}
+
+
+body.dark_pta .ioncard{
+  background: radial-gradient(circle, rgb(93, 93, 93) 40%, rgb(61, 61, 61) 80%)!important;
+}
+
+body.light_pta .ioncard{
+  background: radial-gradient(circle, rgb(255 255 255) 0%, rgb(232 232 232) 100%) !important;
+}
+
+
+
+
+
+body.dark_pta .question-card{
+  
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    
+    background-color: #000000 !important;
+}
+
+body.dark_pta .questionhead{
+color: white!important;
+}
+body.dark_pta .questionpara{
+color: white!important;
+}
+
+
+body.dark_pta .remarks {
+    color: white!important;
+}
+
+body.dark_pta .yes {
+    border: 2px solid #525252 !important;
+    border-radius: 50px;
+   
+}
+body.dark_pta .no {
+    border: 2px solid #525252 !important;
+    border-radius: 50px;
+   
+}
+body.dark_pta .na {
+    border: 2px solid #525252 !important;
+    border-radius: 50px;
+    
+}
+
+
+body.dark_pta ion-icon.orange.md.hydrated {
+    font-size: 26px!important;
+    color: #e87838!important;
+}
+
+
+
+
+
+
+
+
+
+// new
+
+
+body.dark_pta .password-field ion-icon {
+   
+      color: black !important;
+    
+  }
+
+
+body.dark_pta{
+
+  .product-item p{
+    color: white !important;
+  }
+  .home-headings-p{
+ color: white !important;
+  }
+
+  .pdfheading{
+color: white !important;
+  }
+  .slidericontext{
+    color: white !important;
+
+  }
+
+}  
+
+
+
+
+
+
+
+
+
+body.dark_pta .question-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #000000 !important;
+}
+
+
+body.dark_pta .questionhead {
+    color: white !important;
+}
+body.dark_pta .questionpara {
+    color: white !important;
+}
+body.dark_pta .remarks {
+    color: white !important;
+}
+.upload-button[_ngcontent-ng-c2620694963] {
+    font-size: 20px;
+    color: var(--ion-color-primary);
+}
+
+body.dark_pta ion-icon.orange.md.hydrated {
+    font-size: 26px !important;
+    color: #e87838 !important;
+}
+
+body.dark_pta ion-icon.orange.md.hydrated {
+    color: var(--darkreader-text-e87838, #ea8146) !important;
+}
+
+
+body.dark_pta ion-icon.orange {
+color: #e87838!important;
+}
+
+
+
+//
+body.dark_pta .ionremarks{
+  color: white !important;
+}
+
+
+body.dark_pta .NA{
+  color: white !important;
+}
+body.dark_pta .low-percentage{
+  color: white !important;
+}
+body.dark_pta .options{
+  color: white !important;
+}
+
+body.dark_pta .cttextareas{
+  background: black !important;
+}
+
+body.dark_pta .yes{
+  background: white !important
+}
+
+body.light_pta .yes{
+  background: white !important;
+}
+

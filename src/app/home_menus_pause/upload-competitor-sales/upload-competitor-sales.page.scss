@@ -1,0 +1,356 @@
+// upload -competitor -yours sale page comman css
+// Header, ion-content, footer CSS
+.maincontainer {
+  --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+      --background-size: 100% 100%;
+    --opacity: 1 !important;
+    padding-top: 20px;
+    --border-color: white !important;
+    text-align: center !important;
+  }
+  
+  .toolbar-row {
+    align-items: center;
+    height: 100%;
+  }
+  
+  .toolbar-col {
+    display: flex;
+    align-items: center;
+  }
+  
+  .second_col_img {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.SONY_mail_logo {
+  width: 90px;
+  /* text-align: center; */
+}
+.extra_head-height{
+  height: 50px;
+}
+
+  .back-button {
+    font-size: 16px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    --font-weight: 200 !important;
+    padding: 3px;
+  //   margin-left: 12px;
+    --line-height: 10px !important;
+    margin-top: 8px;
+  }
+  
+  .back_link {
+    color: black;
+    cursor: pointer;
+  }
+  
+  ion-title.center-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  
+    img {
+      max-height: 40px;
+    }
+  }
+  
+  ion-content {
+    --background: url(../../../assets/icon/home.jpg) no-repeat 0px -84px;
+    --background-size: 100% 100%;
+  }
+
+
+
+  .custom-border-header {
+      box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+      border-bottom: 1px solid white;
+  }
+
+  
+    // ////Header, ion-content, footer CSS
+  
+  
+  
+  
+    .heading-div {
+        padding: 0px 20px;
+        margin-top: 20px;
+        
+        h6.home-headings {
+        
+        font-size: 20px;
+       
+        }
+        
+        p {
+        font-size: 10px;
+        font-family: SST;
+        margin-top: 12px;
+        color: black!important;
+        }
+        }
+  
+  .calender-icon {
+    color: #2350c7;
+    font-size: 20px;
+    padding-right: 6px;
+  }
+  
+  .mine-calender-div {
+    display: flex;
+    justify-content: center;
+    background: white;
+  }
+  .mine-calender {
+    width: 100%;
+   
+    margin: 0 auto;
+    --ion-background-color: #ffffff;
+    font-family: SST;
+  }
+  
+  ion-popover {
+    --width: 90%;
+   
+   
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .fieldss{
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    color: #565656;
+    padding: 0px 0px 0px 10px;
+    height: 40px;
+    font-family: SST;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    background: white;
+    align-items: center;
+  }
+
+  .custom-select.fieldss{
+    --padding-end: 35px;
+    width: 100%;
+  }
+  .salesshow_div {
+    margin: 10px 4px 0px 0px;
+  }
+
+          //fieldsCSS
+          ion-select.custom-select {
+            border: 1px solid #d1d1d1;
+            border-radius: 4px;
+            --padding-start: 10px;
+            --padding-top: 10px;
+            --padding-bottom: 10px;
+          }
+  
+          /* Input and Select Fields */
+  ion-item {
+    --highlight-color-focused: #4B54CF; /* Color of underline when focused */
+    // --min-height: 50px;
+    --border-color: transparent;
+    --padding-start: 0px;
+    margin-bottom: 8px;
+  }
+  
+  ion-label {
+    font-weight: 500; /* Bold labels */
+  }
+  
+  ion-input {
+    --padding-start: 8px; /* Padding inside input field */
+    --padding-end: 8px;
+    font-size: 14px;
+    font-family: SST;
+  }
+  
+  .custom-input-item ion-input {
+    border: 1px solid #d1d1d1; /* Light grey border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 8px; /* Padding inside input field */
+   
+  }
+  .custom-input-item {
+    --background: #ffffff00 !important;
+    margin-right: -16px;
+    margin-left: 0px;
+    margin-top: 6px;
+    margin-bottom: 4px !important;
+  }
+  
+  ion-select.custom-select {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    background: white;
+  }
+  
+  ion-select::part(icon) {
+    display: none !important;
+  }
+  
+  ion-select {
+    --padding-end: 15px;
+    font-family: SST;
+    font-size: 14px;
+  }
+  
+  .custom-select.fieldss {
+    --padding-end: 35px; // Increase to make room for our custom icon
+    width: 100%;
+  }
+  
+  // Optional: Style the select to match your design
+  ion-select.custom-select {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+  }
+  
+  .custom-select.fieldss {
+    --padding-end: 35px; // Increase to make room for our custom icon
+    width: 100%;
+  }
+  
+  .select-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    color: var(--ion-color-step-650, var(--ion-text-color-step-350, #595959));
+    margin-left: 10rem;
+  }
+  .select-icon {
+    position: absolute;
+    right: 30px;
+    top: 52%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #777777;
+    font-size: 1.2rem;
+    z-index: 2;
+  }
+  .fieldsclassdiv {
+    margin-top: 0px;
+    padding: 0px 4px;
+  }
+  
+  .products_buttons {
+    width: 100%;
+    font-size: 12px;
+    --border-radius: 4px;
+    margin: 20px 0px 0px 0px;
+    --background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+    font-family: SST;
+  }
+  ion-label {
+    font-weight: 500; /* Bold labels */
+  }
+  //fieldsCSS
+  .labels {
+    font-family: SST !important;
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+    margin-left: 8px !important;
+  }
+  
+  .viewbutton {
+    margin-top: 35px;
+  }
+  
+  .checkbutton {
+    margin: 0px 12px 48px;
+  }
+  
+  .percentagediv {
+    height: 80px;
+    display: flex;
+    background: black;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin: -14px 14px 14px 14px;
+  }
+  
+  h3.percentagedivhead {
+    color: white;
+    font-size: 40px;
+  }
+ 
+  .fieldsclassdiv ion-col {
+    height: 74px;
+  }
+  .checkbutton2 {
+    margin: 8px 14px;
+  }
+  
+  .dailysales_all_cols{
+  height: 80px;
+  }
+  #dailysales_all_cols_id{
+    margin-bottom: -12px;
+    margin-top: -6px;
+  }
+ 
+  #download_sales {
+    margin: 10px 0px 0px 0px;
+  }
+
+#row3_brand {
+    margin-top: -30px;
+}
+
+.sales_grid {
+    padding: 0px;
+    margin: 0px 12px;
+}
+.sales_grid_row {
+    background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+    color: white;
+    
+    border-radius: 4px;
+    margin-bottom: 4px;
+}
+
+
+h6.sales_grid_headings {
+    font-family: SST;
+    font-size: 14px;
+    margin: 2px;
+}
+.sales_grid_col {
+    padding: 8px;
+}
+.sales_grid_data_row {
+    height: 40px;
+}
+.sales_grid_data_col {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    
+    
+    background: #ffffff;
+    height: 40px;
+    margin: 0px;
+    justify-content: center;
+    padding: 0px 0px 0px 6px;
+    font-family: SST;
+   
+}
+
+
+.sr_no {
+    //  padding-bottom: 0px;
+    margin-bottom: 0px;
+}

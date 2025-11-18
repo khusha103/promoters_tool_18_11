@@ -1,0 +1,23 @@
+table, td {
+    border: 1px solid black !important;
+    border-collapse: collapse !important;
+    background-color: #DEEAF6 !important;
+    padding: 15px !important;
+}
+
+.comp {
+    background-color: #FEF1CE !important; /* Light yellow for .comp cells */
+}
+
+.shelf {
+    background-color: #EDEDED !important; /* Light gray for .shelf cells */
+}
+
+.blank {
+    background-color: #FFFFFF !important; /* White for .blank cells */
+}
+
+.plan {
+    width: 100%; 
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+}

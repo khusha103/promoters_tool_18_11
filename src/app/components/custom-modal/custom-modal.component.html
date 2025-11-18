@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="primary" class="custom-toolbar">
+    <ion-title >Select Language</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-searchbar placeholder="Search language" (ionInput)="filterLanguages($event)" class="language-searchbar"></ion-searchbar>
+  
+  <ion-list>
+    <ion-item *ngFor="let lang of filteredLanguages" button (click)="selectLanguage(lang)">
+      <ion-label>{{ lang.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

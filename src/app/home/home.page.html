@@ -1,0 +1,34 @@
+<ion-header [translucent]="true" >
+
+  <ion-toolbar class="maincontainer">
+    <img src="\assets\icon\homeicons\sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+    <img src="\assets\icon\homeicons\sony_dark.svg" alt="" class="SONY_mail_logo light_pta">
+  </ion-toolbar>
+</ion-header>
+<ion-header class="homeswiper">
+  <!-- dynamic content swiper have issue with bullets  -->
+  <swiper-container class="swiper_slider" loop="true" autoplay="true" autoplay-delay="3000"
+    autoplay-disable-on-interaction="true" slides-per-view="1" space-between="0" pagination="true" pagination-type="bullets" pagination-clickable="true">
+
+    <swiper-slide *ngFor="let banner of banners" (click)="openUrl(banner.redirect_url)">
+      <img [src]="banner.imageUrl" alt="{{ banner.full_name }}">
+    </swiper-slide>
+
+  </swiper-container>
+
+</ion-header>
+
+<ion-content class="dark light">
+  <ion-grid>
+    <ion-row *ngFor="let row of getRows(homeIcons)">
+      <ion-col size="4" size-md="3" *ngFor="let icon of row">
+        <img [src]="icon.image" alt="" class="homeicons dark_pta" [routerLink]="icon.routerLink">
+        <img [src]="icon.imagelight" alt="" class="homeicons light_pta" [routerLink]="icon.routerLink">
+        
+        <div class="box homeicontext" [innerHTML]="icon.name.replace('\n', '<br>')"></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<app-footer></app-footer>

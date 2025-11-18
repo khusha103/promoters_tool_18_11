@@ -1,0 +1,58 @@
+.custom-select {
+  @apply border border-gray-300 rounded-lg p-3 flex items-center justify-between w-full;
+}
+
+.selected-label {
+  @apply text-gray-700;
+}
+
+.selected-label.selected {
+  @apply font-semibold;
+}
+
+.dropdown-content {
+  @apply border border-gray-200 shadow-lg rounded-lg mt-2 bg-white w-full p-2 max-h-60 overflow-y-auto;
+}
+
+.custom-searchbar {
+  @apply border-b border-gray-300 mb-2;
+}
+
+ion-item {
+  @apply hover:bg-gray-100 cursor-pointer;
+}
+
+ion-button {
+  @apply mt-4  text-white font-semibold py-2 px-4 rounded-lg;
+  --background: var(--ion-secondory-color) !important;
+}
+
+
+.header-ios ion-toolbar:last-of-type {
+    // background-color: blue !important;
+    color: white; /* Ensures text is visible */
+  }
+
+
+
+  .selected-country-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background: linear-gradient(to right, #4facfe, #00f2fe);
+    // color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .selected-country-label span {
+    margin-left: 5px;
+    font-weight: bold;
+    // color: #ffe600;
+  }
+  
+    

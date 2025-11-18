@@ -1,0 +1,82 @@
+<!-- <ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <a href="#" class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/online-exams']"></ion-icon>
+          </a>
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="\assets\icon\homeicons\SONY_logo_main.svg" alt="" class="SONY_mail_logo">
+        </ion-col>
+        <ion-col size="4" class="toolbar-col">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content">
+  <div class="category-container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let category of fixedCategories | keyvalue">
+          <ion-card (click)="selectCategory(+category.key)">
+            <img [src]="category.value.imageUrl" alt="{{ category.value.title }}" class="category-icon" />
+            <ion-card-header>
+              <ion-card-title class="category-title">{{ category.value.title }}</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content> -->
+
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <!-- <a href="#" class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/online-exams']"></ion-icon>
+          </a> -->
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="\assets\icon\homeicons\sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="\assets\icon\homeicons\sony_dark.svg" alt="" class="SONY_mail_logo light_pta"> 
+        </ion-col>
+        <ion-col size="4" class="toolbar-col"></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content dark light">
+  <div class="category-container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let category of fixedCategories">
+          <ion-card (click)="selectCategory(category.id)" class="ioncard">
+            <img [src]="category.imageUrl" alt="{{ category.title }}" class="category-icon" />
+            <ion-card-header>
+              <ion-card-title class="category-title">{{ category.title }}</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  
+  
+<!-- 
+  <ion-button class="back-button-bottom-right" color="dark" [routerLink]="['/online-exams']">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </ion-button> -->
+</ion-content>
+
+<app-footer></app-footer>
+
+
+

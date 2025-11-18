@@ -1,0 +1,60 @@
+<ion-content class="selfie-wrapper">
+      <div class="page-card">
+  <div class="box-header">
+    <p class="bubble-text">“Please include store background”</p>
+  </div>
+
+  <div class="selfie-area">
+
+    <!-- Selfie Circle -->
+   <div class="avatar-container" (click)="onAvatarClick()">
+
+      <img *ngIf="selfieBase64" [src]="selfieBase64" class="avatar-img" />
+
+      <div *ngIf="!selfieBase64" class="avatar-placeholder">
+        <ion-icon name="camera" class="camera-icon"></ion-icon>
+      </div>
+
+      <div
+        *ngIf="selfieBase64"
+        class="remove-btn"
+        (click)="removeSelfie(); $event.stopPropagation()"
+      >
+        ✕
+      </div>
+   </div>
+  </div>
+
+  <!-- Consent -->
+  <ion-item lines="none" class="consent-box">
+    <ion-checkbox slot="start" [(ngModel)]="consentChecked"></ion-checkbox>
+    <ion-label>
+      I consent to share my picture and geo location for attendance record.
+    </ion-label>
+  </ion-item>
+    <ion-item lines="none" class="comment-box">
+  <ion-label position="stacked">Comment</ion-label>
+  <ion-textarea
+    [(ngModel)]="comment"
+    placeholder="Enter your comment..."
+    auto-grow="true">
+  </ion-textarea>
+</ion-item>
+
+  <!-- Buttons -->
+  <div class="btn-block">
+    <ion-button
+      expand="block"
+      class="done-btn"
+      [disabled]="!selfieBase64 || !consentChecked"
+      (click)="onDone()"
+    >
+      {{ isSubmitting ? 'Saving...' : 'Done' }}
+    </ion-button>
+
+    <ion-button expand="block" class="cancel-btn" color="medium" (click)="onCancel()">
+      Cancel
+    </ion-button>
+  </div>
+  </div>
+</ion-content>

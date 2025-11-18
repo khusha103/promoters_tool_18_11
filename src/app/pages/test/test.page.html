@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Wall</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="p-4 bg-yellow-500">
+  <div class="bg-white p-4 rounded-lg shadow-md">
+    <h2 class="text-lg font-bold mb-2">Wall</h2>
+
+    <!-- Swiper Slider -->
+    <!-- <swiper-container [slides-per-view]="1" [autoplay]="{ delay: 3000 }" class="w-full"> -->
+      <!-- <swiper-container class="swiper_slider" loop="true" autoplay="true" autoplay-delay="3000"
+      autoplay-disable-on-interaction="true" slides-per-view="1" space-between="0" pagination="true">
+      <swiper-slide *ngFor="let image of images">
+        <img [src]="image" alt="Sony Table" class="w-full rounded-lg shadow-md">
+      </swiper-slide>
+    </swiper-container> -->
+
+    
+
+    <!-- Dropdowns and Feedback Fields -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+      <div *ngFor="let item of dropdownItems; let i = index">
+        <label class="block font-bold">{{ i + 1 }}</label>
+        <ion-select [(ngModel)]="selectedItems[i]" placeholder="Select">
+          <ion-select-option *ngFor="let option of item.options" [value]="option">
+            {{ option }}
+          </ion-select-option>
+        </ion-select>
+        <ion-input class="mt-2" [(ngModel)]="feedbacks[i]" placeholder="Enter feedback"></ion-input>
+      </div>
+    </div>
+
+    <!-- Add More Button -->
+    <div class="mt-4">
+      <ion-button expand="full" (click)="addInputField()">Add More</ion-button>
+    </div>
+  </div>
+</ion-content>

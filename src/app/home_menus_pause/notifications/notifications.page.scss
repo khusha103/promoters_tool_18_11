@@ -1,0 +1,294 @@
+// Header, ion-content, footer CSS
+.maincontainer {
+    --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+        --background-size: 100% 100%;
+      --opacity: 1 !important;
+      padding-top: 20px;
+      --border-color: white !important;
+      text-align: center !important;
+    }
+    
+    .toolbar-row {
+      align-items: center;
+      height: 100%;
+    }
+    
+    .toolbar-col {
+      display: flex;
+      align-items: center;
+    }
+    
+    .second_col_img {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+  }
+  .SONY_mail_logo {
+    width: 90px;
+    /* text-align: center; */
+  }
+  ion-grid.ios.hydrated {
+    height: 50px;
+  }
+  
+    .back-button {
+      font-size: 16px;
+      border: 1px solid #000000;
+      border-radius: 50%;
+      --font-weight: 200 !important;
+      padding: 3px;
+    //   margin-left: 12px;
+      --line-height: 10px !important;
+      margin-top: 8px;
+    }
+    
+    .back_link {
+      color: black;
+      cursor: pointer;
+    }
+    
+    ion-title.center-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    
+      img {
+        max-height: 40px;
+      }
+    }
+    
+    ion-content {
+      --background: url(../../../assets/icon/home.jpg) no-repeat 0px -84px;
+      --background-size: 100% 100%;
+    }
+
+
+
+    .custom-border-header {
+        box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+        border-bottom: 1px solid white;
+    }
+
+
+    // ////Header, ion-content, footer CSS
+
+    .products_buttons {
+        width: 100%;
+        font-size: 12px;
+        --border-radius: 0px;
+        margin: 14px 0px 0px 0px;
+        --background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+        font-family: SST;
+    }
+
+
+    .heading-div {
+        padding: 0px 20px;
+        margin-top: 20px;
+        
+        h6.home-headings {
+        color: #4B5098;
+        font-family: SST;
+        font-size: 20px;
+        font-weight: bolder;
+        }
+        
+        p {
+        font-size: 10px;
+        font-family: SST;
+        margin-top: 12px;
+        color: black!important;
+        }
+        }
+
+
+
+
+
+
+
+        // 
+
+    
+span.button_span_text {
+    padding: 1px;
+}
+p.no-text-alert {
+    font-size: 24px !important;
+}
+
+
+.notification-container {
+  padding: 16px;
+  background-color: #f9f9f9; // Light background for contrast
+}
+
+.header-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; // Space below the header
+  padding: 11px;
+}
+
+.bell-icon {
+  font-size: 30px;
+  color: #636363;
+  margin-right: 10px;
+}
+
+.header-title {
+  font-size: 24px; // Title size
+
+  // src: url('./assets/fonts/SST-Light.ttf') format('truetype'), 
+  //      url('./assets/fonts/SST-Light.otf') format('opentype');
+}
+
+.error-message {
+  color: #d9534f; // Bootstrap danger color
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.no-notifications {
+  text-align: center;
+  color: #999; // Grey color for no notifications message
+  font-size: 18px;
+}
+
+.notification-item {
+  background-color: #fff; // White background for each notification
+  border-radius: 8px; // Rounded corners
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+  padding: 16px;
+  margin-bottom: 12px; // Space between notifications
+}
+
+.notification-title {
+  font-size: 16px; // Title font size
+  font-weight: bold; // Bold title
+}
+
+.notification-message {
+  font-size: 14px; // Message font size
+}
+
+.notification-date {
+  color: #666; // Darker grey for date text
+}
+
+.main-content {
+  // Default styles
+  
+  // RTL-specific styles
+  &.rtl {
+    direction: rtl;
+    
+    .header-section {
+      flex-direction: row-reverse;
+    }
+    
+    .notification-item {
+      text-align: right;
+    }
+    
+    .bell-icon {
+      margin-left: 10px;
+      margin-right: 0;
+    }
+    
+    // Specific handling for dates to keep them LTR
+    .ltr-date {
+      direction: ltr;
+      text-align: right;
+      unicode-bidi: embed;
+    }
+  }
+
+  // Notification item styles
+  .notification-item {
+    background-color: #f4f4f4;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    
+    .notification-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .notification-message {
+      color: #666;
+      margin-bottom: 10px;
+    }
+    
+    .notification-date {
+      color: #999;
+      font-size: 0.8em;
+    }
+  }
+
+  .no-notifications {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+  }
+}
+
+// .notification-item.read {
+//   --background-color: #a31f1f; /* Gray background for read notifications */
+//   color: #a50808; /* Faded text */
+// }
+
+// .notification-item.read {
+//   background-color: #a31f1f !important;
+//   color: #a50808 !important;
+// }
+
+
+.notification-item.read {
+  background-color: #f5f5f5 !important; /* Soft gray for a subtle effect */
+  color: #666 !important; /* Muted text color */
+  // border-left: 4px solid #a31f1f; /* A left border to indicate read status */
+  opacity: 0.8; /* Slight transparency for a faded effect */
+  transition: all 0.3s ease-in-out;
+}
+
+.notification-item {
+  background-color: #fff; /* White for unread */
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.notification-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.notification-message {
+  font-size: 14px;
+  color: #333;
+}
+
+.notification-date {
+  font-size: 12px;
+  color: #999;
+}
+
+/* Hover Effect */
+.notification-item.read:hover {
+  background-color: #e0e0e0 !important; /* Slightly darker on hover */
+  transform: scale(1.02); /* Small pop-out effect */
+}
+
+// .notification-item.read::part(native) {
+//   background-color: #a31f1f;
+//   color: #a50808; 
+// }
+
+.listss {
+  background: #f1f2f200;
+}

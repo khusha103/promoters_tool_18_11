@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Select Product</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-searchbar placeholder="Search product" (ionInput)="filterProducts($event)" class="product-searchbar"></ion-searchbar>
+  
+  <ion-list>
+    <ion-item *ngFor="let product of filteredProducts" button (click)="selectProduct(product)">
+      <ion-label>{{ product.name }}</ion-label>
+      <!-- <ion-note slot="end">{{ product.code }}</ion-note> -->
+    </ion-item>
+  </ion-list>
+</ion-content>

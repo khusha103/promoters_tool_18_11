@@ -1,0 +1,70 @@
+<ion-content class="ion-content-bg">
+  <div class="bg_banner">
+  <div class="product-main-div">
+    <div class="maindivv">
+      <ion-grid class="maindivgrid">
+        <ion-row>
+          <ion-col size="4" class="headercol1">
+            <!-- <ion-icon name="chevron-back-outline" class="header_back_icon" [routerLink]="['/home']"></ion-icon> -->
+          </ion-col>
+          <ion-col size="8" class="headercol2">
+            <img src="\assets\icon\homeicons\SONY_logo_main.svg" alt="" class="SONY_mail_logo">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- <div class="classforfixed"> -->
+        <div class="heading-div">
+          <h6 class="home-headings">Latest<br>News</h6>
+          <p>Select a product to find the related specifications and features.</p>
+        </div>
+      
+        <div class="icon-row icons-div_row">
+          <ion-button fill="clear" *ngFor="let icon of icons; let i = index" (click)="selectIcon(i)" class="product_icons_btn" [ngClass]="{'active': icon.isActive}">
+            <img [src]="icon.imageUrl" alt="Product Icon" class="product_icons">
+          </ion-button>
+        </div>
+      
+      <ion-card-title class="product_detail_heading">{{ selectedContent.title }}</ion-card-title>
+    </div>
+  </div>
+  <!-- </div> -->
+
+
+ 
+    <!-- <div class="product_detail_container">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4" *ngFor="let product of selectedContent.buttons">
+            <div class="product-item" (click)="selectProduct(product)">
+              <img [src]="getProductImage(product)" alt="{{ product }}">
+              <p>{{ product }}</p>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div> -->
+    <div class="product_detail_container">
+      <div *ngFor="let yearGroup of selectedContent.years">
+        <h3 class="latestnewsyear">{{ yearGroup.year }}</h3>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4" *ngFor="let item of yearGroup.items">
+              <div class="product-item" (click)="selectProduct(item, yearGroup.year)">
+                <img [src]="getProductImage(item)" alt="{{ item }}">
+                <!-- <p>{{ item }}</p> -->
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>
+<app-footer></app-footer>
+
+
+
+  
+

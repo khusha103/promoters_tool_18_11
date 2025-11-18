@@ -1,0 +1,430 @@
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <!-- <a href="#" class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/home']"></ion-icon>
+          </a> -->
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="\assets\icon\homeicons\sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="\assets\icon\homeicons\sony_dark.svg" alt="" class="SONY_mail_logo light_pta">
+        </ion-col>
+        <ion-col size="4" class="toolbar-col">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<div class="from-padding">
+  <ion-content class="ion-padding form-content dark light">
+    <ion-list class="form_list">
+      <div class="header-container">
+        <h1 class="header-title">Customer Information</h1>
+      </div>
+      <!-- <div class="header-underline"></div> -->
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" class="dailysales_all_cols" id="dailysales_all_cols_id">
+            <ion-item class="custom-input-item" lines="none" (click)="openFromPopover()">
+              <p id="from-date-trigger" class="">
+                <ion-icon name="calendar" class="calender-icon"></ion-icon>
+                Date: {{ selectedFromDate ? (selectedFromDate | date:'dd-MM-yyyy') : '__________' }}
+              </p>
+            </ion-item>
+
+            <!-- Popover for Date Selection -->
+            <ion-popover #fromPopover trigger="from-date-trigger" [isOpen]="isFromPopoverOpen"
+              (ionPopoverDidDismiss)="isFromPopoverOpen = false">
+              <ng-template>
+                <ion-content class="popover-content">
+                  <ion-datetime presentation="date" [(ngModel)]="selectedFromDate"
+                    (ionChange)="onFromDateChange($event)" (ionCancel)="closeFromPopover()" class="mine-calender">
+                  </ion-datetime>
+                </ion-content>
+              </ng-template>
+            </ion-popover>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!-- Countries Dropdown -->
+      <div>
+        <ion-item button (click)="toggleDropdown(0)" class="custom-select">
+          <!-- <ion-label class="selected-label">
+            {{ selectedCountries[0] ? selectedCountries[0].name : (selectedCountry ? selectedCountry.name : 'Select
+            Country') }}
+          </ion-label> -->
+
+          <ion-label class="selected-label" [ngClass]="{'selected': selectedCountries[0] || selectedCountry}">
+            <ng-container *ngIf="selectedCountries[0]; else defaultCountryLabel">
+              {{ selectedCountries[0].name }}
+            </ng-container>
+            <ng-template #defaultCountryLabel>
+              <ng-container *ngIf="selectedCountry">
+                {{ selectedCountry.name }}
+              </ng-container>
+              <ng-container *ngIf="!selectedCountry">
+                Select Country
+              </ng-container>
+            </ng-template>
+          </ion-label>
+          <ion-icon [name]="openDropdownIndex === 0 ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+        </ion-item>
+
+        <div *ngIf="openDropdownIndex === 0" class="dropdown-content">
+          <ion-searchbar placeholder="Search country" (ionInput)="filterItems($event, 'country')"
+            class="custom-searchbar">
+          </ion-searchbar>
+          <ion-list>
+            <ion-item button *ngFor="let country of filteredCountries" (click)="selectItem(country, 0)">
+              {{ country.name }}
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+      <!-- Retailers Dropdown -->
+      <div>
+        <ion-item button (click)="toggleDropdown(1)" class="custom-select">
+          <!-- <ion-label class="selected-label">
+            {{ selectedRetailers[0] ? selectedRetailers[0].name : (selectedRetailer ? selectedRetailer.name : 'Select
+            Retailer') }}
+          </ion-label> -->
+          <ion-label class="selected-label" [ngClass]="{'selected': selectedRetailers[0] || selectedRetailer}">
+            <ng-container *ngIf="selectedRetailers[0]; else defaultRetailerLabel">
+              {{ selectedRetailers[0].name }}
+            </ng-container>
+            <ng-template #defaultRetailerLabel>
+              <ng-container *ngIf="selectedRetailer">
+                {{ selectedRetailer.name }}
+              </ng-container>
+              <ng-container *ngIf="!selectedRetailer">
+                Select Retailer
+              </ng-container>
+            </ng-template>
+          </ion-label>
+
+          <ion-icon [name]="openDropdownIndex === 1 ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+        </ion-item>
+
+        <div *ngIf="openDropdownIndex === 1" class="dropdown-content">
+          <ion-searchbar placeholder="Search retailer" (ionInput)="filterItems($event, 'retailer')"
+            class="custom-searchbar">
+          </ion-searchbar>
+          <ion-list>
+             <!-- Check if there are any filtered outlets -->
+             <ion-item button *ngIf="filteredRetailers.length === 0" class="disabled-option" disabled>
+              No Retailers Found
+            </ion-item>
+            <ion-item button *ngFor="let retailer of filteredRetailers" (click)="selectItem(retailer, 1)">
+              {{ retailer.name }}
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+      <!-- Outlets Dropdown -->
+      <div>
+        <ion-item button (click)="toggleDropdown(2)" class="custom-select">
+          <ion-label class="selected-label" [ngClass]="{'selected': selectedoutlets[0] || selectedOutlet}">
+            <ng-container *ngIf="selectedoutlets[0]; else defaultOutletLabel">
+              {{ selectedoutlets[0].name }}
+            </ng-container>
+            <ng-template #defaultOutletLabel>
+              <ng-container *ngIf="selectedOutlet">
+                {{ selectedOutlet.name }}
+              </ng-container>
+              <ng-container *ngIf="!selectedOutlet">
+                Select Outlet
+              </ng-container>
+            </ng-template>
+          </ion-label>
+          <ion-icon [name]="openDropdownIndex === 2 ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+        </ion-item>
+      
+        <div *ngIf="openDropdownIndex === 2" class="dropdown-content">
+          <ion-searchbar placeholder="Search Outlet" (ionInput)="filterItems($event, 'outlet')" class="custom-searchbar"></ion-searchbar>
+      
+          <ion-list>
+            <!-- Check if there are any filtered outlets -->
+            <ion-item button *ngIf="filteredOutlets.length === 0" class="disabled-option" disabled>
+              No Outlets Found
+            </ion-item>
+      
+            <!-- Iterate through filtered outlets if they exist -->
+            <ion-item button *ngFor="let outlet of filteredOutlets" (click)="selectItem(outlet, 2)">
+              {{ outlet.name }}
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+      <!-- Categories Dropdown -->
+      <!-- <div>
+        <ion-item button (click)="toggleDropdown(3)" class="custom-select">
+          
+          <ion-label class="selected-label" [ngClass]="{'selected': selectedCategories[0] || selectedCategory}">
+            <ng-container *ngIf="selectedCategories[0]; else defaultCategoryLabel">
+              {{ selectedCategories[0].category_name }}
+            </ng-container>
+            <ng-template #defaultCategoryLabel>
+              <ng-container *ngIf="selectedCategory">
+                {{ selectedCategory.category_name }}
+              </ng-container>
+              <ng-container *ngIf="!selectedCategory">
+                Select Category
+              </ng-container>
+            </ng-template>
+          </ion-label>
+          <ion-icon [name]="openDropdownIndex === 3 ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+        </ion-item>
+
+        <div *ngIf="openDropdownIndex === 3" class="dropdown-content">
+         
+          <ion-list>
+            <ion-item button *ngFor="let category of filteredCategory" (click)="selectItem(category, 3)">
+              {{ category.category_name }}
+            </ion-item>
+          </ion-list>
+        </div>
+      </div> -->
+
+      <div>
+        <ion-item button (click)="toggleDropdown(3)" class="custom-select">
+          <ion-label class="selected-label" [ngClass]="{'selected': selectedCategories[0] || selectedCategory}">
+            <ng-container *ngIf="selectedCategories[0]; else defaultCategoryLabel">
+              {{ selectedCategories[0].category_name }}
+            </ng-container>
+            <ng-template #defaultCategoryLabel>
+              <ng-container *ngIf="selectedCategory">
+                {{ selectedCategory.category_name }}
+              </ng-container>
+              <ng-container *ngIf="!selectedCategory">
+                Select Category
+              </ng-container>
+            </ng-template>
+          </ion-label>
+          <ion-icon [name]="openDropdownIndex === 3 ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+        </ion-item>
+      
+        <div *ngIf="openDropdownIndex === 3" class="dropdown-content">
+          <ion-list>
+            <!-- <ion-item 
+              button 
+              *ngFor="let category of filteredCategory" 
+              (click)="selectItem(category, 3)" 
+              [disabled]="category.id === '5'">
+              {{ category.category_name }}
+            </ion-item> -->
+            <ion-item 
+              button 
+              *ngFor="let category of filteredCategory" 
+              (click)="selectItem(category, 3)" >
+              {{ category.category_name }}
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+      
+
+
+     <!-- Preference Dropdown -->
+<!-- Preference Dropdown -->
+<div>
+  <ion-item button (click)="toggleDropdown(4)" class="custom-select">
+    <ion-label class="selected-label" [ngClass]="{'selected': selectedPreferences[0]}">
+      <ng-container *ngIf="selectedPreferences[0]; else defaultPreferenceLabel">
+        {{ selectedPreferences[0].name }}
+      </ng-container>
+      <ng-template #defaultPreferenceLabel>
+        Select Preference
+      </ng-template>
+    </ion-label>
+    <ion-icon [name]="openDropdownIndex === 4 ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+  </ion-item>
+
+  <div *ngIf="openDropdownIndex === 4" class="dropdown-content">
+    <ion-list>
+      <ion-item button *ngFor="let preference of filteredPreference" (click)="selectItem(preference, 4)">
+        <span class="truncate-text">{{ preference.name }}</span>
+        <!-- Move the icon to the right side -->
+        <!-- <ion-icon name="information-circle-outline" (click)="presentPopover($event, preference.name)" class="info-icon" slot="end"></ion-icon> -->
+         <!-- Icon for tooltip -->
+      </ion-item>
+    </ion-list>
+  </div>
+</div>
+
+
+
+
+      <!-- Gender Dropdown -->
+      <div>
+        <ion-item button (click)="toggleDropdown(5)" class="custom-select">
+          <!-- <ion-label class="selected-label">
+            {{ selectedGenders[0] ? selectedGenders[0].name : 'Select Gender' }}
+          </ion-label> -->
+          <ion-label class="selected-label" [ngClass]="{'selected': selectedGenders[0]}">
+            <ng-container *ngIf="selectedGenders[0]; else defaultGenderLabel">
+              {{ selectedGenders[0].name }}
+            </ng-container>
+            <ng-template #defaultGenderLabel>
+              Select Gender
+            </ng-template>
+          </ion-label>
+
+          <ion-icon [name]="openDropdownIndex === 5 ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+        </ion-item>
+
+        <div *ngIf="openDropdownIndex === 5" class="dropdown-content">
+          <!-- <ion-searchbar placeholder="Search Category" (ionInput)="filterItems($event, 'category')"
+            class="custom-searchbar">
+          </ion-searchbar> -->
+          <ion-list>
+            <ion-item button *ngFor="let gender of filteredGenders" (click)="selectItem(gender, 5)">
+              {{ gender.name }}
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+      <!-- AgeBracket Dropdown -->
+      <div>
+        <ion-item button (click)="toggleDropdown(6)" class="custom-select">
+          <!-- <ion-label class="selected-label">
+            {{ selectedAges[0] ? selectedAges[0].name : 'Select Age' }}
+          </ion-label> -->
+          <ion-label class="selected-label" [ngClass]="{'selected': selectedAges[0]}">
+            <ng-container *ngIf="selectedAges[0]; else defaultAgeLabel">
+              {{ selectedAges[0].name }}
+            </ng-container>
+            <ng-template #defaultAgeLabel>
+              Select Age
+            </ng-template>
+          </ion-label>
+          <ion-icon [name]="openDropdownIndex === 6 ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+        </ion-item>
+
+        <div *ngIf="openDropdownIndex === 6" class="dropdown-content">
+          <!-- <ion-searchbar placeholder="Search Category" (ionInput)="filterItems($event, 'category')"
+            class="custom-searchbar">
+          </ion-searchbar> -->
+          <ion-list>
+            <ion-item button *ngFor="let ageBracket of filteredAges" (click)="selectItem(ageBracket, 6)">
+              {{ ageBracket.name }}
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+      <!-- Products Dropdown -->
+      <div>
+        <ion-item button (click)="toggleDropdown(7)" class="custom-select">
+          <!-- <ion-label class="selected-label">
+            {{ selectedProducts[0] ? selectedProducts[0].name : 'Select Model'}}
+          </ion-label> -->
+          <ion-label class="selected-label" [ngClass]="{'selected': selectedProducts[0]}">
+            <ng-container *ngIf="selectedProducts[0]; else defaultProductLabel">
+              {{ selectedProducts[0].name }}
+            </ng-container>
+            <ng-template #defaultProductLabel>
+              Select Model
+            </ng-template>
+          </ion-label>
+          <ion-icon [name]="openDropdownIndex === 7 ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+        </ion-item>
+
+        <div *ngIf="openDropdownIndex === 7" class="dropdown-content">
+          <ion-searchbar placeholder="Search Model" (ionInput)="filterItems($event, 'product')"
+            class="custom-searchbar">
+          </ion-searchbar>
+
+          <ion-list>
+            <ion-item button *ngFor="let product of filteredProducts" (click)="selectItem(product, 7)">
+              {{ product.name }}
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+      <div>
+        <ion-item button (click)="toggleDropdown(8)" class="custom-select">
+          <!-- <ion-label class="selected-label">{{ selectednationalities[0] ? selectednationalities[0].name : 'Select
+            Nationality' }}</ion-label> -->
+          <ion-label class="selected-label" [ngClass]="{'selected': selectednationalities[0]}">
+            <ng-container *ngIf="selectednationalities[0]; else defaultNationalityLabel">
+              {{ selectednationalities[0].name }}
+            </ng-container>
+            <ng-template #defaultNationalityLabel>
+              Select Nationality
+            </ng-template>
+          </ion-label>
+          <ion-icon [name]="openDropdownIndex === 8 ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+        </ion-item>
+
+        <div *ngIf="openDropdownIndex === 8" class="dropdown-content">
+          <ion-searchbar placeholder="Search Nationality" (ionInput)="filterItems($event, 'nationality')"
+            class="custom-searchbar">
+          </ion-searchbar>
+          <ion-list>
+            <ion-item button *ngFor="let nationality of filteredNationality" (click)="selectItem(nationality, 8)">
+              {{ nationality.name }}
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+
+      <div *ngFor="let field of fields; let i = index">
+        <ion-item button (click)="Dynamic_toggleDropdown(i)" class="custom-select">
+          <!-- <ion-label class="selected-label">{{ selectedFields[field.field_slug] ? selectedFields[field.field_slug]?.name
+            : field.field_name }}</ion-label> -->
+
+          <ion-label class="selected-label" [ngClass]="{'selected': selectedFields[field.field_slug]}">
+            <ng-container *ngIf="selectedFields[field.field_slug]; else defaultFieldLabel">
+              {{ selectedFields[field.field_slug]?.name }}
+            </ng-container>
+            <ng-template #defaultFieldLabel>
+              {{ field.field_name }}
+            </ng-template>
+          </ion-label>
+
+          <ion-icon [name]="openDynamicDropdownIndex === i ? 'chevron-up' : 'chevron-down'" slot="end"></ion-icon>
+        </ion-item>
+
+        <div *ngIf="openDynamicDropdownIndex === i" class="dropdown-content">
+          <ion-searchbar placeholder="Search {{ field.field_name }}" (ionInput)="DynamicfilterItems($event, field.id)"
+            class="custom-searchbar">
+          </ion-searchbar>
+          <ion-list>
+            <ion-item button *ngFor="let option of filteredOptions[field.id]"
+              (click)="DynamicselectItem(option, field)">
+              {{ option.name }}
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+
+      <!-- Feedback Input Field -->
+      <ion-item class="custom-select">
+        <ion-textarea placeholder="Your feedback" class="custom-textarea selected-label" [(ngModel)]="feedback"
+          rows="10"></ion-textarea>
+      </ion-item>
+
+      <ion-button expand="full" class="tick" (click)="onSubmit()">Submit</ion-button>
+    </ion-list>
+
+
+    <!-- <ion-button class="back-button-bottom-right" color="dark" [routerLink]="['/home']">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button> -->
+  </ion-content>
+</div>
+
+
+<app-footer></app-footer>

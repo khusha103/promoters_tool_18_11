@@ -1,0 +1,80 @@
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <a href="#" class="back_link">
+            <!-- <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/promoter-kpi']"></ion-icon> -->
+          </a>
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="\assets\icon\homeicons\SONY_logo_main.svg" alt="" class="SONY_mail_logo">
+          <!-- <ion-title class="center-title">
+           
+
+          </ion-title> -->
+        </ion-col>
+        <ion-col size="4" class="toolbar-col">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content">
+  <div class="heading-div">
+    <h6 class="home-headings">Check<br>My Score</h6>
+    <!-- <p>(Choose exam type)</p> -->
+  </div>
+
+  <div class="checkbutton">
+    <ion-button  expand="full_screen" class="products_buttons">
+      Your Score:
+<p class="score">04 points</p>
+     </ion-button>
+    </div>
+
+    <div class="table-container">
+ 
+      <table class="custom-table">
+        <!-- Table Header -->
+        <thead>
+          <tr class="tableheadingcss">
+            <th colspan="3">LEADERBOARD</th>
+          </tr>
+          <tr class="tableheadingcss">
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+    
+        <!-- Table Body -->
+        <!-- <tbody class="tablebodycss"> 
+          <tr>
+            <td>1</td>
+            <td>John Doe</td>
+            <td>Store A</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Jane Smith</td>
+            <td>Store B</td>
+            <td>3</td>
+          </tr>
+        </tbody> -->
+        <tbody class="tablebodycss"> 
+          <tr *ngFor="let item of items | paginate: { itemsPerPage: 10, currentPage: page }">
+            <td>{{item.rank}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.score}}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    <pagination-controls (pageChange)="page = $event" class="paginationcss"></pagination-controls>
+
+</ion-content>
+<app-footer></app-footer>

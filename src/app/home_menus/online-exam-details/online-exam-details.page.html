@@ -1,0 +1,90 @@
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <a href="#" class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button"
+              [routerLink]="['/online-exam-category']"></ion-icon>
+          </a>
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="/assets/icon/homeicons/sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="/assets/icon/homeicons/sony_dark.svg" alt="" class="SONY_mail_logo light_pta">
+        </ion-col>
+        <ion-col size="4" class="toolbar-col">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content dark light">
+  <div class="exam-details-container" *ngIf="!hidetestbtn && iscontent">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="exam-title">{{ examTitle }}</ion-card-title>
+      </ion-card-header>
+      <!-- count ques done from table sony_test_users_detail with paricular userid and testid 
+     remaining ques = totalques - doneques
+ 
+     get remaingtime from table sony_test_progress if no entry then show total time which already get in component-->
+      <ion-card-content>
+        <div class="exam-info">
+          <div class="info-item">
+            <ion-icon name="time-outline" class="info-icon"></ion-icon>
+            <span class="info-text">{{Timetitle}}: {{ totalTime }} mins</span>
+          </div>
+          <div class="info-item">
+            <ion-icon name="list-outline" class="info-icon"></ion-icon>
+            <span class="info-text">{{quesTitle}}: {{ getQuestionCount() }}</span>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <ng-container *ngIf="!hidetestbtn">
+      <ion-button expand="full" class="start-button" (click)="startExam()" *ngIf="!isExamInProgress">
+        <ion-icon name="play-outline" class="button-icon"></ion-icon>
+        <span class="button-text">Start</span>
+      </ion-button>
+
+      <ion-button expand="full" class="start-button" (click)="startExam(true)" *ngIf="isExamInProgress">
+        <ion-icon name="play-outline" class="button-icon"></ion-icon>
+        <span class="button-text">Resume</span>
+      </ion-button>
+    </ng-container>
+  </div>
+
+  <!-- score show div -->
+  <div class="result-container" *ngIf="hidetestbtn">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Your Exam Results</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Total Questions</ion-label>
+          <ion-badge color="primary" slot="end">{{ result_totalQuestions }}</ion-badge>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Correct Answers</ion-label>
+          <ion-badge color="success" slot="end">{{ this.result_correctAnswers }}</ion-badge>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Percentage</ion-label>
+          <ion-badge color="tertiary" slot="end">{{ score }}%</ion-badge>
+        </ion-item>
+
+        <div *ngIf="score < pass_percentage" class="result-message">
+          <p class="fail-message">Better luck next time!</p>
+        </div>
+        <div *ngIf="score >= pass_percentage" class="result-message">
+          <p class="pass-message">Congratulations, you passed!</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

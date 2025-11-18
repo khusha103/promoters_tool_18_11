@@ -1,0 +1,278 @@
+.maincontainer {
+  --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+      --background-size: 100% 100%;
+    --opacity: 1 !important;
+    padding-top: 44px;
+    --border-color: white !important;
+    text-align: center !important;
+  }
+  
+  .toolbar-row {
+    align-items: center;
+    height: 100%;
+  }
+  
+  .toolbar-col {
+    display: flex;
+    align-items: center;
+  }
+  
+  .second_col_img {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.SONY_mail_logo {
+  width: 90px;
+  /* text-align: center; */
+}
+ion-grid.ios.hydrated {
+  height: 100%;
+}
+
+  .back-button {
+    font-size: 16px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    --font-weight: 200 !important;
+    padding: 3px;
+  //   margin-left: 12px;
+    --line-height: 10px !important;
+    margin-top: 8px;
+  }
+  
+  .back_link {
+    color: black;
+    cursor: pointer;
+  }
+  
+  ion-title.center-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  
+    img {
+      max-height: 40px;
+    }
+  }
+  
+  ion-content {
+    --background: url(../../../assets/icon/home.jpg) no-repeat 0px -114px;
+    --background-size: 100% 100%;
+  }
+
+
+
+  .custom-border-header {
+      box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+      border-bottom: 1px solid white;
+  }
+
+
+  // ////Header, ion-content, footer CSS
+
+  
+  
+    .heading-div {
+        padding: 0px 20px;
+        margin-top: 20px;
+        
+        h6.home-headings {
+        color: #4B5098;
+        font-family: SST;
+        font-size: 20px;
+        font-weight: bolder;
+        }
+        
+        // p {
+        // font-size: 10px;
+        // font-family: SST;
+        // margin-top: 12px;
+        // color: black!important;
+        // }
+        }
+  
+  
+  //fieldsCSS
+        ion-select.custom-select {
+            border: 1px solid #d1d1d1;
+            border-radius: 4px;
+            --padding-start: 10px;
+            --padding-top: 10px;
+            --padding-bottom: 10px;
+          }
+  
+          /* Input and Select Fields */
+  ion-item {
+    --highlight-color-focused: #4B54CF; /* Color of underline when focused */
+    // --min-height: 50px;
+    --border-color: transparent;
+    --padding-start: 0px;
+    margin-bottom: 8px;
+  }
+  
+  ion-label {
+    font-weight: 500; /* Bold labels */
+  }
+  
+  ion-input {
+    --padding-start: 8px; /* Padding inside input field */
+    --padding-end: 8px;
+  }
+  
+  .custom-input-item ion-input {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    padding: 8px;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    padding: 8px;
+    background: white;
+    color: #636363;
+    padding: 0px 0px 0px 10px;
+    height: 10px;
+    font-family: SST;
+    font-size: 14px;
+    font-weight: 400;
+    --padding-start: 18px;
+   
+  }
+  .custom-input-item {
+    --background: #ffffff00 !important;
+    margin-right: -16px;
+    margin-left: 0px;
+    margin-top: 2px;
+    margin-bottom: 10px !important;
+  }
+  
+  ion-select.custom-select {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    background: white;
+  }
+  
+  ion-select::part(icon) {
+    display: none !important;
+  }
+  
+  ion-select {
+    --padding-end: 15px;
+  }
+  
+  .custom-select.fieldss {
+    --padding-end: 35px; // Increase to make room for our custom icon
+    width: 100%;
+  }
+  
+  // Optional: Style the select to match your design
+  ion-select.custom-select {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+  }
+  .fieldss {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    color: #636363;
+    padding: 0px 0px 0px 10px;
+    height: 10px;
+    font-family: SST;
+    font-size: 14px;
+    /* font-style: italic; */
+    font-weight: 400;
+  }
+  .custom-select.fieldss {
+    --padding-end: 35px; // Increase to make room for our custom icon
+    width: 100%;
+  }
+  
+  .select-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    color: var(--ion-color-step-650, var(--ion-text-color-step-350, #595959));
+    margin-left: 10rem;
+  }
+  .select-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #777;
+    font-size: 1.2rem;
+    z-index: 2;
+    padding: 5px;
+    background: white;
+  }
+  .fieldsclassdiv {
+    margin-top: 14px;
+    padding: 0px 16px;
+  }
+  
+  
+  .products_buttons {
+  
+    width: 100%;
+    font-size: 12px;
+    --border-radius: 4px;
+    margin: 10px 0px 0px 0px;
+    --background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+    font-family: SST;
+    text-transform: capitalize;
+  }
+  .labels {
+    font-family: SST !important;
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+    margin-left: 8px !important;
+  }
+  //fieldsCSS
+  
+  .checkbutton {
+    margin-bottom: 20px;
+    margin-top: -10px;
+  }
+
+
+  .sales_grid_data_col {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    color: black;
+    border: 2px solid rgb(251 214 114);
+    background: #ffffff;
+    height: 40px;
+    margin: 0px;
+    justify-content: center;
+    padding: 0px 0px 0px 6px;
+    font-family: SST;
+   
+}
+
+.bg-transparent {
+  background-color: transparent !important; // Make ion-list background transparent
+}
+
+.bg-transparent ion-item {
+  background-color: transparent !important; // Make ion-item background transparent
+  --background: transparent; // For Ionic styling compatibility
+  --background-activated: rgba(255, 255, 255, 0.1); // Optional: Add a slight background on selection
+}
+
+.custom-list {
+  --padding-top: 0; // Remove top padding
+  --padding-bottom: 0; // Remove bottom padding
+}
+
+.custom-list ion-item {
+  // --inner-padding-end: 8px; // Remove padding on the right side
+  // --inner-padding-start: 8px; // Remove padding on the left side
+  margin-bottom: 0; // Ensure no bottom margin between items
+  padding: 0px 8px;
+}

@@ -1,0 +1,174 @@
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid class="extra_head-height">
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <a href="#" class="back_link">
+            <!-- <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/daily-sales']"></ion-icon> -->
+          </a>
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="\assets\icon\homeicons\sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="\assets\icon\homeicons\sony_dark.svg" alt="" class="SONY_mail_logo light_pta"> 
+        </ion-col>
+        <ion-col size="4" class="toolbar-col">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content dark light">
+  <div class="heading-div">
+    <h6 class="home-headings">Upload Sales</h6>
+  </div>
+
+  <div class="salesshow_div">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" class="dailysales_all_cols" id="dailysales_all_cols_id">
+          <!-- <ion-label position="stacked" class="labels">Date Sold:</ion-label> -->
+          <!-- <ion-label position="stacked" class="labels p-2">Date Sold:</ion-label><br> -->
+
+          <ion-item class="custom-input-item" lines="none">
+            <p id="from-date-trigger" class="custom-select fieldss">
+              <ion-icon name="calendar" class="calender-icon"></ion-icon>
+              Date: {{selectedFromDate | date:'dd-MM-yyyy' || '__________'}}
+            </p>
+          </ion-item>
+          <ion-popover #fromPopover trigger="from-date-trigger" [isOpen]="isFromPopoverOpen"
+            (ionPopoverDidDismiss)="isFromPopoverOpen = false">
+            <ng-template>
+              <ion-content class="popover-content">
+                <ion-datetime presentation="date" (ionChange)="onFromDateChange($event)"
+                  (ionCancel)="fromPopover.dismiss()" class="mine-calender">
+                </ion-datetime>
+              </ion-content>
+            </ng-template>
+          </ion-popover>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row id="row3_brand">
+        <ion-col size="12" class="dailysales_all_cols">
+          <ion-item class="custom-input-item " lines="none">
+            <ion-select placeholder="Select Category" class="custom-select fieldss" [(ngModel)]="selectedCategory"
+              (ionChange)="onCategoryChange(selectedCategory?.id)">
+              <ion-select-option *ngFor="let category of categories" [value]="category">{{ category.category_name }}</ion-select-option>
+            </ion-select>
+            <ion-icon name="chevron-down" class="select-icon down-arrow"></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-grid class="sales_grid">
+    <ion-row class="sales_grid_row">
+      <ion-col class="sales_grid_col" size="2">
+        <h6 class="sales_grid_headings">Sr.</h6>
+      </ion-col>
+      <ion-col class="sales_grid_col" size="5">
+        <h6 class="sales_grid_headings">Model</h6>
+      </ion-col>
+      <ion-col class="sales_grid_col" size="3">
+        <h6 class="sales_grid_headings">Quantity</h6>
+      </ion-col>
+      <ion-col class="sales_grid_col" size="2">
+        <h6 class="sales_grid_headings">Price</h6>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="sales_grid_data_row" *ngFor="let row of tableRows; let i = index">
+      <ion-col class="sales_grid_data_col" size="2">
+        <p class="sales_grid_data sr_no">{{ row.serialNumber }}</p>
+      </ion-col>
+
+      <ion-col size="5" class="hiii">
+        <ion-item class="sales_grid_data_col mine" lines="none" [disabled]="!selectedCategory">
+          <app-custom-product-dropdown [products]="products"
+            (productSelected)="onProductSelected({ productId: $event, rowId: row.serialNumber })">
+          </app-custom-product-dropdown>
+        </ion-item>
+        
+      </ion-col>
+     
+      
+
+      <ion-col class="sales_grid_data_col" size="3">
+        <ion-input type="number" placeholder="Quantity" [(ngModel)]="row.quantity" max="9999" min="0"
+          (ngModelChange)="row.quantity = $event"></ion-input>
+      </ion-col>
+      <ion-col class="sales_grid_data_col" size="2">
+        <ion-input type="number" placeholder="Price" [(ngModel)]="row.price" max="9999" min="0"
+          (ngModelChange)="row.price = $event"></ion-input>
+      </ion-col>
+
+
+    </ion-row>
+
+
+  </ion-grid>
+
+  <!-- <div class="checkbutton" style="display: flex; justify-content: space-between;">
+    <ion-button expand="full_screen" class="products_buttons" size="default" (click)="addRow()">
+      <span class="spanbuttontext">Add more</span>
+    </ion-button>
+    <ion-button expand="full_screen" class="products_buttons" size="default" (click)="deleteRow()">
+      <span class="spanbuttontext">Delete row</span>
+    </ion-button>
+  </div> -->
+
+  <!-- <div class="checkbutton" style="display: flex; justify-content: space-between;">
+    <ion-button expand="full" class="" size="small" (click)="addRow()">
+      <span class="spanbuttontext">Add more</span>
+    </ion-button>
+    <ion-button expand="full" class="" size="small" (click)="deleteRow()">
+      <span class="spanbuttontext">Delete row</span>
+    </ion-button>
+  </div> -->
+
+  <div class="checkbutton" style="display: flex; justify-content: space-between;">
+    <ion-button expand="full" size="small" (click)="addRow()" class="products_buttons addmore">
+      <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+      <span class="spanbuttontext">Add more</span>
+    </ion-button>
+    <ion-button expand="full" size="small" (click)="deleteRow()" class="products_buttons addmore">
+      <ion-icon slot="start" name="trash-outline"></ion-icon>
+      <span class="spanbuttontext">Delete row</span>
+    </ion-button>
+  </div>
+  
+  
+  
+
+  <div class="checkbutton">
+    <!-- <ion-button expand="full_screen" class="products_buttons" size="default" (click)="addRow()">
+      <span class="spanbuttontext">Add more</span>
+    </ion-button>
+    <ion-button expand="full_screen" class="products_buttons" size="default" (click)="deleteRow()">
+      <span class="spanbuttontext">Delete row</span>
+    </ion-button> -->
+    <!-- <ion-button expand="full_screen" class="products_buttons" size="default" id="download_sales"
+      (click)="submitSales()">
+      <span class="spanbuttontext">Submit</span>
+    </ion-button> -->
+
+    <ion-button expand="full_screen" class="products_buttons" size="default" id="download_sales" (click)="openActionSheet(tableRows)">
+      <span class="spanbuttontext">Preview</span>
+    </ion-button>
+
+    <ion-button expand="full_screen" class="products_buttons" size="default" id="download_sales"
+      (click)="submitSales()">
+      <span class="spanbuttontext">Confirm Submit</span>
+    </ion-button>
+  </div>
+
+  <!-- <ion-button class="back-button-bottom-right" color="dark" [routerLink]="['/daily-sales']">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </ion-button> -->
+
+</ion-content>
+
+<app-footer></app-footer>
