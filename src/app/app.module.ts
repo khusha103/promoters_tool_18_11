@@ -15,8 +15,8 @@ import { UserService } from './services/user.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,FormsModule],
-  // providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },InAppBrowser,{provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},UserService],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },InAppBrowser,UserService],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },InAppBrowser,{provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},UserService],
+  // providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },InAppBrowser,UserService],
 
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA]

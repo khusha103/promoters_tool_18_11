@@ -85,26 +85,26 @@ getSurveys(countryId: number, categoryId: number, lang: string, userId: number) 
     return this.http.post<any>(`${this.apiUrl}/attendance`, payload, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
   // ✔ SAVE CHECK-OUT WITHOUT PHOTO (attendance page)
-saveAttendance(userId: number, actionId: number, comment: string, lat: any, lon: any): Observable<any> {
-  const body = {
-    user_id: userId,
-    action_id: actionId,
-    comment: comment,
-    loc_latitude: lat,
-    loc_longitude: lon
-  };
-  return this.http.post(`${this.apiUrl}/attendance`, body);
-}
-//  saveAttendance(userId: string, actionId: number, comment: string, locLatitude: number, locLongitude: number): Observable<any> {
-//     const postData = {
-//       user_id: userId,
-//       action_id: actionId,
-//       loc_latitude: locLatitude,
-//       loc_longitude: locLongitude,
-//       comment: comment
-//     };
-//     return this.http.post(`${this.apiUrl}/attendance`, postData);
-//   }
+// saveAttendance(userId: number, actionId: number, comment: string, lat: any, lon: any): Observable<any> {
+//   const body = {
+//     user_id: userId,
+//     action_id: actionId,
+//     comment: comment,
+//     loc_latitude: lat,
+//     loc_longitude: lon
+//   };
+//   return this.http.post(`${this.apiUrl}/attendance`, body);
+// }
+ saveAttendance(userId: string, actionId: number, comment: string, locLatitude: number, locLongitude: number): Observable<any> {
+    const postData = {
+      user_id: userId,
+      action_id: actionId,
+      loc_latitude: locLatitude,
+      loc_longitude: locLongitude,
+      comment: comment
+    };
+    return this.http.post(`${this.apiUrl}/attendance`, postData);
+  }
 // ✔ WEEKLY ATTENDANCE API (missing earlier)
 getWeeklyAttendance(userId: number): Observable<any> {
   return this.http.get(`${this.apiUrl}/get_week_attendance/${userId}`);

@@ -1,11 +1,255 @@
+// import { Component, OnInit } from '@angular/core';
+// // import { Geolocation, Position } from '@capacitor/geolocation';
+// import { AlertController, Platform, ToastController } from '@ionic/angular';
+// // import { Capacitor } from '@capacitor/core';
+// import { Geolocation, Position } from '@capacitor/geolocation';
+// import { AndroidSettings, IOSSettings, NativeSettings } from 'capacitor-native-settings';
+// import { Capacitor } from '@capacitor/core';
+// import { ApiService } from 'src/app/services/api.service';
+// import { Router } from '@angular/router';
+
+// @Component({
+//   selector: 'app-attendance',
+//   templateUrl: './attendance.page.html',
+//   styleUrls: ['./attendance.page.scss'],
+// })
+// export class AttendancePage implements OnInit {
+//   latitude: number | null = null;
+//   longitude: number | null = null;
+//   geolocationPosition: any | undefined;
+//   showGeolocationData: boolean | undefined;
+//   isCheckedIn!: boolean; // Track check-in status
+
+//   constructor(
+//     private alertController: AlertController,
+//     private platform: Platform,
+//     private apiService:ApiService,
+//     private toastController: ToastController,
+//     private router: Router
+//   ) {}
+
+//   async ngOnInit() {
+//     await this.platform.ready();
+//     this.checkAndRequestPermissions();
+//     this.getCurrentPosition();
+//     this.isCheckedIn = localStorage.getItem('checkin') === 'true';
+//   }
+
+//   async ionViewWillEnter() {
+//     await this.platform.ready();
+//     this.checkAndRequestPermissions();
+//     this.getCurrentPosition();
+//     this.isCheckedIn = localStorage.getItem('checkin') === 'true';
+//   }
+  
+
+
+
+//   async checkAndRequestPermissions() {
+//     if (Capacitor.isNativePlatform()) {
+//       const permissionStatus = await Geolocation.checkPermissions();
+      
+//       if (permissionStatus.location === 'granted') {
+//         this.getCurrentPosition();
+//       } else {
+//         const requestStatus = await Geolocation.requestPermissions();
+        
+//         if (requestStatus.location === 'granted') {
+//           this.getCurrentPosition();
+//         } else {
+//           // this.showLocationDisabledAlert();
+//         }
+//       }
+//     } else {
+//       // Web platform
+//       if ('geolocation' in navigator) {
+//         this.getCurrentPosition();
+//       } else {
+//         console.error('Geolocation is not available in this browser');
+//       }
+//     }
+//   }
+
+//   // async getCurrentPosition() {
+//   //   try {
+//   //     const position = await Geolocation.getCurrentPosition();
+//   //     this.latitude = position.coords.latitude;
+//   //     this.longitude = position.coords.longitude;
+//   //   } catch (error) {
+//   //     console.error('Error getting location', error);
+//   //     this.showLocationErrorAlert();
+//   //   }
+//   // }
+
+//   async showLocationDisabledAlert() {
+//     const alert = await this.alertController.create({
+//       header: 'Location Services Disabled',
+//       message: 'Please enable location services to use this feature.',
+//       buttons: [
+//         {
+//           text: 'Cancel',
+//           role: 'cancel'
+//         },
+//         {
+//           text: 'Open Settings',
+//           handler: () => {
+//             if (Capacitor.isNativePlatform()) {
+//               // Geolocation.openSettings();
+              
+//             }
+//           }
+//         }
+//       ]
+//     });
+
+//     await alert.present();
+//   }
+
+//   async showLocationErrorAlert() {
+//     const alert = await this.alertController.create({
+//       header: 'Location Error',
+//       message: 'Unable to retrieve your location. Please try again later.',
+//       buttons: ['OK']
+//     });
+
+//     await alert.present();
+//   }
+
+
+//   opensettings(app = false){
+//     console.log('open settings...');
+//     return NativeSettings.open({
+//       optionAndroid: app ? AndroidSettings.ApplicationDetails:AndroidSettings.Location, 
+//       optionIOS: IOSSettings.App
+//     })
+//   }
+
+
+//   async presentCommentAlert() {
+//     const positionSuccess = await this.getCurrentPosition();
+  
+//     if (positionSuccess) {
+//       // Check the check-in status from localStorage
+//       const isCheckedIn = localStorage.getItem('checkin') === 'true'; 
+  
+//       const header = isCheckedIn ? 'Check Out' : 'Check In';
+//       const actionId = isCheckedIn ? 0 : 1; // 0 for checkout, 1 for check-in
+  
+//       const alert = await this.alertController.create({
+//         header: header,
+//         inputs: [
+//           {
+//             name: 'comments',
+//             type: 'text',
+//             placeholder: 'Enter your comments here'
+//           }
+//         ],
+//         buttons: [
+//           {
+//             text: 'Cancel',
+//             role: 'cancel',
+//             handler: () => {
+//               console.log('Check-in/cancelation canceled');
+//             }
+//           },
+//           {
+//             text: header, // Button text reflects the action (Check In or Check Out)
+//             handler: async (data) => {
+//               const userId = localStorage.getItem('userId');
+//               if (!userId) {
+//                 console.error('User ID not found in localStorage.');
+//                 return;
+//               }
+  
+//               const comment = data.comments;
+//               const loc_latitude = this.geolocationPosition?.coords.latitude;
+//               const loc_longitude = this.geolocationPosition?.coords.longitude;
+  
+//               if (!loc_latitude || !loc_longitude) {
+//                 console.error('Failed to retrieve geolocation data.');
+//                 return;
+//               }
+  
+//               // Call the API service to save attendance
+//               this.apiService.saveAttendance(userId, actionId, comment, loc_latitude, loc_longitude).subscribe(
+//                 async response => {
+//                   // console.log('Response from API:', response);
+//                   await this.showToast(isCheckedIn ? 'Check-out successful!' : 'Check-in successful!', 'success');
+//                   this.router.navigate(['/home']); 
+                  
+//                   // Update localStorage based on the action
+//                   if (!isCheckedIn) {
+//                     localStorage.setItem('checkin', 'true'); // Set check-in status to true on successful check-in
+//                   } else {
+//                     localStorage.setItem('checkin', 'false'); // Set check-in status to false on successful check-out
+//                   }
+//                 },
+//                 async error => {
+//                   console.error('Error saving attendance:', error);
+//                   await this.showToast('Failed to Check in/out.', 'danger');
+//                 }
+//               );
+//             }
+//           }
+//         ]
+//       });
+  
+//       await alert.present();
+//     } else {
+//       console.log('Unable to get current position. Alert not shown.');
+//     }
+//   }
+
+//   async showToast(message: string, color: string) {
+//     const toast = await this.toastController.create({
+//       message: message,
+//       duration: 3000,
+//       color: color,
+//       position: 'top'
+//     });
+  
+//     await toast.present();
+//   }
+  
+  
+//   async getCurrentPosition(): Promise<boolean> {
+//     try {
+//       const permissionStatus = await Geolocation.checkPermissions();
+//       console.log('Permission status: ', permissionStatus.location);
+      
+//       if (permissionStatus?.location !== 'granted') {
+//         const requestStatus = await Geolocation.requestPermissions();
+        
+//         if (requestStatus.location !== 'granted') {
+//           // Check if location is disabled and go to location settings
+//           await this.opensettings(true);
+//           return false;
+//         }
+//       }
+
+//       let options: PositionOptions = {
+//         maximumAge: 3000,
+//         timeout: 10000,
+//         enableHighAccuracy: true
+//       };
+//       const position = await Geolocation.getCurrentPosition(options);
+//       this.geolocationPosition = position; // Store the position
+//       console.log("Position retrieved successfully:", position);
+//       return true;
+      
+//     } catch (e: any) {
+//       if (e?.message === 'Location services are not enabled') {
+//         await this.opensettings();
+//       }
+//       console.log(e);
+//       return false;
+//     }
+//   }
+// }
 import { Component, OnInit } from '@angular/core';
 import { AlertController, Platform, ToastController } from '@ionic/angular';
-import { Geolocation } from '@capacitor/geolocation';
-import {
-  AndroidSettings,
-  IOSSettings,
-  NativeSettings,
-} from 'capacitor-native-settings';
+import { Geolocation, Position } from '@capacitor/geolocation';
+import { AndroidSettings, IOSSettings, NativeSettings } from 'capacitor-native-settings';
 import { Capacitor } from '@capacitor/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
@@ -16,186 +260,94 @@ import { Router } from '@angular/router';
   styleUrls: ['./attendance.page.scss'],
 })
 export class AttendancePage implements OnInit {
+  latitude: number | null = null;
+  longitude: number | null = null;
   geolocationPosition: any | undefined;
-  isCheckedIn: boolean = false;
-  selfiePreview: string | null = null;
- weeklyData: any[] | null = null;
-  isProcessing: boolean = false;
-  processingAction: 'checkin' | 'checkout' | null = null; // for spinner context
-  showForm: boolean = false; // checkout form visible
-  comment: string = '';
+  showGeolocationData: boolean | undefined;
+  isCheckedIn!: boolean; 
 
   constructor(
     private alertController: AlertController,
     private platform: Platform,
-    private apiService: ApiService,
+    private apiService:ApiService,
     private toastController: ToastController,
     private router: Router
   ) {}
 
   async ngOnInit() {
     await this.platform.ready();
-    await this.checkAndRequestPermissions();
-    await this.getCurrentPosition(); // initial attempt (non-blocking)
-    this.syncStateFromStorage();
-    this.loadWeeklyAttendance();
+    this.checkAndRequestPermissions();
+    this.getCurrentPosition();
+    this.isCheckedIn = localStorage.getItem('checkin') === 'true';
   }
 
   async ionViewWillEnter() {
     await this.platform.ready();
-    await this.checkAndRequestPermissions();
-    await this.getCurrentPosition();
-    this.syncStateFromStorage();
-    this.loadWeeklyAttendance();
-  }
-
-  // read persisted flags
-  private syncStateFromStorage() {
+    this.checkAndRequestPermissions();
+    this.getCurrentPosition();
     this.isCheckedIn = localStorage.getItem('checkin') === 'true';
-    this.selfiePreview = localStorage.getItem('attendance_selfie') || null;
   }
-
-  // getters used by template to enable/disable buttons
-  get disableCheckIn(): boolean {
-    return this.isProcessing || this.isCheckedIn;
-  }
-
-  get disableCheckOut(): boolean {
-    return this.isProcessing || !this.isCheckedIn || this.showForm;
-  }
-
-  // --- CHECK IN: navigate to selfie page (Option A)
-  onCheckIn() {
-    if (this.disableCheckIn) return;
-    // we don't set isProcessing here permanently because check-in happens on selfie page
-    this.router.navigate(['/selfie-attendance']);
-  }
-
-  // --- open checkout form on same page
-  openCheckoutForm() {
-    if (this.disableCheckOut) return;
-    // ensure we have the selfie preview (from localStorage) and show form
-    this.selfiePreview = localStorage.getItem('attendance_selfie') || null;
-    this.showForm = true;
-  }
-
-  // Cancel checkout form
-  cancelCheckout() {
-    if (this.isProcessing) return;
-    this.showForm = false;
-    this.comment = '';
-  }
-
-async submitAttendance() {
-  if (this.isProcessing) return;
-
-  this.isProcessing = true;
-  this.processingAction = 'checkout';
-
-  const gpsOk = await this.getCurrentPosition();
-  if (!gpsOk) {
-    this.isProcessing = false;
-    this.processingAction = null;
-    this.showToast('Unable to get location', 'danger');
-    return;
-  }
-
-  const userId = Number(localStorage.getItem('userId'));
-  if (!userId) {
-    this.isProcessing = false;
-    this.processingAction = null;
-    this.showToast('User not found', 'danger');
-    return;
-  }
-
-  const lat = this.geolocationPosition?.coords?.latitude;
-  const lng = this.geolocationPosition?.coords?.longitude;
-
-  // Checkout = action_id = 0
-  this.apiService.saveAttendance(userId, 0, "", lat, lng).subscribe({
-    next: async (res: any) => {
-      await this.showToast('Check-out successful!', 'success');
-
-      localStorage.setItem('checkin', 'false');
-      localStorage.removeItem('attendance_selfie');
-
-      this.isCheckedIn = false;
-
-      this.loadWeeklyAttendance();
-      this.isProcessing = false;
-      this.processingAction = null;
-
-      this.router.navigate(['/home']);
-    },
-    error: async () => {
-      this.isProcessing = false;
-      this.processingAction = null;
-      this.showToast('Failed to Check Out', 'danger');
-    },
-  });
-}
+  
 
 
 
-  // Load weekly attendance
-  loadWeeklyAttendance() {
-    const userId = Number(localStorage.getItem('userId'));
-    if (!userId) {
-      this.weeklyData = [];
-      return;
-    }
-
-    this.apiService.getWeeklyAttendance(userId).subscribe({
-      next: (res: any) => {
-        if (res?.status && Array.isArray(res.data)) {
-          this.weeklyData = res.data;
-        } else {
-          this.weeklyData = [];
-        }
-      },
-      error: (err) => {
-        console.error('Error loading weekly attendance', err);
-        this.weeklyData = [];
-      },
-    });
-  }
-
-  // Permissions check
-  async checkAndRequestPermissions(): Promise<void> {
-    try {
-      if (Capacitor.isNativePlatform()) {
-        const permissionStatus = await Geolocation.checkPermissions();
-        if (permissionStatus.location === 'granted') {
-          return;
-        }
-        const requestStatus = await Geolocation.requestPermissions();
-        if (requestStatus.location !== 'granted') {
-          // optional: prompt user to open settings
-        }
+  async checkAndRequestPermissions() {
+    if (Capacitor.isNativePlatform()) {
+      const permissionStatus = await Geolocation.checkPermissions();
+      
+      if (permissionStatus.location === 'granted') {
+        this.getCurrentPosition();
       } else {
-        // web: nothing to do, browser will ask on getCurrentPosition
+        const requestStatus = await Geolocation.requestPermissions();
+        
+        if (requestStatus.location === 'granted') {
+          this.getCurrentPosition();
+        } else {
+          // this.showLocationDisabledAlert();
+        }
       }
-    } catch (e) {
-      console.warn('Permission check failed', e);
+    } else {
+      // Web platform
+      if ('geolocation' in navigator) {
+        this.getCurrentPosition();
+      } else {
+        console.error('Geolocation is not available in this browser');
+      }
     }
   }
+
+  // async getCurrentPosition() {
+  //   try {
+  //     const position = await Geolocation.getCurrentPosition();
+  //     this.latitude = position.coords.latitude;
+  //     this.longitude = position.coords.longitude;
+  //   } catch (error) {
+  //     console.error('Error getting location', error);
+  //     this.showLocationErrorAlert();
+  //   }
+  // }
 
   async showLocationDisabledAlert() {
     const alert = await this.alertController.create({
       header: 'Location Services Disabled',
       message: 'Please enable location services to use this feature.',
       buttons: [
-        { text: 'Cancel', role: 'cancel' },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
         {
           text: 'Open Settings',
           handler: () => {
             if (Capacitor.isNativePlatform()) {
-              // open settings if needed
+              // Geolocation.openSettings();
+              
             }
-          },
-        },
-      ],
+          }
+        }
+      ]
     });
+
     await alert.present();
   }
 
@@ -203,46 +355,181 @@ async submitAttendance() {
     const alert = await this.alertController.create({
       header: 'Location Error',
       message: 'Unable to retrieve your location. Please try again later.',
-      buttons: ['OK'],
+      buttons: ['OK']
     });
+
     await alert.present();
   }
 
-  opensettings(app = false) {
+
+  opensettings(app = false){
+    console.log('open settings...');
     return NativeSettings.open({
-      optionAndroid: app ? AndroidSettings.ApplicationDetails : AndroidSettings.Location,
-      optionIOS: IOSSettings.App,
-    });
+      optionAndroid: app ? AndroidSettings.ApplicationDetails:AndroidSettings.Location, 
+      optionIOS: IOSSettings.App
+    })
   }
+
+  // async presentCommentAlert() {
+  //   const positionSuccess = await this.getCurrentPosition();
+  
+  //   if (positionSuccess) {
+  //     // Check the check-in status from localStorage
+  //     const isCheckedIn = localStorage.getItem('checkin') === 'true'; 
+  
+  //     const header = isCheckedIn ? 'Check Out' : 'Check In';
+  //     const actionId = isCheckedIn ? 0 : 1; // 0 for checkout, 1 for check-in
+  
+  //     const alert = await this.alertController.create({
+  //       header: header,
+  //       inputs: [
+  //         {
+  //           name: 'comments',
+  //           type: 'text',
+  //           placeholder: 'Enter your comments here'
+  //         }
+  //       ],
+  //       buttons: [
+  //         {
+  //           text: 'Cancel',
+  //           role: 'cancel',
+  //           handler: () => {
+  //             console.log('Check-in/cancelation canceled');
+  //           }
+  //         },
+  //         {
+  //           text: header, 
+  //           handler: async (data) => {
+  //             const userId = localStorage.getItem('userId');
+  //             if (!userId) {
+  //               console.error('User ID not found in localStorage.');
+  //               return;
+  //             }
+  
+  //             const comment = data.comments;
+  //             const loc_latitude = this.geolocationPosition?.coords.latitude;
+  //             const loc_longitude = this.geolocationPosition?.coords.longitude;
+  
+  //             if (!loc_latitude || !loc_longitude) {
+  //               console.error('Failed to retrieve geolocation data.');
+  //               return;
+  //             }
+  
+  //             // Call the API service to save attendance
+  //             this.apiService.saveAttendance(userId, actionId, comment, loc_latitude, loc_longitude).subscribe(
+  //               async response => {
+                  
+  //                 await this.showToast(isCheckedIn ? 'Check-out successful!' : 'Check-in successful!', 'success');
+  //                 this.router.navigate(['/home']); 
+                  
+  //                 // Update localStorage based on the action
+  //                 if (!isCheckedIn) {
+  //                   localStorage.setItem('checkin', 'true'); // Set check-in status to true on successful check-in
+  //                 } else {
+  //                   localStorage.setItem('checkin', 'false'); // Set check-in status to false on successful check-out
+  //                 }
+  //               },
+  //               async error => {
+  //                 console.error('Error saving attendance:', error);
+  //                 await this.showToast('Failed to Check in/out.', 'danger');
+  //               }
+  //             );
+  //           }
+  //         }
+  //       ]
+  //     });
+  
+  //     await alert.present();
+  //   } else {
+  //     console.log('Unable to get current position. Alert not shown.');
+  //   }
+  // }
+
+  showForm: boolean = false;   // To toggle the form visibility
+  comment: string = '';        // To bind the comment textarea input
+
+toggleForm() {
+  this.showForm = true;
+  const isCheckedIn = localStorage.getItem('checkin') === 'true'; 
+  this.isCheckedIn= isCheckedIn;
+  console.log(this.isCheckedIn);
+}
+
+
+  async submitAttendance() {
+    const positionSuccess = await this.getCurrentPosition();
+    if (!positionSuccess) {
+      await this.showToast('Unable to get location', 'danger');
+      return;
+    }
+  
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      console.error('User ID not found.');
+      return;
+    }
+  
+    const actionId = this.isCheckedIn ? 0 : 1;
+    const loc_latitude = this.geolocationPosition?.coords.latitude;
+    const loc_longitude = this.geolocationPosition?.coords.longitude;
+  
+    this.apiService.saveAttendance(userId, actionId, this.comment, loc_latitude, loc_longitude).subscribe(
+      async () => {
+        await this.showToast(this.isCheckedIn ? 'Check-out successful!' : 'Check-in successful!', 'success');
+        localStorage.setItem('checkin', (!this.isCheckedIn).toString());
+        this.isCheckedIn = !this.isCheckedIn;
+        this.comment = '';
+        this.showForm = false;
+      },
+      async () => {
+        await this.showToast('Failed to save attendance.', 'danger');
+      }
+    );
+  }
+  
 
   async showToast(message: string, color: string) {
     const toast = await this.toastController.create({
-      message,
+      message: message,
       duration: 3000,
-      color,
-      position: 'top',
+      color: color,
+      position: 'top'
     });
+  
     await toast.present();
   }
-
-  // Get position and persist to this.geolocationPosition
+  
+  
   async getCurrentPosition(): Promise<boolean> {
     try {
       const permissionStatus = await Geolocation.checkPermissions();
+      console.log('Permission status: ', permissionStatus.location);
+      
       if (permissionStatus?.location !== 'granted') {
         const requestStatus = await Geolocation.requestPermissions();
+        
         if (requestStatus.location !== 'granted') {
+          // Check if location is disabled and go to location settings
           await this.opensettings(true);
           return false;
         }
       }
 
-      const options: any = { maximumAge: 3000, timeout: 10000, enableHighAccuracy: true };
+      let options: PositionOptions = {
+        maximumAge: 3000,
+        timeout: 10000,
+        enableHighAccuracy: true
+      };
       const position = await Geolocation.getCurrentPosition(options);
       this.geolocationPosition = position;
+      console.log("Position retrieved successfully:", position);
       return true;
+      
     } catch (e: any) {
-      console.warn('getCurrentPosition error', e);
+      if (e?.message === 'Location services are not enabled') {
+        await this.opensettings();
+      }
+      console.log(e);
       return false;
     }
   }

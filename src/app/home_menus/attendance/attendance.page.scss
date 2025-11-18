@@ -1,170 +1,214 @@
-/* ---------------------------------------------------
-   HEADER / TOOLBAR
-----------------------------------------------------*/
+// .maincontainer {
+//   --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+//       --background-size: 100% 100%;
+//     --opacity: 1 !important;
+//     padding-top: 44px;
+//     --border-color: white !important;
+//     text-align: center !important;
+//   }
+  
+//   .toolbar-row {
+//     align-items: center;
+//     height: 100%;
+//   }
+  
+//   .toolbar-col {
+//     display: flex;
+//     align-items: center;
+//   }
+  
+//   .second_col_img {
+//     text-align: center;
+//     display: flex;
+//     justify-content: center;
+// }
+// .SONY_mail_logo {
+//   width: 90px;
+//   /* text-align: center; */
+// }
+// ion-grid.ios.hydrated {
+//   height: 100%;
+// }
+
+//   .back-button {
+//     font-size: 16px;
+//     border: 1px solid #000000;
+//     border-radius: 50%;
+//     --font-weight: 200 !important;
+//     padding: 3px;
+//   //   margin-left: 12px;
+//     --line-height: 10px !important;
+//     margin-top: 8px;
+//   }
+  
+//   .back_link {
+//     color: black;
+//     cursor: pointer;
+//   }
+  
+//   ion-title.center-title {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     margin: 0 auto;
+  
+//     img {
+//       max-height: 40px;
+//     }
+//   }
+  
+//   ion-content {
+//     --background: url(../../../assets/icon/home.jpg) no-repeat 0px -114px;
+//     --background-size: 100% 100%;
+//   }
+
+
+
+//   .custom-border-header {
+//       box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+//       border-bottom: 1px solid white;
+//   }
+
+
+//   // ////Header, ion-content, footer CSS
+
+
+
+
+//     .heading-div {
+//         padding: 0px 20px;
+//         margin-top: 20px;
+        
+//         h6.home-headings {
+//         color: #4B5098;
+//         font-family: SST;
+//         font-size: 20px;
+//         font-weight: bolder;
+//         }
+        
+//         p {
+//         font-size: 10px;
+//         font-family: SST;
+//         margin-top: 12px;
+//         color: black!important;
+//         }
+//         }
+
+
+
+
+//         .products_buttons {
+//             width: 100%;
+//             font-size: 12px;
+//             --border-radius: 0px;
+//             margin: 14px 0px 0px 0px;
+//             --background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+//             font-family: SST;
+//         }
+// Header, ion-content, footer CSS
 .maincontainer {
-  padding-top: 20px;
-  text-align: center;
+  --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+      --background-size: 100% 100%;
+    --opacity: 1 !important;
+    padding-top: 20px;
+    --border-color: white !important;
+    text-align: center !important;
+  }
+  
+  .toolbar-row {
+    align-items: center;
+    height: 100%;
+  }
+  
+  .toolbar-col {
+    display: flex;
+    align-items: center;
+  }
+  
+  .second_col_img {
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
-
-.custom-border-header {
-  border-bottom: 1px solid #ffffff33;
-  box-shadow: none !important;
-}
-
-.toolbar-row {
-  align-items: center;
-}
-
-.second_col_img {
-  display: flex;
-  justify-content: center;
-}
-
 .SONY_mail_logo {
   width: 90px;
-  height: auto;
+  /* text-align: center; */
+}
+ion-grid.ios.hydrated {
+  height: 50px;
 }
 
-/* Back Button */
-.back-button {
-  font-size: 18px;
-  border: 1px solid #000;
-  border-radius: 50%;
-  padding: 5px;
-  margin-top: 5px;
-  cursor: pointer;
-}
-
-/* ---------------------------------------------------
-   CONTENT BASE LAYOUT
-----------------------------------------------------*/
-
-.heading-div {
-  padding: 20px;
-}
-
-.home-headings {
-  font-size: 22px;
-  margin-bottom: 6px;
-}
-
-.heading-div p {
-  color: #444;
-  font-size: 12px;
-  margin-top: -4px;
-}
-
-/* ---------------------------------------------------
-   BUTTONS (Sony Theme)
-----------------------------------------------------*/
-.products_buttons {
-  width: 100%;
-  font-size: 14px;
-  --border-radius: 6px;
-  margin-top: 14px;
-  font-family: SST, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  --background: radial-gradient(circle, #eeb0b0 0%, #f36e22 100%);
-  --background-activated: #f36e22;
-  --background-hover: #e2afaf;
-  font-weight: 600;
-  --box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-}
-
-/* Disabled State Styling */
-.products_buttons.button-disabled {
-  opacity: 0.45 !important;
-  pointer-events: none !important;
-}
-
-/* ---------------------------------------------------
-   SELFIE PREVIEW
-----------------------------------------------------*/
-.attendance-selfie-preview {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 16px;
-}
-
-.attendance-selfie-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-  border: 3px solid rgba(255,255,255,0.4);
-}
-
-/* ---------------------------------------------------
-   TEXTAREA
-----------------------------------------------------*/
-.custom-textarea-item {
-  margin-top: 12px;
-  background: #ffffffcc;
-  border-radius: 8px;
-}
-
-.custom-textarea {
-  font-size: 14px;
-}
-
-/* ---------------------------------------------------
-   WEEKLY ATTENDANCE TABLE
-----------------------------------------------------*/
-.weekly-header h6 {
-  margin-top: 30px;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.table-row {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  background: #ffffffcc;
-  padding: 8px;
-  margin: 6px 0;
-  border-radius: 6px;
-  font-size: 12px;
-}
-
-.table-row.header {
-  background: linear-gradient(90deg, #f36e22, #e07e7e);
-  color: #fff;
-  font-weight: 700;
-  margin-top: 12px;
-}
-
-.cell {
-  padding: 6px;
-  text-align: center;
-}
-
-/* Duration default color */
-.duration-cell {
-  color: #000;
-  font-weight: 600;
-}
-
-/* Red only when < 8 hours */
-.red-text {
-  color: #e60e0e !important;
-  font-weight: 700;
-}
-
-
-/* ---------------------------------------------------
-   MOBILE OPTIMIZATION
-----------------------------------------------------*/
-@media (max-width: 420px) {
-  .home-headings {
-    font-size: 18px;
+  .back-button {
+    font-size: 16px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    --font-weight: 200 !important;
+    padding: 3px;
+  //   margin-left: 12px;
+    --line-height: 10px !important;
+    margin-top: 8px;
+  }
+  
+  .back_link {
+    color: black;
+    cursor: pointer;
+  }
+  
+  ion-title.center-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  
+    img {
+      max-height: 40px;
+    }
+  }
+  
+  ion-content {
+    --background: url(../../../assets/icon/home.jpg) no-repeat 0px -84px;
+    --background-size: 100% 100%;
   }
 
-  .attendance-selfie-img {
-    width: 100px;
-    height: 100px;
+
+
+  .custom-border-header {
+      box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+      border-bottom: 1px solid white;
   }
 
-  .table-row {
-    font-size: 11px;
-  }
-}
+
+  // ////Header, ion-content, footer CSS
+
+
+
+
+  .heading-div {
+      padding: 0px 20px;
+      margin-top: 20px;
+      
+      h6.home-headings {
+    
+      font-size: 20px;
+      
+      }
+      
+      p {
+      font-size: 10px;
+      
+      margin-top: 12px;
+      
+      }
+      }
+
+
+
+
+      .products_buttons {
+          width: 100%;
+          font-size: 12px;
+          --border-radius: 0px;
+          margin: 14px 0px 0px 0px;
+          --background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+          font-family: SST;
+      }
