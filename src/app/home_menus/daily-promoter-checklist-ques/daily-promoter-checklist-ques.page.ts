@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ActionSheetController, AlertController } from '@ionic/angular';
+import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
 import { Browser } from '@capacitor/browser';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
@@ -47,18 +47,26 @@ baseUrl: any;
     return item?.id ?? index;
   }
 
-  // ===== UI helpers =====
-  @ViewChildren('questionCard') questionCards!: QueryList<ElementRef>;
-  unansweredSet: Set<number> = new Set<number>();
+
+@ViewChildren('qRef', { read: ElementRef }) questionCards!: QueryList<ElementRef>;
+
+unansweredSet: Set<number> = new Set<number>();
+private _unansweredScrollTimers: any[] = [];
+
+private _clearUnansweredTimers() {
+  this._unansweredScrollTimers.forEach(t => clearTimeout(t));
+  this._unansweredScrollTimers = [];
+}
 
   // baseUrl = `${environment.baseUrl}/sony-erp/uploads/`; // for later, if needed
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private alertController: AlertController,
-    private actionSheetController: ActionSheetController,
-    private apiService: ApiService
+  private route: ActivatedRoute,
+  private router: Router,
+  private alertController: AlertController,
+  private actionSheetController: ActionSheetController,
+  private toastController: ToastController,
+  private apiService: ApiService
   ) {}
 
   ngOnInit() {
@@ -76,20 +84,55 @@ baseUrl: any;
       this.loadQuestionsFromApi();
     });
 
-    // FRONTEND-ONLY: load mock questions (replace with API later)
-    // this.loadQuestionsMock();
   }
 
-  // ---------- FRONTEND MOCK ----------
-  // private loadQuestionsMock() {
-  //   // mimic your existing structure
-  //   const sample: ChecklistQuestion[] = [
-  //     { id: 1, body: 'Is the counter cleaned before opening?', is_na: '0', selectedOption: null, remarks: '' },
-  //     { id: 2, body: 'POP materials placed correctly?',      is_na: '1', selectedOption: null, remarks: '' },
-  //     { id: 3, body: 'Demo devices powered and updated?',    is_na: '0', selectedOption: null, remarks: '' },
-  //   ];
-  //   this.questions = sample;
-  // }
+// scale uses exact IDs you asked: 1,2,3,8,9 (labels 1..5)
+scaleOptions = [
+  { id: 1, label: '1' },
+  { id: 2, label: '2' },
+  { id: 3, label: '3' },
+  { id: 8, label: '4' },
+  { id: 9, label: '5' }
+];
+
+// rating IDs 10..14 -> labels
+ratingOptions = [
+  { id: 10, label: 'Very Bad', description: '' },
+  { id: 11, label: 'Bad',      description: '' },
+  { id: 12, label: 'Fair',     description: '' },
+  { id: 13, label: 'Good',     description: '' },
+  { id: 14, label: 'Very Good',description: '' }
+];
+
+
+isYesNo(question: any): boolean {
+  // treat type_id '1' (YN) and '3' (Special YN) as Yes/No controls
+  return (String(question.type_id) === '1' || String(question.type_id) === '3') && question.option_type !== '4';
+}
+
+
+// helper: true when question is scale (percentage / 1..5)
+isScale(question: any): boolean {
+  return String(question.type_id) === '2' && question.option_type !== '4';
+}
+
+// helper: true when rating (option_type '4' or type_id 4)
+isRating(question: any): boolean {
+  return question.option_type === '4' || String(question.type_id) === '4';
+}
+
+// Wait until QueryList has at least one card rendered
+private async _ensureQuestionCardsReady(): Promise<void> {
+  if (!this.questionCards) return;
+  if (this.questionCards.length) return;
+  await new Promise<void>(resolve => {
+    const sub = this.questionCards.changes.subscribe(() => {
+      sub.unsubscribe();
+      // slight delay so layout stabilizes
+      setTimeout(() => resolve(), 60);
+    });
+  });
+}
 
   private loadQuestionsFromApi() {
     const catIdNum = Number(this.categoryId) || 0;
@@ -122,49 +165,50 @@ baseUrl: any;
           return;
         }
 
-    this.questions = raw.map((q: any) =>  {
-        // map q_type to option_type used by template
-        let option_type = '';
-        if (q.q_type === '3' || q.q_type === 3) {
-          option_type = '4'; // rating (Very Bad -> Very Good)
-        } else if (q.q_type === '2' || q.q_type === 2) {
-          option_type = '5'; // scale 1..5 (percentage style)
-        } else {
-          option_type = '';  // default Yes/No/NA block
-        }
-        const selectedOption: any = null;
+this.questions = raw.map((q: any) => {
+  // Normalize fields (use strings for type checks in template)
+  const type_id = String(q.type_id ?? q.q_type ?? '');
+  const option_type = String(q.option_type ?? q.q_type ?? ''); // prefer server option_type if present
 
-        // default rating options (if needed)
-        const ratingOptions = [
-          { id: 10, label: 'Very Bad', description: 'No implementation' },
-          { id: 11, label: 'Bad',      description: 'More than 3 are missing' },
-          { id: 12, label: 'Fair',     description: '2 items are missing' },
-          { id: 13, label: 'Good',     description: 'Only one item missing' },
-          { id: 14, label: 'Very Good',description: 'Perfect !' }
-        ];
-        const scaleOptions = [
-          { id: 1, label: '1' },
-          { id: 2, label: '2' },
-          { id: 3, label: '3' },
-          { id: 4, label: '4' },
-          { id: 5, label: '5' }
-        ];
+  return {
+    ...q,
+    q_type: q.q_type ?? '',
+    type_id: type_id,            // keep as string: '1' / '2' / '4'
+    option_type: option_type,    // string or ''
+    selectedOption: null,
+    remarks: q.remarks || '',
+    images: q.images || [],
+    // ensure each question has rating/scale arrays (fallback to global arrays)
+    ratingOptions: q.ratingOptions && q.ratingOptions.length ? q.ratingOptions : this.ratingOptions,
+    scaleOptions: q.scaleOptions && q.scaleOptions.length ? q.scaleOptions : this.scaleOptions
+  };
+}) as ChecklistQuestion[];
 
-        // Build final question object used by template
-        return {
-          ...q,
-          q_type: q.q_type,
-           type_id: Number(q.type_id), 
-          option_type,
-          selectedOption,
-          remarks: q.remarks || '',
-          images: q.images || [],
-          ratingOptions: q.ratingOptions || ratingOptions,
-          scaleOptions: q.scaleOptions || scaleOptions
-        };
-      }) as ChecklistQuestion[];
 
         this.photos = this.questions.map(() => []);
+
+// small delay so Angular has inserted question elements — then scroll to first unanswered
+setTimeout(() => {
+  const firstUnanswered = this.getUnansweredIndices()[0];
+  if (typeof firstUnanswered === 'number') {
+    // wait for QueryList and scroll safely
+    this._ensureQuestionCardsReady().then(() => {
+      this.scrollToQuestion(firstUnanswered);
+      // update counts for UI / banner
+      const unansweredIndices = this.getUnansweredIndices();
+      this.unansweredSet = new Set(unansweredIndices);
+      this.unansweredCount = unansweredIndices.length;
+      if (this.unansweredCount > 0) {
+        // show a friendly toast once on load (optional)
+        this.presentUnansweredToast(this.unansweredCount);
+      }
+    });
+  } else {
+    // ensure counts are zero if nothing missing
+    this.unansweredSet = new Set();
+    this.unansweredCount = 0;
+  }
+}, 120);
       },
       error: (err: any) => {
         console.error('Failed to load daily promoter questions', err);
@@ -179,19 +223,56 @@ baseUrl: any;
     });
   }
 
-  onOptionChange(question: any, newVal: any) {
-    if (newVal === null || newVal === undefined) {
-      question.selectedOption = null;
-      return;
-    }
-
-    // If ion-radio returns string numeric, convert to number
-    if (typeof newVal === 'string' && /^\d+$/.test(newVal)) {
-      question.selectedOption = +newVal;
-    } else {
-      question.selectedOption = newVal;
-    }
+onOptionChange(question: any, newVal: any) {
+  // set value
+  if (typeof newVal === 'string' && /^\d+$/.test(newVal)) {
+    question.selectedOption = Number(newVal);
+  } else {
+    question.selectedOption = newVal === '' ? null : newVal;
   }
+
+  // Update unanswered tracking & UI
+  const unansweredIndices = this.getUnansweredIndices();
+  this.unansweredSet = new Set(unansweredIndices);
+  this.unansweredCount = unansweredIndices.length;
+
+  // If question became answered, remove persistent 'unanswered' class for that card (if present)
+  const cards = this.questionCards?.toArray() || [];
+  const qIndex = this.questions.indexOf(question);
+  const cardEl = cards[qIndex]?.nativeElement as HTMLElement | undefined;
+  if (cardEl && !this.isUnanswered(question)) {
+    cardEl.classList.remove('unanswered');
+  }
+
+  // Show a small toast with remaining unanswered — only show when user has tried submit
+  // or you can show always by removing the if condition
+  if (this.hasTriedSubmit) {
+    this.presentUnansweredToast(this.unansweredCount);
+  }
+}
+private _activeToast: HTMLIonToastElement | null = null;
+
+private async presentUnansweredToast(count: number) {
+  // dismiss previous toast if visible
+  try { if (this._activeToast) await this._activeToast.dismiss(); } catch(e) {}
+
+  const message = count > 0 ? `${count} unanswered remaining` : 'All questions answered';
+  const toast = await this.toastController.create({
+    message,
+    duration: 1600,
+    position: 'bottom',
+    cssClass: 'unanswered-toast'
+  });
+  this._activeToast = toast;
+  await toast.present();
+
+  // clear reference after duration
+  setTimeout(() => this._activeToast = null, 1700);
+}
+
+isUnanswered(question: any): boolean {
+  return question.selectedOption === null || question.selectedOption === undefined;
+}
 
   // Replace with real API later:
   // private loadQuestionsFromApi() {
@@ -205,36 +286,48 @@ baseUrl: any;
       .filter(i => i !== -1);
   }
 
-  private scrollToQuestion(index: number) {
-    const el = this.questionCards?.toArray()[index]?.nativeElement;
-    el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
+private scrollToQuestion(index: number) {
+  const cards = this.questionCards?.toArray() || [];
+  const el = cards[index]?.nativeElement as HTMLElement | undefined;
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
 
-  private scrollThroughUnanswered(): void {
-    const targets = this.getUnansweredIndices();
-    if (!targets.length) return;
+/**
+ * Scroll through unanswered indices sequentially, pulse each, and stop at last unanswered.
+ * Clears any previous in-flight timeouts first so re-runs are safe.
+ */
+private async scrollThroughUnanswered(): Promise<void> {
+  // clear any previous timers first
+  this._clearUnansweredTimers();
 
-    const cards = this.questionCards?.toArray() || [];
+  const targets = this.getUnansweredIndices();
+  if (!targets.length) return;
 
-    targets.forEach((idx, k) => {
-      setTimeout(() => {
-        const el = cards[idx]?.nativeElement as HTMLElement;
-        if (!el) return;
+  // ensure the QueryList DOM is ready before attempting to scroll
+  await this._ensureQuestionCardsReady();
+  const cards = this.questionCards?.toArray() || [];
 
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  targets.forEach((idx, k) => {
+    const t = setTimeout(() => {
+      const el = cards[idx]?.nativeElement as HTMLElement | undefined;
+      if (!el) return;
 
-        // pulse highlight briefly
-        el.classList.add('pulse');
-        setTimeout(() => el.classList.remove('pulse'), 1200);
+      // scroll to each unanswered
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-        // persist final unanswered highlight on the last item
-        if (k === targets.length - 1) {
-          el.classList.add('unanswered');
-        }
-      }, k * 900); // 900ms gap between each scroll
-    });
-  }
+      // pulse highlight briefly
+      el.classList.add('pulse');
+      setTimeout(() => el.classList.remove('pulse'), 1200);
 
+      // persist final unanswered highlight on the last item
+      if (k === targets.length - 1) {
+        el.classList.add('unanswered');
+      }
+    }, k * 900); // 900ms gap between each scroll
+    this._unansweredScrollTimers.push(t);
+  });
+}
 
   async onSubmitClick() {
     // mark attempt and compute missing
@@ -243,12 +336,14 @@ baseUrl: any;
     this.unansweredSet = new Set(unanswered);
     this.unansweredCount = unanswered.length;
 
-    // If any unanswered -> show banner + sequential scroll; do NOT open confirm dialog
-    if (unanswered.length > 0) {
-      // show sequential scroll + pulses
-      this.scrollThroughUnanswered();
-      return;
-    }
+if (unanswered.length > 0) {
+  // clear any old timers then run sequential auto-scroll + pulses
+  this._clearUnansweredTimers();
+  await this.scrollThroughUnanswered();
+  // show toast too
+  this.presentUnansweredToast(unanswered.length);
+  return;
+}
 
     // All answered -> confirm then submit
     const confirm = await this.alertController.create({

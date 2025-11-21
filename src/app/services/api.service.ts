@@ -84,6 +84,11 @@ getSurveys(countryId: number, categoryId: number, lang: string, userId: number) 
     // posts to same attendance endpoint, backend should accept photo base64 in payload.photo
     return this.http.post<any>(`${this.apiUrl}/attendance`, payload, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
+
+  saveAttendance(payload: any) {
+  return this.http.post(`${this.apiUrl}/attendance`, payload);
+}
+
   // ✔ SAVE CHECK-OUT WITHOUT PHOTO (attendance page)
 // saveAttendance(userId: number, actionId: number, comment: string, lat: any, lon: any): Observable<any> {
 //   const body = {
@@ -95,20 +100,22 @@ getSurveys(countryId: number, categoryId: number, lang: string, userId: number) 
 //   };
 //   return this.http.post(`${this.apiUrl}/attendance`, body);
 // }
- saveAttendance(userId: string, actionId: number, comment: string, locLatitude: number, locLongitude: number): Observable<any> {
-    const postData = {
-      user_id: userId,
-      action_id: actionId,
-      loc_latitude: locLatitude,
-      loc_longitude: locLongitude,
-      comment: comment
-    };
-    return this.http.post(`${this.apiUrl}/attendance`, postData);
-  }
-// ✔ WEEKLY ATTENDANCE API (missing earlier)
-getWeeklyAttendance(userId: number): Observable<any> {
-  return this.http.get(`${this.apiUrl}/get_week_attendance/${userId}`);
+//  saveAttendance(userId: string, actionId: number, comment: string, locLatitude: number, locLongitude: number): Observable<any> {
+//     const postData = {
+//       user_id: userId,
+//       action_id: actionId,
+//       loc_latitude: locLatitude,
+//       loc_longitude: locLongitude,
+//       comment: comment
+//     };
+//     return this.http.post(`${this.apiUrl}/attendance`, postData);
+//   }
+getWeeklyAttendance(userId: number, storeId: number = 0): Observable<any> {
+  // If storeId is null/undefined, default to 0 to match API contract
+  const sId = (storeId === null || storeId === undefined) ? 0 : storeId;
+  return this.http.get(`${this.apiUrl}/get_week_attendance/${userId}/${sId}`);
 }
+
 
 
   // Method to get all categories
@@ -713,6 +720,12 @@ getUniqueAreasByFeedback(feedbackId: number): Observable<any> {
   const url = `${this.apiUrl}/get_unique_areas_by_feedback/${feedbackId}`;
   return this.http.get(url); 
 }
+
+// GET outlet assigned to user (store + retailer)
+getOutletByUserId(userId: number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/getoutletbyuserid/${userId}`);
+}
+
 
 
 PlanogramFinalFeedback(fid: number, feedback: string): Observable<any> {

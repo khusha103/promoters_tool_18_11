@@ -21,12 +21,25 @@
 <ion-content class="dark light">
   <ion-grid>
     <ion-row *ngFor="let row of getRows(homeIcons)">
-      <ion-col size="4" size-md="3" *ngFor="let icon of row">
-        <img [src]="icon.image" alt="" class="homeicons dark_pta" [routerLink]="icon.routerLink">
-        <img [src]="icon.imagelight" alt="" class="homeicons light_pta" [routerLink]="icon.routerLink">
-        
-        <div class="box homeicontext" [innerHTML]="icon.name.replace('\n', '<br>')"></div>
-      </ion-col>
+     <ion-col size="4" size-md="3" *ngFor="let icon of row">
+
+  <!-- DARK ICON -->
+  <img 
+    [src]="icon.image" 
+    alt="" 
+    class="homeicons dark_pta"
+    (click)="iconClick(icon)" />
+
+  <!-- LIGHT ICON -->
+  <img 
+    [src]="icon.imagelight" 
+    alt="" 
+    class="homeicons light_pta"
+    (click)="iconClick(icon)" />
+
+  <div class="box homeicontext" [innerHTML]="icon.name.replace('\n', '<br>')"></div>
+</ion-col>
+
     </ion-row>
   </ion-grid>
 </ion-content>

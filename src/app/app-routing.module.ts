@@ -272,9 +272,11 @@ const routes: Routes = [
   path: 'selfie-attendance',
   loadChildren: () => import('./pages/selfie-attendance/selfie-attendance.module').then(m => m.SelfieAttendancePageModule),
   data: { reuse: true }
-}
-
-
+},
+  {
+    path: 'store-list',
+    loadChildren: () => import('./pages/store-list/store-list.module').then( m => m.StoreListPageModule)
+  }
 ];
 
 @NgModule({

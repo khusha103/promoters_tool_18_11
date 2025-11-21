@@ -28,6 +28,8 @@
     </ion-grid>
   </ion-toolbar>
 </ion-header>
+
+
 <ion-content class="main-content padding-20 dark light">
   <div class="heading-div">
     <!-- Sticky banner for unanswered items (promoter style) -->
@@ -37,57 +39,6 @@
     {{ unansweredCount }} question(s) need an answer. Please complete them.
   </div>
 
-  <!-- <div class="question-container">
-    <div *ngFor="let question of questions; let i = index" class="question-card">
-
-      <h6>Question {{ i + 1 }}:</h6>
-      <p>{{ question.body }}</p>
-      <img *ngIf="question.file_name" [src]="baseUrl + question.file_name" alt="Question Image" class="question-image" (click)="openImageInBrowser(baseUrl + question.file_name)"/>
-
-      <div class="options">
-        <ion-radio-group [(ngModel)]="question.selectedOption">
-          <ion-item class="transparent-item" lines="none">
-            <ion-label>Yes</ion-label>
-            <ion-radio slot="start" value="5"></ion-radio>
-          </ion-item>
-          <ion-item class="transparent-item" lines="none">
-            <ion-label>No</ion-label>
-            <ion-radio slot="start" value="6"></ion-radio>
-          </ion-item>
-          <ion-item *ngIf="question.is_na === '1'" class="transparent-item" lines="none">
-            <ion-label>NA</ion-label>
-            <ion-radio slot="start" value="4"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </div>
-      <div class="remarks">
-        <ion-label>Remarks:</ion-label>
-        <ion-input type="text" placeholder="Enter Remark" [(ngModel)]="question.remarks"></ion-input>
-      </div>
-
-
-       <ion-button class="add-image-card-button" expand="block" fill="solid" (click)="selectImage(i)">
-        <ion-icon slot="start" name="add-circle-outline"></ion-icon>
-        Upload Image
-      </ion-button>
-
-
-      <div *ngIf="photos[i] && photos[i].length > 0">
-        <div *ngFor="let photo of photos[i]">
-          <img [src]="photo.url" alt="Captured Image" style="width: 100%; height: auto; margin-top: 10px;">
-        </div>
-      </div>
-      <div *ngIf="!photos[i] || photos[i].length === 0">
-        <p>No images captured yet.</p>
-      </div>
-    </div>
-
-    <div class="submit-button">
-      <ion-button expand="full" [disabled]="!areAllQuestionsAnswered()" (click)="submitAnswers()">
-        Submit Answers
-      </ion-button>
-    </div>
-  </div> -->
 
   <div class="question-container">
     <div
@@ -265,34 +216,7 @@
       </div>
     </div>
 
-    <!-- <ion-textarea
-    [(ngModel)]="feedback"
-    placeholder="Enter your feedback here..."
-    maxlength="500"
-    fill="outline"
-    label-placement="stacked"
-  ></ion-textarea> -->
-
-    <!-- <ion-textarea [(ngModel)]="feedback" placeholder="Enter your Questionaries feedback here..." maxlength="500" fill="outline"
-      label-placement="stacked" class="custom-textarea"></ion-textarea> -->
-
-    <hr />
-
-    <!-- <div class="feedback-card" *ngFor="let feedbackItem of feedbackImages; let idx = index">
-      <div class="textarea-container">
-        <ion-textarea [(ngModel)]="feedbackItem.caption" placeholder="Enter feedback..." autoGrow="true"
-          class="feedback-textarea"></ion-textarea>
-<ion-icon name="trash-outline" class="remove-icon" (click)="removeFeedbackSection(idx)"></ion-icon>
-        <ion-icon name="camera-outline" class="camera-icon" (click)="selectFeedbackImage(idx)"></ion-icon>
-
-        
-      </div>
-
-
-      <div class="feedback-preview" *ngIf="feedbackItem.base64">
-        <img [src]="feedbackItem.base64" alt="Feedback Image" />
-      </div>
-    </div> -->
+ 
 
     <div
       class="feedback-card"
@@ -338,8 +262,6 @@
       </div>
     </div>
 
-    <!-- Feedback Sections -->
-    <!-- Feedback Sections -->
 
     <div class="add-feedback-btn">
       <ion-button

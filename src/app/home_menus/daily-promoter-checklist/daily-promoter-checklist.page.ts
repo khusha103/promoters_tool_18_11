@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController, IonicModule } from '@ionic/angular';
+// import { CountryDropdownComponent } from 'src/app/components/country-dropdown/country-dropdown.component';
 import { DropdownCountryComponent } from 'src/app/components/dropdown-country/dropdown-country.component';
 import { DropdownOutletComponent } from 'src/app/components/dropdown-outlet/dropdown-outlet.component';
-import { DropdownPromoterComponent } from 'src/app/components/dropdown-promoter/dropdown-promoter.component';
 import { DropdownRetailerComponent } from 'src/app/components/dropdown-retailer/dropdown-retailer.component';
 import { ApiService } from 'src/app/services/api.service';
 
+
 @Component({
-  selector: 'app-daily-promoter-checklist',
+  selector: 'app-daily-vmd-checklist',
   templateUrl: './daily-promoter-checklist.page.html',
   styleUrls: ['./daily-promoter-checklist.page.scss'],
+ 
 })
 export class DailyPromoterChecklistPage implements OnInit {
   countries: any[] = [];
@@ -27,25 +29,32 @@ export class DailyPromoterChecklistPage implements OnInit {
   selectedOutlet: any;
   selectedCategory: any;
 
-  categoryOptions = { header: 'Select Category' };
-  countryOptions  = { header: 'Select Country'  };
-  retailerOptions = { header: 'Select Retailer' };
-  storeOptions    = { header: 'Select Store'    };
-  promoterOptions = { header: 'Select Promoter' };
+  categoryOptions = {
+    header: 'Select Category'
+  };
 
-  promoters: any[] = [];
-  selectedPromoter: any;
+  countryOptions = {
+    header: 'Select Country'
+  };
 
-  errorMessage: string | undefined;
-  pic: any;
+  retailerOptions = {
+    header: 'Select Retailer'
+  };
 
-  constructor(
-    private apiService: ApiService,
-    private router: Router,
-    private modalController: ModalController
-  ) {}
+  storeOptions = {
+    header: 'Select Store'
+  };
 
-  ngOnInit() {}
+  
+
+  constructor(private apiService:ApiService,private router: Router,private alertController:AlertController,private modalController:ModalController) { }
+
+  ngOnInit() {
+    this.fetchAllCountries();
+    this.fetchAllCategories();
+    this.fetchAllRetailers();
+    this.fetchAllOutlets();
+  }
 
   ionViewDidEnter() {
     this.fetchAllCountries();
@@ -57,91 +66,111 @@ export class DailyPromoterChecklistPage implements OnInit {
   async openCountrySelectModal() {
     const modal = await this.modalController.create({
       component: DropdownCountryComponent,
-      componentProps: {}
+      componentProps: {  }
     });
-
+  
     modal.onDidDismiss().then((result) => {
       if (result.data) {
-        this.selectedCountry = result.data;
+        this.selectedCountry = result.data; // Get selected country from modal
+        console.log('Selected Country:', this.selectedCountry);
         this.onCountryChange();
       }
     });
-
+  
     return await modal.present();
   }
 
   async openRetailerSelectModal() {
     const modal = await this.modalController.create({
       component: DropdownRetailerComponent,
-      componentProps: { retailers: this.retailers }
+      componentProps: { retailers: this.retailers } // Pass the retailers array as componentProps
     });
-
+  
     modal.onDidDismiss().then((result) => {
       if (result.data) {
-        this.selectedRetailer = result.data;
+        this.selectedRetailer = result.data; 
+        console.log('Selected Retailer:', this.selectedRetailer);
         this.onRetailerChange();
       }
     });
-
+  
     return await modal.present();
   }
-
+  
   async openOutletSelectModal() {
     const modal = await this.modalController.create({
       component: DropdownOutletComponent,
       componentProps: { outlets: this.outlets }
     });
-
+  
     modal.onDidDismiss().then((result) => {
       if (result.data) {
-        this.selectedOutlet = result.data;
+        this.selectedOutlet = result.data; // Set selected outlet
+        console.log('Selected Outlet:', this.selectedOutlet);
       }
     });
-
+  
     return await modal.present();
   }
+  
+  
 
+  //use in case of promoters only
   fetchAllOutlets() {
     this.apiService.getAllOutlets().subscribe(
-      (response) => { this.alloutlets = response.data; },
-      (error) => { console.error('Error fetching outlets:', error); }
+      (response) => {
+        this.alloutlets = response.data;
+        // console.log(this.alloutlets);
+        // this.fetchUserData();
+      },
+      (error) => {
+        console.error('Error fetching outlets:', error);
+      }
+    );
+  }
+  
+  fetchAllRetailers() {
+    this.apiService.getAllRetailers().subscribe(
+      (response) => {
+        this.allretailers = response.data;
+        // console.log(this.allretailers);
+      },
+      (error) => {
+        console.error('Error fetching Retailers:', error);
+      }
     );
   }
 
-  fetchAllRetailers() {
-    this.apiService.getAllRetailers().subscribe(
-      (response) => { this.allretailers = response.data; },
-      (error) => { console.error('Error fetching Retailers:', error); }
-    );
-  }
 
   fetchAllCategories() {
     this.apiService.getAllCategories().subscribe(
       (response) => {
-        if (response.status) {
-          this.categories = response.data;
+        if (response.status) { // Assuming your API response has a status field
+          this.categories = response.data; // Store the fetched categories
         } else {
           console.error('Failed to fetch categories:', response.message);
         }
       },
-      (error) => { console.error('Error fetching categories:', error); }
+      (error) => {
+        console.error('Error fetching categories:', error);
+      }
     );
   }
 
   fetchAllCountries() {
     return new Promise((resolve, reject) => {
-      this.apiService.getAllCountries().subscribe(
-        (response) => {
-          this.countries = response.data;
-          resolve(this.countries);
-        },
-        (error) => {
-          console.error('Error fetching countries:', error);
-          reject(error);
-        }
-      );
+        this.apiService.getAllCountries().subscribe(
+            (response) => {
+                this.countries = response.data;
+                resolve(this.countries);
+            },
+            (error) => {
+                console.error('Error fetching countries:', error);
+                reject(error);
+            }
+        );
     });
-  }
+}
 
   onCountryChange() {
     this.retailers = [];
@@ -150,7 +179,6 @@ export class DailyPromoterChecklistPage implements OnInit {
     this.selectedOutlet = null;
     if (this.selectedCountry) {
       this.fetchRetailersByCountry(this.selectedCountry.id);
-      this.loadPromoters(this.selectedCountry.id);
     }
   }
 
@@ -160,6 +188,7 @@ export class DailyPromoterChecklistPage implements OnInit {
         (response) => {
           if (response.status) {
             this.retailers = response.data;
+
             if (this.retailers.length === 0) {
               this.retailers.push({ id: null, name: 'No Retailers Found', disabled: true });
             }
@@ -179,8 +208,8 @@ export class DailyPromoterChecklistPage implements OnInit {
   }
 
   onRetailerChange() {
-    this.outlets = [];
-    this.selectedOutlet = null;
+    this.outlets = []; // Clear outlets when retailer changes
+    this.selectedOutlet = null; // Reset selected outlet
     if (this.selectedRetailer && this.selectedRetailer.id !== null) {
       this.fetchOutletsByRetailerAndCountry(this.selectedRetailer.id, this.selectedCountry.id);
     }
@@ -192,95 +221,91 @@ export class DailyPromoterChecklistPage implements OnInit {
         (response) => {
           if (response.status) {
             this.outlets = response.data;
+
+            // Check if no outlets found
             if (this.outlets.length === 0) {
               this.outlets.push({ id: null, name: 'No Outlets Found', disabled: true });
             }
-            resolve();
+            resolve(); // Resolve the promise after fetching outlets
           } else {
             this.outlets.push({ id: null, name: 'No Outlets Found', disabled: true });
-            resolve();
+            resolve(); // Resolve even if no outlets found
           }
         },
         (error) => {
           console.error('Error fetching outlets:', error);
           this.outlets.push({ id: null, name: 'Error fetching outlets', disabled: true });
-          reject(error);
+          reject(error); // Reject the promise on error
         }
       );
     });
   }
 
-  loadPromoters(countryId: number) {
-    this.apiService.getPromotersByCountry(countryId).subscribe(
-      (data) => { this.promoters = data; },
-      (error) => { console.error('Error fetching promoters:', error); }
-    );
-  }
-
-  async openPromoterSelectModal() {
-    const modal = await this.modalController.create({
-      component: DropdownPromoterComponent,
-      componentProps: { promoters: this.promoters }
-    });
-
-    modal.onDidDismiss().then((result) => {
-      if (result.data) {
-        this.selectedPromoter = result.data;
-      }
-    });
-
-    return await modal.present();
-  }
 
   async onCategoryChange(categoryId: number) {
     if (categoryId) {
+      // console.log("catid on change",categoryId);
+
       this.usercategory = categoryId;
       this.fetchPIC();
+
+      
     } else {
+      // Reset all dependent dropdowns if no category is selected
       this.usercategory = null;
     }
   }
+  errorMessage: string | undefined;
+  pic: any;
+  fetchPIC(){
+    const storeId = this.selectedOutlet.id; 
+    // const storeId = 570; 
 
-  fetchPIC() {
-    const storeId = this.selectedOutlet?.id;
-    if (!storeId) { return; }
+    console.log("storeId",storeId);
+    
 
     this.apiService.getOutletPic(storeId).subscribe(
       (response) => {
+        // this.outletData = response;
+        console.log(response);
         this.pic = response;
+       
       },
       (error) => {
         this.errorMessage = 'An error occurred while fetching data';
         console.log('Error:', error);
+       
       }
     );
   }
 
-  // Programmatic navigation helper (explicit, logs before navigate)
-  goToChecklist() {
-    const params = {
-      categoryId: this.selectedCategory?.id,
-      countryId: this.selectedCountry?.id,
-      promoterId: this.selectedPromoter?.id,
-      storeId: this.selectedOutlet?.id
-    };
-    console.log('goToChecklist params:', params);
-    this.router.navigate(['/daily-promoter-checklist-ques'], { queryParams: params });
-  }
+  async proceed() {
+    const categoryId = this.selectedCategory?.id;
+    const countryId = this.selectedCountry?.id;
+    const storeId = this.selectedOutlet?.id;
 
-  // small helper used on click to log values (keeps routerLink usable)
-  logPreNavigate() {
-    console.log('Click navigate values:', {
-      selectedCategory: this.selectedCategory,
-      selectedCountry: this.selectedCountry,
-      selectedOutlet: this.selectedOutlet,
-      selectedPromoter: this.selectedPromoter,
-      ids: {
-        categoryId: this.selectedCategory?.id,
-        countryId: this.selectedCountry?.id,
-        storeId: this.selectedOutlet?.id,
-        promoterId: this.selectedPromoter?.id
-      }
+    if (!categoryId) {
+        await this.showAlert('Missing Category', 'Please select a category.');
+    } else if (!countryId) {
+        await this.showAlert('Missing Country', 'Please select a country.');
+    } else if (!storeId) {
+        await this.showAlert('Missing Store', 'Please select a store.');
+    } else {
+        // Navigate to the desired page with query parameters
+        this.router.navigate(['/daily-promoter-checklist-ques'], { 
+            queryParams: { categoryId, countryId, storeId }
+        });
+    }
+}
+
+private async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+        header: header,
+        message: message,
+        buttons: ['OK'],
     });
-  }
+
+    await alert.present();
+}
+
 }

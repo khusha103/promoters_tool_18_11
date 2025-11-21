@@ -25,6 +25,10 @@ export class HomePage {
   rolemenus: any[] = [];
   accessIds: string[] = []; // Declare accessIds as an array of strings
   banners: any[] = [];
+  promoterStoreId!: number | null;
+  promoterStoreName: any;
+  promoterRetailerId!: number | null;
+  promoterRetailerName: any;
 
   constructor(private authservice: AuthService, private http: HttpClient, private apiService: ApiService, private networkService: NetworkService, private router: Router, private iab: InAppBrowser, private alertController: AlertController, private toastController: ToastController) { }
   deviceInfo: any = {};
@@ -53,67 +57,116 @@ export class HomePage {
     // this.checkLogintoken();
   }
 
-  // @ViewChild('swiper', { static: false }) swiper!: SwiperComponent;
+iconClick(icon: any) {
+  // Attendance icon menu-id = 15
+  if (icon['menu-id'] === 15) {
+    // If user role is not allowed -> show toast and do not navigate
+    // Allowed roles: 3 (promoter) and 16 (other permitted role)
+    const roleNum = Number(this.roleId);
+    if (![3, 16].includes(roleNum)) {
+      // Use existing helper which displays toast
+      this.showToast('Attendance module is not available for your role.');
+      return;
+    }
+    // role allowed -> proceed to attendance navigation
+    this.handleAttendanceNavigation();
+    return;
+  }
 
-  // ngAfterViewInit() {
-  //   this.swiper.swiperRef.on('slideChange', () => {
-  //     this.swiper.swiperRef.pagination.update();
-  //   });
-  // }
+  // Default navigation for all other icons
+  if (icon.routerLink) {
+    this.router.navigate([icon.routerLink]);
+  }
+}
 
-//   async checkLogintoken() {
-//     // Get user_id from local storage
-//     const userId = Number(localStorage.getItem('userId'));
+// Helper that returns a promise and fetches outlet if not already loaded
+private fetchPromoterOutletOnce(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const userId = Number(localStorage.getItem('userId'));
+    if (!userId) {
+      return reject('no userId');
+    }
 
-//     if (!userId) {
-//         console.error("User ID not found in local storage!");
-//         return;
-//     }
+    // if already loaded, resolve immediately
+    if (this.promoterStoreId !== null || this.promoterStoreName) {
+      return resolve();
+    }
 
-//     const deviceInformation = {
-//         deviceId: this.deviceId.identifier || 'unknown-device-id',
-//         deviceType: this.deviceInfo.platform || 'unknown-platform',
-//         osVersion: this.deviceInfo.osVersion || 'unknown-os-version',
-//         os: this.deviceInfo.platform || 'unknown-os',
-//         model: this.deviceInfo.model || 'unknown-model'
-//     };
+    const sub = this.apiService.getOutletByUserId(userId).subscribe({
+      next: (res: any) => {
+        if (res && res.status && res.data) {
+          this.promoterStoreId = res.data.store_id ? Number(res.data.store_id) : null;
+          this.promoterStoreName = res.data.store_name || '';
+          this.promoterRetailerId = res.data.retailer_id ? Number(res.data.retailer_id) : null;
+          this.promoterRetailerName = res.data.retailer_name || '';
+        } else {
+          this.promoterStoreId = null;
+          this.promoterStoreName = '';
+          this.promoterRetailerId = null;
+          this.promoterRetailerName = '';
+        }
+        sub.unsubscribe();
+        resolve();
+      },
+      error: (err: any) => {
+        sub.unsubscribe();
+        reject(err);
+      }
+    });
+  });
+}
 
-//     console.log("Device Info",deviceInformation);
 
-//     // Call API using authService.getdetails()
-//     this.authservice.getdetails(userId, deviceInformation).subscribe(
-//         async (response: any) => {
-//             if (response && response.status) {
-//                 console.log('Device Verified:', response.message);
-//             } else if (response && response.message === 'Your account is logged in on another device.') {
-//                 // Show alert and log the user out
-//                 const alert = await this.alertController.create({
-//                     header: 'Alert',
-//                     message: response.message,
-//                     buttons: [
-//                         {
-//                             text: 'OK',
-//                             handler: () => {
-//                               localStorage.clear();
-//                               this.router.navigate(['/pta-login']);
-//                             }
-//                         }
-//                     ]
-//                 });
+// make function async to allow waiting for promoter outlet fetch when needed
+async handleAttendanceNavigation() {
+  // Defensive: ensure roleId is available
+  if (!this.roleId) {
+    console.error("Role ID not available yet.");
+    // show friendly toast
+    this.showToast('Attendance module is not available for your role.');
+    return;
+  }
 
-//                 await alert.present();
-//             } else if (response && response.message === 'User not found') {
-//                 console.error('User not found:', response);
-//             } else {
-//                 console.error('Unexpected API response:', response);
-//             }
-//         },
-//         (error) => {
-//             console.error('Error fetching user device details:', error);
-//         }
-//     );
-// }
+  const role = Number(this.roleId);
 
+  // Only roles 3 and 16 are allowed — otherwise show message and do not navigate
+  if (![3, 16].includes(role)) {
+    this.showToast('Attendance module is not available for your role.');
+    return;
+  }
+
+  // Role 16: navigate to store-list (existing behavior)
+  if (role === 16) {
+    this.router.navigate(['/store-list']);
+    return;
+  }
+
+  // If promoter (role 3) and we don't yet have the outlet loaded, attempt to fetch it synchronously
+  if (role === 3) {
+    // If outlet already loaded in component state, use it.
+    if ((this.promoterStoreId === null || this.promoterStoreId === undefined) && !this.promoterStoreName) {
+      // attempt to fetch once (wrap observable in promise)
+      try {
+        await this.fetchPromoterOutletOnce();
+      } catch (e) {
+        console.warn('Failed to prefetch promoter outlet before navigation', e);
+        // proceed anyway — attendance page can handle missing store selection
+      }
+    }
+  }
+
+  // Build query params using component values (fallback to localStorage if still needed)
+  const qparams: any = {
+    storeId: this.promoterStoreId ?? (localStorage.getItem('storeId') ? Number(localStorage.getItem('storeId')) : null),
+    storeName: this.promoterStoreName || localStorage.getItem('storeName') || '',
+    retailerId: this.promoterRetailerId ?? (localStorage.getItem('retailerId') ? Number(localStorage.getItem('retailerId')) : null),
+    retailerName: this.promoterRetailerName || localStorage.getItem('retailerName') || '',
+    countryId: this.cid ?? (localStorage.getItem('countryId') ? Number(localStorage.getItem('countryId')) : null),
+    roleId: this.roleId ?? ''
+  };
+
+  this.router.navigate(['/attendance'], { queryParams: qparams });
+}
 
 
 
@@ -177,30 +230,76 @@ async checkLogintoken() {
   roleId: string | null = null;
   cid: string | null = null;
   errorMessage: string | null = null;
-  getUserRole() {
-    const UserId = localStorage.getItem('userId');
-    if (UserId) {
-      this.authservice.getUserRole(UserId).subscribe({
-        next: (response) => {
-          if (response.status) {
-            this.roleId = response.data.role_id; // Extract role_id
-            this.cid = response.data.region_id;
+getUserRole() {
+  const UserId = localStorage.getItem('userId');
+  if (!UserId) return;
 
-            //when get roleid then call methods
-            this.load_menusbyroles();
-            this.loadBanners();
-            this.noInternet();
-          } else {
-            this.errorMessage = response.message; // Handle error message
-          }
-        },
-        error: (error) => {
-          console.error('API Error:', error);
-          this.errorMessage = 'Failed to retrieve user role. Please try again later.';
-        }
-      });
+  this.authservice.getUserRole(UserId).subscribe({
+    next: (response) => {
+      if (response.status) {
+        this.roleId = response.data.role_id; // Extract role_id
+        this.cid = response.data.region_id;
+
+        // Save role to localStorage so other pages can read it
+        localStorage.setItem('userRoleId', String(this.roleId));
+
+        //when get roleid then call methods
+        this.load_menusbyroles();
+        this.loadBanners();
+        this.noInternet();
+
+        // If promoter -> fetch fixed store for this user and save to localStorage
+// If promoter -> fetch assigned outlet and keep in component properties
+if (String(this.roleId) === '3') {
+  const userIdNum = Number(UserId);
+
+  // fetch outlet and store in memory (and optionally persist)
+  this.apiService.getOutletByUserId(userIdNum).subscribe({
+    next: (res: any) => {
+      if (res && res.status && res.data) {
+        // Save to component state
+        this.promoterStoreId = res.data.store_id ? Number(res.data.store_id) : null;
+        this.promoterStoreName = res.data.store_name || '';
+        this.promoterRetailerId = res.data.retailer_id ? Number(res.data.retailer_id) : null;
+        this.promoterRetailerName = res.data.retailer_name || '';
+
+        // OPTIONAL: persist to localStorage if other parts of app still expect it
+        // localStorage.setItem('storeId', String(this.promoterStoreId ?? ''));
+        // localStorage.setItem('storeName', this.promoterStoreName);
+        // if (this.promoterRetailerId) localStorage.setItem('retailerId', String(this.promoterRetailerId));
+        // if (this.promoterRetailerName) localStorage.setItem('retailerName', this.promoterRetailerName);
+      } else {
+        console.warn('No outlet data for promoter', res);
+        // clear component values
+        this.promoterStoreId = null;
+        this.promoterStoreName = '';
+        this.promoterRetailerId = null;
+        this.promoterRetailerName = '';
+      }
+    },
+    error: (err: any) => {
+      console.error('Error fetching outlet for promoter', err);
+      // clear component values on error
+      this.promoterStoreId = null;
+      this.promoterStoreName = '';
+      this.promoterRetailerId = null;
+      this.promoterRetailerName = '';
     }
-  }
+  });
+}
+
+
+      } else {
+        this.errorMessage = response.message;
+      }
+    },
+    error: (error) => {
+      console.error('API Error:', error);
+      this.errorMessage = 'Failed to retrieve user role. Please try again later.';
+    }
+  });
+}
+
 
   getnoti_status() {
     const userId = Number(localStorage.getItem('userId'));
@@ -364,45 +463,6 @@ async checkLogintoken() {
         this.loadHomeIcons();
       }
     }
-    //  else {
-    //   console.log('app_selection is 2, not checking for role_id');
-
-    //   //hp menu app selection
-    //   const roleId = Number(this.roleId);
-    //   const countryId = this.cid;
-    //   if (countryId !== null) {
-    //     this.apiService.menuaccess_hpuser_get(roleId, countryId).subscribe(
-    //       response => {
-    //         console.log('Role menus loaded:', response);
-
-    //         // Check if the response status is success
-    //         if (response.status === 'success') {
-    //           // this.rolemenus = response.data.menus; // Access menus directly
-    //           this.accessIds = response.data.access_id; // Access unique access IDs
-
-    //           console.log("Access Ids",this.accessIds);
-
-    //           if (this.rolemenus.length > 0) {
-    //             // If there are menus, process them
-    //             // console.log('Menus loaded:', this.rolemenus);
-    //             this.loadHomeIcons();
-    //           } else {
-    //             console.warn('No role menus found');
-    //             this.loadHomeIcons(); // Load home icons even if no menus are found
-    //           }
-    //         } else {
-    //           console.warn('Status is not success:', response);
-    //           this.loadHomeIcons(); // Load home icons on failure
-    //         }
-    //       },
-    //       error => console.error('Error loading role menus:', error)
-    //     );
-    //   } else {
-    //     console.log('countryId is null, not checking for role menus');
-    //     this.loadHomeIcons();
-    //   }
-    //   this.loadHomeIcons();
-    // }
   }
 
   loadHomeIcons() {

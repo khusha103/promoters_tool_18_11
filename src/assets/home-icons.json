@@ -146,12 +146,12 @@
       "image": "/assets/icon/sonydark/assementdark.svg",
       "imagelight": "/assets/icon/sonylight/assessmentlight.svg",
       "routerLink": "/daily-vmd-checklist",
-      "name": "MONTHLY\nVMD AUDIT",
+      "name": "DAILY\nVMD AUDIT",
       "app-selector": "1,2",
       "menu-id": 16
     },
     {
-      "name": "PROMOTERS\nASSESSMENT",
+      "name": "DAILY\nPROMOTER\nAUDIT",
       "image": "/assets/icon/sonydark/p_assementdark.svg",
       "imagelight": "/assets/icon/sonylight/p_assessmentlight.svg",
       "routerLink": "/promoters-assessment",

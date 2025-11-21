@@ -1,0 +1,68 @@
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <a class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/home']"></ion-icon>
+          </a>
+        </ion-col>
+
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="/assets/icon/homeicons/sony_light.svg" class="SONY_mail_logo dark_pta" />
+          <img src="/assets/icon/homeicons/sony_dark.svg" class="SONY_mail_logo light_pta" />
+        </ion-col>
+
+        <ion-col size="4"></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content dark light">
+
+  <div class="heading-div">
+    <h6 class="home-headings">Store List</h6>
+  </div>
+
+  <div class="fieldsclassdiv">
+
+    <!-- Country -->
+    <ion-label position="stacked" class="labels">Country</ion-label>
+    <ion-item button (click)="openCountrySelectModal()" class="custom-dropdown">
+      <ion-text class="dropdown-text">{{ selectedCountry?.name || 'Select Country' }}</ion-text>
+      <ion-icon name="chevron-down" class="select-icon"></ion-icon>
+    </ion-item>
+
+    <!-- Retailer -->
+    <ion-label position="stacked" class="labels">Retailer</ion-label>
+    <ion-item button (click)="openRetailerSelectModal()"
+      class="custom-dropdown"
+      [disabled]="!selectedCountry">
+      <ion-text class="dropdown-text">{{ selectedRetailer?.name || 'Select Retailer' }}</ion-text>
+      <ion-icon name="chevron-down" class="select-icon"></ion-icon>
+    </ion-item>
+
+    <!-- Store -->
+    <ion-label position="stacked" class="labels">Store</ion-label>
+    <ion-item button (click)="openStoreSelectModal()"
+      class="custom-dropdown"
+      [disabled]="!selectedRetailer">
+      <ion-text class="dropdown-text">{{ selectedStore?.name || 'Select Store' }}</ion-text>
+      <ion-icon name="chevron-down" class="select-icon"></ion-icon>
+    </ion-item>
+
+    <div class="checkbutton">
+      <ion-button expand="block"
+                  class="products_buttons"
+                  [disabled]="!selectedCountry || !selectedRetailer || !selectedStore"
+                  (click)="proceed()">
+        Proceed
+      </ion-button>
+    </div>
+
+  </div>
+
+</ion-content>
+
+<app-footer></app-footer>

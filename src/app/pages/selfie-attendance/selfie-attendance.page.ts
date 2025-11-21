@@ -8,6 +8,7 @@ import {
 } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 import { Geolocation } from '@capacitor/geolocation';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-selfie-attendance',
@@ -15,7 +16,6 @@ import { Geolocation } from '@capacitor/geolocation';
   styleUrls: ['./selfie-attendance.page.scss'],
 })
 export class SelfieAttendancePage implements OnInit {
-  
   selfieBase64: string | null = null;
   selfieFileName: string | null = null;
 
@@ -26,34 +26,46 @@ export class SelfieAttendancePage implements OnInit {
   isSubmitting = false;
   userId: string | null = null;
   geolocationPosition: any | null = null;
+  storeId: number | null = null;
+  storeName: string = '';
+  retailerId: number | null = null;
+  retailerName: string = '';
+  countryId: number | null = null;
+  roleId: string = '';
 
   constructor(
     private router: Router,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
     private apiService: ApiService,
-    private platform: Platform
+    private platform: Platform,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.userId = localStorage.getItem('userId');
 
-    // Pre-request both permissions
+    this.route.queryParams.subscribe(params => {
+      this.storeId = params['storeId'] ? Number(params['storeId']) : null;
+      this.storeName = params['storeName'] || '';
+      this.retailerId = params['retailerId'] ? Number(params['retailerId']) : null;
+      this.retailerName = params['retailerName'] || '';
+      this.countryId = params['countryId'] ? Number(params['countryId']) : null;
+      this.roleId = params['roleId'] || '';
+      console.log("Selfie Page URL Params:", params);
+    });
+
     this.ensureCameraPermission();
     this.ensureLocationPermission();
   }
 
-  // CAMERA PERMISSION
   async ensureCameraPermission() {
     try {
       const status = await Camera.checkPermissions();
       if (!status || status.camera !== 'granted') {
         const req = await Camera.requestPermissions({ permissions: ['camera'] as any });
         if (req.camera !== 'granted') {
-          this.showAlert(
-            'Camera required',
-            'Please enable camera permission to take your selfie.'
-          );
+          this.showAlert('Camera required', 'Please enable camera permission to take your selfie.');
         }
       }
     } catch (e) {
@@ -61,17 +73,13 @@ export class SelfieAttendancePage implements OnInit {
     }
   }
 
-  // LOCATION PERMISSION
   async ensureLocationPermission() {
     try {
       const perm = await Geolocation.checkPermissions();
       if (perm.location !== 'granted') {
         const req = await Geolocation.requestPermissions();
         if (req.location !== 'granted') {
-          this.showAlert(
-            'Location required',
-            'GPS must be enabled to continue.'
-          );
+          this.showAlert('Location required', 'GPS must be enabled to continue.');
         }
       }
     } catch (e) {
@@ -83,7 +91,6 @@ export class SelfieAttendancePage implements OnInit {
     if (this.isCapturing) return;
     this.isCapturing = true;
 
-    // GPS MUST BE ON BEFORE SELFIE
     const gpsOk = await this.getCurrentPosition();
     if (!gpsOk) {
       this.showAlert('GPS Required', 'Please enable GPS to continue.');
@@ -95,7 +102,7 @@ export class SelfieAttendancePage implements OnInit {
       const photo = await Camera.getPhoto({
         quality: 85,
         resultType: CameraResultType.Base64,
-        source: CameraSource.Camera, // NO GALLERY
+        source: CameraSource.Camera,
         allowEditing: false,
       });
 
@@ -104,7 +111,6 @@ export class SelfieAttendancePage implements OnInit {
         this.selfieBase64 = `data:image/${ext};base64,${photo.base64String}`;
         this.selfieFileName = `selfie_${Date.now()}.${ext}`;
       }
-
     } catch (e) {
       console.warn('Selfie capture error:', e);
     }
@@ -116,84 +122,94 @@ export class SelfieAttendancePage implements OnInit {
     this.selfieBase64 = null;
   }
 
-async onCancel() {
-  const alert = await this.alertCtrl.create({
-    header: 'Exit Attendance?',
-    message: 'Are you sure you want to exit? It will not mark your attendance.',
-    buttons: [
-      {
-        text: 'No',
-        role: 'cancel'
-      },
-      {
-        text: 'Yes, Exit',
-        handler: () => {
-          this.router.navigate(['/home']);
+  async onCancel() {
+    const alert = await this.alertCtrl.create({
+      header: 'Exit Attendance?',
+      message: 'Are you sure you want to exit? It will not mark your attendance.',
+      buttons: [
+        { text: 'No', role: 'cancel' },
+        {
+          text: 'Yes, Exit',
+          handler: () => {
+            this.router.navigate(['/home']);
+          }
         }
-      }
-    ]
-  });
+      ]
+    });
+    await alert.present();
+  }
 
-  await alert.present();
+async onDone() {
+  if (!this.selfieBase64) {
+    return this.showAlert('Selfie required', 'Please include store background in your selfie.');
+  }
+  if (!this.consentChecked) {
+    return this.showAlert('Consent Required', 'To proceed, you must allow use of your photo and GPS for attendance.');
+  }
+
+  const positionOk = await this.getCurrentPosition();
+  if (!positionOk) {
+    return this.showAlert('GPS Required', 'Turn ON GPS to submit attendance.');
+  }
+
+  const userId = Number(localStorage.getItem('userId'));
+  const userRoleId = this.roleId;
+  const storeId = this.storeId;
+  const storeName = this.storeName;
+
+  const payload: any = {
+    user_id: userId,
+    action_id: 1, // check-in
+    comment: this.comment,
+    loc_latitude: this.geolocationPosition?.coords?.latitude ?? null,
+    loc_longitude: this.geolocationPosition?.coords?.longitude ?? null,
+    photo: this.selfieBase64 ?? '',
+    user_role_id: userRoleId,
+    store_id: storeId,
+    store_name: storeName,
+    retailer_id: this.retailerId,
+    retailer_name: this.retailerName,
+    country_id: this.countryId
+  };
+
+  this.isSubmitting = true;
+
+  this.apiService.saveAttendanceWithPhoto(payload).subscribe({
+    next: (res: any) => {
+      this.isSubmitting = false;
+
+      if (res && res.status) {
+        // store selfie for preview only — DO NOT set checkin flag in localStorage
+        localStorage.setItem('attendance_selfie', this.selfieBase64 ?? '');
+
+        this.showToast('Check-in successful!', 'success');
+
+        // navigate back to attendance page; attendance page will re-load weekly data and determine status from API
+        this.router.navigate(
+          ['/attendance'],
+          {
+            queryParams: {
+              storeId: this.storeId,
+              storeName: this.storeName,
+              retailerId: this.retailerId,
+              retailerName: this.retailerName,
+              countryId: this.countryId,
+              roleId: this.roleId
+            }
+          }
+        );
+      } else {
+        this.showToast(res.message || 'Failed to check-in', 'danger');
+      }
+    },
+    error: (err) => {
+      this.isSubmitting = false;
+      this.showToast('Error while checking in', 'danger');
+      console.error('check-in error:', err);
+    },
+  });
 }
 
-
-  async onDone() {
-    if (!this.selfieBase64) {
-      return this.showAlert(
-        'Selfie required',
-        'Please include store background in your selfie.'
-      );
-    }
-
-    if (!this.consentChecked) {
-      return this.showAlert(
-        'Consent Required',
-        'To proceed, you must allow use of your photo and GPS for attendance.'
-      );
-    }
-
-    const positionOk = await this.getCurrentPosition();
-    if (!positionOk) {
-      return this.showAlert(
-        'GPS Required',
-        'Turn ON GPS to submit attendance.'
-      );
-    }
-
-    // Save selfie temporarily for display in next page
-    localStorage.setItem('attendance_selfie', this.selfieBase64);
-
-    // BACKGROUND API CALL
-const payload = {
-  user_id: Number(this.userId),
-  action_id: 1,     // ✔ FIXED
-  comment: this.comment,
-  loc_latitude: this.geolocationPosition?.coords?.latitude ?? null,
-  loc_longitude: this.geolocationPosition?.coords?.longitude ?? null,
-  photo: this.selfieBase64,
-};
-
-this.isSubmitting = true;
-
-this.apiService.saveAttendanceWithPhoto(payload).subscribe({
-  next: () => {
-    this.isSubmitting = false;
-
-    // set state only after server confirms
-    localStorage.setItem('checkin', 'true');
-    this.showToast('Check-in successful!', 'success');
-
-    // now navigate to attendance
-    this.router.navigate(['/attendance']);
-  },
-  error: () => {
-    this.isSubmitting = false;
-    this.showToast('Failed to save attendance.', 'danger');
-  },
-});
-
-  }
 
   async getCurrentPosition(): Promise<boolean> {
     try {

@@ -219,62 +219,12 @@ ion-grid.ios.hydrated {
     margin-bottom: 4px !important;
     margin-left: 8px !important;
   }
-  //fieldsCSS
-  
-  // .checkbutton {
-  //   margin-bottom: 20px;
-  // }
-
-  // .transparent-item {
-  //   background-color: transparent !important; // Make the background transparent
-  //   --background: transparent; // For Ionic specific styling
-  //   --background-hover: rgba(255, 255, 255, 0.1); // Optional: Add a slight hover effect
-  // }
-
-  // .white-background {
-  //   background-color: white; // Set background color to white
-  //   --background: white; // For Ionic specific styling
-  //   --box-shadow: none; // Remove any shadow if necessary
-  //   border-radius: 4px; // Optional: Add rounded corners
-  // }
-
-
-
-  // .question-container {
-  //   padding: 20px;
-  // }
-  
-  // .question-card {
-  //   margin-bottom: 20px;
-  //   padding: 15px;
-  //   border: 1px solid #e0e0e0;
-  //   border-radius: 8px;
-  //   background-color: #f9f9f9;
-  // }
-  
-  // .options {
-  //   display: flex;
-  //   justify-content: space-between; /* Align options in one line */
-  // }
-  
-  // .transparent-item {
-  //   margin-right: 15px; /* Space between radio options */
-  // }
-  
-  // .submit-button {
-  //   margin-top: 20px;
-  // }
 
   .options {
     // display: flex;
     justify-content: space-between; /* Align options in one line */
   }
-  
-  .transparent-item {
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center items vertically */
-    margin-right: 15px; /* Space between radio options */
-  }
+ 
 
    .low-percentage {
           background-color: #f8d7da; /* Light red background for <60% */
@@ -473,92 +423,146 @@ ion-grid.ios.hydrated {
   animation: pulseBorder 0.8s ease-in-out 1;
 }
 
-/* --------- Two-column rows: label (flex) | radio (fixed right) --------- */
+.two-col-group,
+.options,
+.options-column {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 8px;
+}
+
 .two-col,
-.rating-option-row,
-.option-row.two-col {
+.option-row,
+.rating-option-row {
   display: grid;
-  grid-template-columns: 1fr 44px; /* left column grows, right column fixed */
-  align-items: center;             /* vertical center the content */
+  grid-template-columns: 1fr 44px; /* left grows, right fixed to 44px */
   gap: 12px;
+  align-items: center;
   padding: 10px 12px;
   width: 100%;
   box-sizing: border-box;
   background: transparent;
+  border-radius: 6px;
+  transition: background .18s, border-left .18s;
 }
 
-
-
-/* Ensure the radio-group container uses full width so all radios align */
-.two-col-group,
-.options-column,
-.rating-option-column {
-  width: 100%;
-  display: block; /* preserve our row grid; keep grouping semantics */
-}
-
-/* Allow left labels to wrap (important) — remove nowrap */
-.col-label,
-.rating-text-cell {
-  text-align: left;
-  justify-self: start;
-  overflow: visible;      /* allow wrapping */
-  white-space: normal;    /* allow multi-line labels */
-  text-overflow: clip;
-  font-size: 14px;
-  color: #222;
-  line-height: 1.25;
-}
-
-/* Radio cell: fixed width column at right, center the radio vertically */
-.col-radio,
-.rating-radio-cell {
-  display: flex;
-  justify-content: center; /* center horizontally in radio column */
-  align-items: center;     /* center vertically */
-  justify-self: end;       /* align to end of its grid cell */
-  padding-left: 0;
-}
-
-/* Tighten ion-radio sizing so it lines up exactly in column */
-.col-radio ion-radio,
-.rating-radio-cell ion-radio {
-  margin: 0;
-  transform: none !important;
-  width: auto;
-  height: auto;
-}
-
-/* Visual: selected highlight uses your color */
-.option-row[aria-checked="true"],
-.rating-option-row[aria-checked="true"] {
-  background: rgba(32, 90, 193, 0.06);
-  border-left: 4px solid #fd7e14;
-}
-
-/* Make sure transparent-item won't break our grid if used */
-.transparent-item {
-  display: block;
-  padding: 0;
-  margin: 0;
-}
-
-/* small screens: keep radio column narrow so labels have space */
+/* Slightly tighter on small screens */
 @media (max-width: 480px) {
   .two-col,
-  .rating-option-row,
-  .option-row.two-col {
+  .option-row,
+  .rating-option-row {
     grid-template-columns: 1fr 40px;
     padding: 8px 10px;
   }
   .col-label, .rating-text-cell { font-size: 13px; }
 }
 
-
-@keyframes pulseBorder {
-  0%   { box-shadow: 0 0 0 0 rgba(255, 99, 99, 0.6); }
-  50%  { box-shadow: 0 0 0 6px rgba(255, 99, 99, 0.25); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 99, 99, 0); }
+/* Label cell (left) — allow multi-line labels and paragraph-like spacing */
+.col-label,
+.match-radio-label,
+.rating-text-cell {
+  text-align: left;
+  justify-self: start;
+  overflow: visible;
+  white-space: normal; /* allow wrapping */
+  text-overflow: clip;
+  font-size: 14px;
+  color: #222;
+  line-height: 1.3;
+  word-break: break-word;
 }
+
+/* Radio cell (right) — fixed column, center radio vertically */
+.col-radio,
+.rating-radio-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+  justify-self: end;
+}
+
+/* Make the ion-radio use default size and be visually centered */
+.rating-radio-cell ion-radio {
+  margin: 0;
+  transform: none !important;
+  width: auto;
+  height: auto;
+  --ion-radio-size: 18px; /* controls visual size on Ionic radios (if supported) */
+}
+
+/* Visual selected state — preserve aria-checked also used by ion-item */
+.option-row[aria-checked="true"],
+.rating-option-row[aria-checked="true"],
+.match-radio-item.checked {
+  background: rgba(253, 126, 20, 0.06); /* light highlight */
+  border-left: 4px solid #fd7e14;
+  padding-left: 8px; /* adjust so content doesn't jump under the border */
+}
+
+/* Nicer spacing for multi-line description under rating titles */
+.match-desc {
+  font-size: 13px;
+  color: #666;
+  margin-top: 4px;
+  line-height: 1.2;
+}
+
+/* FULL-WIDTH percentage bars like screenshot */
+.low-percentage,
+.high-percentage {
+  width: 110%;
+  display: flex;
+  justify-content: space-between;   /* text fills full row */
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 12px;               /* same padding as option rows */
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Colors */
+.low-percentage {
+  background: #f8d7da;
+  color: #d9534f;
+}
+
+.high-percentage {
+  background: #d4edda;
+  color: #5cb85c;
+}
+
+/* Important: let percentage row disable radio space visually */
+.two-col.option-row .col-radio:empty {
+  visibility: hidden;
+}
+
+
+/* Make sure transparent-item won't break layout — keep it neutral */
+.transparent-item {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+
+/* Unanswered / highlighted card outer style (kept) */
+.question-card.unanswered {
+  border-color: #ff5252 !important;
+  box-shadow: 0 0 0 2px rgba(255, 82, 82, 0.15);
+}
+
+/* accessibility: ensure focus states are visible */
+.two-col:focus-within,
+.option-row:focus-within {
+  box-shadow: 0 0 0 3px rgba(253,126,20,0.12);
+  outline: none;
+}
+
+/* small polish: reduced spacing between label text lines */
+.col-label p { margin: 0; }
+
+
 
 
