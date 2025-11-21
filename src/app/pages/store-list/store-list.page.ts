@@ -45,6 +45,7 @@ export class StoreListPage implements OnInit {
   private loadUserAndFilterCountries() {
     const userId = Number(localStorage.getItem('userId'));
     if (!userId) {
+      console.log("code phat gya");
       // fallback: just load all countries
       this.fetchCountries();
       return;

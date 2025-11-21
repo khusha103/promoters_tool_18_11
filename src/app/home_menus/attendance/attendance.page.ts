@@ -247,16 +247,33 @@ export class AttendancePage implements OnInit {
     }
 
 this.apiService.getWeeklyAttendance(userId, this.storeId ?? 0).subscribe({
-  next: (res: any) => {
-    if (res?.status && Array.isArray(res.data)) {
-      this.weeklyData = res.data;
-      this.determineCheckedInFromWeeklyData();
-    } else {
-      this.weeklyData = [];
-      this.isCheckedIn = false;
-      this.todaysOpenRecord = null;
+next: (res: any) => {
+  if (res?.status && Array.isArray(res.data)) {
+    this.weeklyData = res.data;
+    this.determineCheckedInFromWeeklyData();
+
+    // If API did not yet show us as checked-in, but we just returned from selfie check-in,
+    // respect the short-lived local flag so UI shows Check-Out enabled immediately.
+    // This avoids a transient state where both buttons are enabled/disabled incorrectly.
+    try {
+      const recent = localStorage.getItem('attendance_recently_checked_in');
+      if (!this.isCheckedIn && recent === '1') {
+        this.isCheckedIn = true;
+      }
+      // consume the flag so it doesn't persist longer than necessary
+      if (recent === '1') {
+        localStorage.removeItem('attendance_recently_checked_in');
+      }
+    } catch (e) {
+      // ignore storage errors
+      console.warn('attendance flag handling error', e);
     }
-  },
+  } else {
+    this.weeklyData = [];
+    this.isCheckedIn = false;
+    this.todaysOpenRecord = null;
+  }
+},
   error: (err) => {
     console.error('Error loading weekly attendance', err);
     this.weeklyData = [];

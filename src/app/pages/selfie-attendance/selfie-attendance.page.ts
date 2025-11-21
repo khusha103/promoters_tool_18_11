@@ -73,6 +73,44 @@ export class SelfieAttendancePage implements OnInit {
     }
   }
 
+  compressBase64(base64: string, maxWidth = 600, maxHeight = 600, quality = 0.6): Promise<string> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = base64;
+
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+
+      let width = img.width;
+      let height = img.height;
+
+      // Maintain aspect ratio
+      if (width > height) {
+        if (width > maxWidth) {
+          height = height * (maxWidth / width);
+          width = maxWidth;
+        }
+      } else {
+        if (height > maxHeight) {
+          width = width * (maxHeight / height);
+          height = maxHeight;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+
+      const ctx = canvas.getContext('2d');
+      ctx!.drawImage(img, 0, 0, width, height);
+
+      // compress to JPEG
+      const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+      resolve(compressedBase64);
+    };
+  });
+}
+
+
   async ensureLocationPermission() {
     try {
       const perm = await Geolocation.checkPermissions();
@@ -87,36 +125,72 @@ export class SelfieAttendancePage implements OnInit {
     }
   }
 
+  // async onAvatarClick() {
+  //   if (this.isCapturing) return;
+  //   this.isCapturing = true;
+
+  //   const gpsOk = await this.getCurrentPosition();
+  //   if (!gpsOk) {
+  //     this.showAlert('GPS Required', 'Please enable GPS to continue.');
+  //     this.isCapturing = false;
+  //     return;
+  //   }
+
+  //   try {
+  //     const photo = await Camera.getPhoto({
+  //       quality: 85,
+  //       resultType: CameraResultType.Base64,
+  //       source: CameraSource.Camera,
+  //       allowEditing: false,
+  //     });
+
+  //     if (photo?.base64String) {
+  //       const ext = photo.format ?? 'jpeg';
+  //       this.selfieBase64 = `data:image/${ext};base64,${photo.base64String}`;
+  //       this.selfieFileName = `selfie_${Date.now()}.${ext}`;
+  //     }
+  //   } catch (e) {
+  //     console.warn('Selfie capture error:', e);
+  //   }
+
+  //   setTimeout(() => (this.isCapturing = false), 600);
+  // }
+
   async onAvatarClick() {
-    if (this.isCapturing) return;
-    this.isCapturing = true;
+  if (this.isCapturing) return;
+  this.isCapturing = true;
 
-    const gpsOk = await this.getCurrentPosition();
-    if (!gpsOk) {
-      this.showAlert('GPS Required', 'Please enable GPS to continue.');
-      this.isCapturing = false;
-      return;
-    }
-
-    try {
-      const photo = await Camera.getPhoto({
-        quality: 85,
-        resultType: CameraResultType.Base64,
-        source: CameraSource.Camera,
-        allowEditing: false,
-      });
-
-      if (photo?.base64String) {
-        const ext = photo.format ?? 'jpeg';
-        this.selfieBase64 = `data:image/${ext};base64,${photo.base64String}`;
-        this.selfieFileName = `selfie_${Date.now()}.${ext}`;
-      }
-    } catch (e) {
-      console.warn('Selfie capture error:', e);
-    }
-
-    setTimeout(() => (this.isCapturing = false), 600);
+  const gpsOk = await this.getCurrentPosition();
+  if (!gpsOk) {
+    this.showAlert('GPS Required', 'Please enable GPS to continue.');
+    this.isCapturing = false;
+    return;
   }
+
+  try {
+    const photo = await Camera.getPhoto({
+      quality: 85,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Camera,
+      allowEditing: false,
+    });
+
+    if (photo?.base64String) {
+      const ext = photo.format ?? 'jpeg';
+      const rawBase64 = `data:image/${ext};base64,${photo.base64String}`;
+
+      // ⬇️ LIGHTWEIGHT COMPRESSED IMAGE HERE
+      this.selfieBase64 = await this.compressBase64(rawBase64, 600, 600, 0.6);
+
+      this.selfieFileName = `selfie_${Date.now()}.${ext}`;
+    }
+  } catch (e) {
+    console.warn('Selfie capture error:', e);
+  }
+
+  setTimeout(() => (this.isCapturing = false), 600);
+}
+
 
   removeSelfie() {
     this.selfieBase64 = null;
@@ -180,7 +254,7 @@ async onDone() {
 
       if (res && res.status) {
         // store selfie for preview only — DO NOT set checkin flag in localStorage
-        localStorage.setItem('attendance_selfie', this.selfieBase64 ?? '');
+        // localStorage.setItem('attendance_selfie', this.selfieBase64 ?? '');
 
         this.showToast('Check-in successful!', 'success');
 
