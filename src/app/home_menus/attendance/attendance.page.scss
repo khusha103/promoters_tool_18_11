@@ -116,9 +116,10 @@
   font-weight: 600;
 }
 
+/* Weekly Attendance Table */
 .table-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr); /* FIXED: now 6 columns */
   background: #ffffffcc;
   padding: 8px;
   margin: 6px 0;

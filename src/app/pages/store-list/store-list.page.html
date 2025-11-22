@@ -29,14 +29,14 @@
 
     <!-- Country -->
     <ion-label position="stacked" class="labels">Country</ion-label>
-    <ion-item button (click)="openCountrySelectModal()" class="custom-dropdown">
+    <ion-item button (click)="openCountrySelect()" class="custom-dropdown">
       <ion-text class="dropdown-text">{{ selectedCountry?.name || 'Select Country' }}</ion-text>
       <ion-icon name="chevron-down" class="select-icon"></ion-icon>
     </ion-item>
 
     <!-- Retailer -->
     <ion-label position="stacked" class="labels">Retailer</ion-label>
-    <ion-item button (click)="openRetailerSelectModal()"
+    <ion-item button (click)="openRetailerSelect()"
       class="custom-dropdown"
       [disabled]="!selectedCountry">
       <ion-text class="dropdown-text">{{ selectedRetailer?.name || 'Select Retailer' }}</ion-text>
@@ -45,7 +45,7 @@
 
     <!-- Store -->
     <ion-label position="stacked" class="labels">Store</ion-label>
-    <ion-item button (click)="openStoreSelectModal()"
+    <ion-item button (click)="openStoreSelect()"
       class="custom-dropdown"
       [disabled]="!selectedRetailer">
       <ion-text class="dropdown-text">{{ selectedStore?.name || 'Select Store' }}</ion-text>

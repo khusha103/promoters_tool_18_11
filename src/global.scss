@@ -71,6 +71,28 @@
 }
 }
 
+ion-alert .alert-button:hover {
+  color: #e4730a !important;
+  background: rgba(255, 122, 0, 0.12) !important;
+  border-radius: 6px !important;
+}
+ 
+ 
+ion-alert .alert-button[role="confirm"],
+ion-alert .alert-button:not([role="cancel"]) {
+  color: #ff7a00 !important;
+  font-weight: 600 !important;
+}
+ 
+ion-alert .alert-button[role="cancel"] {
+  color: #000 !important;
+}
+ 
+ion-alert .alert-button[role="cancel"]:hover {
+  color: #dd710b !important;
+  background: rgba(255, 122, 0, 0.08) !important;
+}
+
 .small-modal {
   --width: 300px; /* Adjust modal width */
   --height: 400px; /* Adjust modal height */

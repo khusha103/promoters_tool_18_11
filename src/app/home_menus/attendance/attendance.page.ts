@@ -19,7 +19,6 @@ import { ActivatedRoute } from '@angular/router';
 export class AttendancePage implements OnInit {
   geolocationPosition: any | undefined;
   isCheckedIn: boolean = false;                 // derived from API
-  selfiePreview: string | null = null;          // persisted for preview only
   weeklyData: any[] | null = null;
   isProcessing: boolean = false;
   processingAction: 'checkin' | 'checkout' | null = null;
@@ -32,6 +31,10 @@ export class AttendancePage implements OnInit {
   countryId: number | null = null;
   roleId: string = '';
   storeDisplayName: string = 'Select Store';
+
+  // NEW: map of store_id -> store_name and stores cache
+  storeNameMap: Record<number, string> = {};
+  stores: any[] = [];
 
   private todaysOpenRecord: any | null = null;
 
@@ -54,14 +57,16 @@ export class AttendancePage implements OnInit {
       this.roleId = params['roleId'] || '';
 
       this.updateStoreDisplayName();
+
+      // If we have retailer+country in route, prefetch stores to build name map
+      if (this.retailerId !== null && this.countryId !== null) {
+        this.fetchStoresForMap(this.retailerId, this.countryId);
+      }
     });
 
     this.platform.ready().then(async () => {
       await this.checkAndRequestPermissions();
       await this.getCurrentPosition();
-      // only selfie preview kept in localStorage
-      this.selfiePreview = localStorage.getItem('attendance_selfie') || null;
-      // load weekly attendance from the API and compute checked-in state
       this.loadWeeklyAttendance();
     });
   }
@@ -70,7 +75,12 @@ export class AttendancePage implements OnInit {
     await this.platform.ready();
     await this.checkAndRequestPermissions();
     await this.getCurrentPosition();
-    this.selfiePreview = localStorage.getItem('attendance_selfie') || null;
+
+    // refresh stores map if route params present
+    if (this.retailerId !== null && this.countryId !== null) {
+      await this.fetchStoresForMap(this.retailerId, this.countryId);
+    }
+
     await this.loadWeeklyAttendance();
   }
 
@@ -214,9 +224,6 @@ export class AttendancePage implements OnInit {
         if (res?.status) {
           await this.showToast('Check-out successful!', 'success');
 
-          // clear selfie preview if you prefer (kept here)
-          localStorage.removeItem('attendance_selfie');
-
           // refresh weekly data and derive checked state from server
           await this.loadWeeklyAttendance();
 
@@ -246,95 +253,147 @@ export class AttendancePage implements OnInit {
       return;
     }
 
-this.apiService.getWeeklyAttendance(userId, this.storeId ?? 0).subscribe({
-next: (res: any) => {
-  if (res?.status && Array.isArray(res.data)) {
-    this.weeklyData = res.data;
-    this.determineCheckedInFromWeeklyData();
+    this.apiService.getWeeklyAttendance(userId, this.storeId ?? 0).subscribe({
+      next: (res: any) => {
+        if (res?.status && Array.isArray(res.data)) {
+          this.weeklyData = res.data;
 
-    // If API did not yet show us as checked-in, but we just returned from selfie check-in,
-    // respect the short-lived local flag so UI shows Check-Out enabled immediately.
-    // This avoids a transient state where both buttons are enabled/disabled incorrectly.
-    try {
-      const recent = localStorage.getItem('attendance_recently_checked_in');
-      if (!this.isCheckedIn && recent === '1') {
-        this.isCheckedIn = true;
-      }
-      // consume the flag so it doesn't persist longer than necessary
-      if (recent === '1') {
-        localStorage.removeItem('attendance_recently_checked_in');
-      }
-    } catch (e) {
-      // ignore storage errors
-      console.warn('attendance flag handling error', e);
+          // Attach store_name into each row (if map exists)
+          this.attachStoreNamesToWeeklyData();
+
+          this.determineCheckedInFromWeeklyData();
+
+          try {
+            const recent = localStorage.getItem('attendance_recently_checked_in');
+            if (!this.isCheckedIn && recent === '1') {
+              this.isCheckedIn = true;
+            }
+            // consume the flag so it doesn't persist longer than necessary
+            if (recent === '1') {
+              localStorage.removeItem('attendance_recently_checked_in');
+            }
+          } catch (e) {
+            // ignore storage errors
+            console.warn('attendance flag handling error', e);
+          }
+        } else {
+          this.weeklyData = [];
+          this.isCheckedIn = false;
+          this.todaysOpenRecord = null;
+        }
+      },
+      error: (err) => {
+        console.error('Error loading weekly attendance', err);
+        this.weeklyData = [];
+        this.isCheckedIn = false;
+        this.todaysOpenRecord = null;
+      },
+    });
+  }
+
+  /**
+   * Fetch stores/outlets for current retailer+country and build a map
+   * storeNameMap: { [storeId]: storeName }
+   */
+  async fetchStoresForMap(retailerId: number, countryId: number): Promise<void> {
+    if (!retailerId || !countryId) {
+      this.storeNameMap = {};
+      this.stores = [];
+      return;
     }
-  } else {
-    this.weeklyData = [];
-    this.isCheckedIn = false;
-    this.todaysOpenRecord = null;
-  }
-},
-  error: (err) => {
-    console.error('Error loading weekly attendance', err);
-    this.weeklyData = [];
-    this.isCheckedIn = false;
-    this.todaysOpenRecord = null;
-  },
-});
 
-  }
+    this.apiService.getOutletsByRetailerAndCountry(retailerId, countryId).subscribe({
+      next: (res: any) => {
+        this.stores = res?.data ?? [];
+        // build map
+        this.storeNameMap = {};
+        this.stores.forEach((s: any) => {
+          const id = s.id ?? s.store_id ?? null;
+          const name = s.name ?? s.store_name ?? s.label ?? '';
+          if (id !== null && id !== undefined) {
+            this.storeNameMap[Number(id)] = String(name ?? '').trim();
+          }
+        });
 
-// Determine check-in status from API by looking at the latest check-in row for today.
-// We pick the latest record (by checkin_time) — if that record has no checkout_time then user is checked in.
-private determineCheckedInFromWeeklyData() {
-  this.todaysOpenRecord = null;
-  this.isCheckedIn = false;
-
-  if (!Array.isArray(this.weeklyData) || this.weeklyData.length === 0) return;
-
-  const today = new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD
-
-  // filter entries for today
-  let todaysEntries = this.weeklyData.filter((r: any) => r?.date === today);
-
-  // prefer store-specific records if store selected
-  if (this.storeId !== null && todaysEntries.length) {
-    const matched = todaysEntries.filter((r: any) => Number(r.store_id) === Number(this.storeId));
-    if (matched.length) todaysEntries = matched;
+        // If weeklyData already loaded, attach names now
+        if (Array.isArray(this.weeklyData) && this.weeklyData.length) {
+          this.attachStoreNamesToWeeklyData();
+        }
+      },
+      error: (err) => {
+        console.error('getOutletsByRetailerAndCountry error', err);
+        this.storeNameMap = {};
+        this.stores = [];
+      }
+    });
   }
 
-  if (!todaysEntries.length) {
-    // nothing for today
-    this.todaysOpenRecord = null;
-    this.isCheckedIn = false;
-    return;
+  /**
+   * Attach store_name property to each row in weeklyData using storeNameMap.
+   * If name not found, fallback to existing row.store_name or store_id.
+   */
+  attachStoreNamesToWeeklyData(): void {
+    if (!Array.isArray(this.weeklyData)) return;
+
+    this.weeklyData = this.weeklyData.map((row: any) => {
+      const sid = row?.store_id ?? row?.store ?? null;
+      const nameFromMap = (sid !== null && sid !== undefined) ? this.storeNameMap[Number(sid)] : undefined;
+      return {
+        ...row,
+        store_name: nameFromMap ?? row?.store_name ?? (sid !== null && sid !== undefined ? String(sid) : '-')
+      };
+    });
   }
 
-  // Normalize checkin_time safely (if missing treat as '00:00:00')
-  const entriesWithTime = todaysEntries.map((r: any) => ({
-    ...r,
-    _checkin_time_norm: (r.checkin_time && String(r.checkin_time).trim()) ? String(r.checkin_time).trim() : '00:00:00'
-  }));
-
-  // Sort by normalized checkin_time ascending then take last (latest)
-  entriesWithTime.sort((a: any, b: any) => {
-    // compare 'HH:MM:SS' strings lexicographically — works for fixed-width times
-    if (a._checkin_time_norm < b._checkin_time_norm) return -1;
-    if (a._checkin_time_norm > b._checkin_time_norm) return 1;
-    return 0;
-  });
-
-  const latest = entriesWithTime[entriesWithTime.length - 1];
-
-  // determine checked-in: latest exists and has no checkout_time (null or empty string)
-  if (latest && (latest.checkout_time === null || latest.checkout_time === '')) {
-    this.todaysOpenRecord = latest;
-    this.isCheckedIn = true;
-  } else {
+  private determineCheckedInFromWeeklyData() {
     this.todaysOpenRecord = null;
     this.isCheckedIn = false;
+
+    if (!Array.isArray(this.weeklyData) || this.weeklyData.length === 0) return;
+
+    const today = new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD
+
+    // filter entries for today
+    let todaysEntries = this.weeklyData.filter((r: any) => r?.date === today);
+
+    // prefer store-specific records if store selected
+    if (this.storeId !== null && todaysEntries.length) {
+      const matched = todaysEntries.filter((r: any) => Number(r.store_id) === Number(this.storeId));
+      if (matched.length) todaysEntries = matched;
+    }
+
+    if (!todaysEntries.length) {
+      // nothing for today
+      this.todaysOpenRecord = null;
+      this.isCheckedIn = false;
+      return;
+    }
+
+    // Normalize checkin_time safely (if missing treat as '00:00:00')
+    const entriesWithTime = todaysEntries.map((r: any) => ({
+      ...r,
+      _checkin_time_norm: (r.checkin_time && String(r.checkin_time).trim()) ? String(r.checkin_time).trim() : '00:00:00'
+    }));
+
+    // Sort by normalized checkin_time ascending then take last (latest)
+    entriesWithTime.sort((a: any, b: any) => {
+      // compare 'HH:MM:SS' strings lexicographically — works for fixed-width times
+      if (a._checkin_time_norm < b._checkin_time_norm) return -1;
+      if (a._checkin_time_norm > b._checkin_time_norm) return 1;
+      return 0;
+    });
+
+    const latest = entriesWithTime[entriesWithTime.length - 1];
+
+    // determine checked-in: latest exists and has no checkout_time (null or empty string)
+    if (latest && (latest.checkout_time === null || latest.checkout_time === '')) {
+      this.todaysOpenRecord = latest;
+      this.isCheckedIn = true;
+    } else {
+      this.todaysOpenRecord = null;
+      this.isCheckedIn = false;
+    }
   }
-}
 
   // --- permission + helpers (unchanged) ---
   async checkAndRequestPermissions(): Promise<void> {

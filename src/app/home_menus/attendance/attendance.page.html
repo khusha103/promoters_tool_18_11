@@ -67,7 +67,8 @@
       <div class="cell">Day</div>
       <div class="cell">Check In</div>
       <div class="cell">Check Out</div>
-      <div class="cell">Duration</div>
+      <div class="cell">Duration of stay</div>
+      <div class="cell">Store name</div>
     </div>
 
     <div class="table-row" *ngFor="let row of weeklyData ?? []">
@@ -76,8 +77,9 @@
       <div class="cell">{{ row.checkin_time || '-' }}</div>
       <div class="cell">{{ row.checkout_time || '-' }}</div>
       <div class="cell duration-cell" [ngClass]="{ 'red-text': row?.working_hours?.minutes < 480 }">
-        {{ row?.working_hours?.hrs || '-' }}
+        {{ row?.working_hours?.hrs || '0 hrs' }}
       </div>
+       <div class="cell">{{ row.store_name }}</div>
     </div>
   </div>
 </ion-content>
