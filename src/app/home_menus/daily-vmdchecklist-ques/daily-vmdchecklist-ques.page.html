@@ -29,23 +29,22 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content class="main-content padding-20 dark light">
   <div class="heading-div">
-    <!-- Sticky banner for unanswered items (promoter style) -->
     <h6 class="home-headings">Questions</h6>
   </div>
+
+  <!-- Sticky banner for unanswered items -->
   <div *ngIf="hasTriedSubmit && unansweredCount > 0" class="unanswered-banner">
     {{ unansweredCount }} question(s) need an answer. Please complete them.
   </div>
-
 
   <div class="question-container">
     <div
       #questionCard
       *ngFor="let question of questions; let i = index; trackBy: trackByQuestion"
       class="question-card"
-      [ngClass]="{'unanswered': hasTriedSubmit && (question.selectedOption === null || question.selectedOption === undefined)}"
+      [ngClass]="{'unanswered': hasTriedSubmit && isUnanswered(question)}"
     >
       <h6 class="questionhead">Question {{ i + 1 }}:</h6>
       <p class="questionpara">{{ question.body }}</p>
@@ -59,7 +58,7 @@
       />
 
       <div class="options">
-        <!-- YES/NO/NA -->
+        <!-- YES/NO/NA (default - not scale or rating) -->
         <ng-container
           *ngIf="question.option_type !== '4' && question.option_type !== '5'"
         >
@@ -94,57 +93,40 @@
           </ion-radio-group>
         </ng-container>
 
+        <!-- SCALE (option_type === '5' OR type_id === '2') -->
+        <!-- FIXED: Now uses correct IDs 1,2,3,8,9 from scaleOptions array -->
         <ng-container
           *ngIf="question.option_type === '5' || question.type_id === '2' || question.type_id === 2"
         >
           <ion-radio-group
             [(ngModel)]="question.selectedOption"
             (ngModelChange)="onOptionChange(question, $event)"
-            class="scale-radio-group"
+            class="scale-radio-group two-col-group"
           >
-            <ion-item class="transparent-item">
-              <ion-label class="low-percentage">&lt;60%</ion-label>
-            </ion-item>
+            <!-- Header row -->
+            <div class="option-row two-col">
+              <div class="col-label low-percentage">&lt;60%</div>
+              <div class="col-radio"></div>
+            </div>
 
-            <ion-item class="transparent-item">
-              <ion-label>1</ion-label>
+            <!-- Scale options using correct IDs from scaleOptions array -->
+            <div class="option-row two-col" *ngFor="let s of question.scaleOptions">
+              <div class="col-label">{{ s.label }}</div>
+              <div class="col-radio">
+                <ion-radio [value]="s.id"></ion-radio>
+              </div>
+            </div>
 
-              <ion-radio slot="end" [value]="1"></ion-radio>
-            </ion-item>
-
-            <ion-item class="transparent-item">
-              <ion-label>2</ion-label>
-
-              <ion-radio slot="end" [value]="2"></ion-radio>
-            </ion-item>
-
-            <ion-item class="transparent-item">
-              <ion-label>3</ion-label>
-
-              <ion-radio slot="end" [value]="3"></ion-radio>
-            </ion-item>
-
-            <ion-item class="transparent-item">
-              <ion-label>4</ion-label>
-
-              <ion-radio slot="end" [value]="7"></ion-radio>
-              <!-- fixed value -->
-            </ion-item>
-
-            <ion-item class="transparent-item">
-              <ion-label>5</ion-label>
-
-              <ion-radio slot="end" [value]="8"></ion-radio>
-              <!-- fixed value -->
-            </ion-item>
-
-            <ion-item class="transparent-item">
-              <ion-label class="high-percentage">&gt;90%</ion-label>
-            </ion-item>
+            <!-- Footer row -->
+            <div class="option-row two-col">
+              <div class="col-label high-percentage">&gt;90%</div>
+              <div class="col-radio"></div>
+            </div>
           </ion-radio-group>
         </ng-container>
 
-        <!-- RATING (option_type === '4') -->
+        <!-- RATING (option_type === '4' OR type_id === '4') -->
+        <!-- FIXED: Now uses correct IDs 10-14 from ratingOptions array -->
         <ng-container
           *ngIf="question.option_type === '4' || question.type_id === '4'"
         >
@@ -153,21 +135,19 @@
             (ngModelChange)="onOptionChange(question, $event)"
             class="two-col-group"
           >
-            <div class="rating-option-column">
-              <div
-                *ngFor="let r of question.ratingOptions"
-                class="rating-option-row two-col"
-                [attr.aria-checked]="question.selectedOption === r.id ? 'true' : 'false'"
-              >
-                <div class="rating-text-cell">
-                  <div class="rating-title">{{ r.label }}</div>
-                  <div class="rating-description" *ngIf="r.description">
-                    {{ r.description }}
-                  </div>
+            <div
+              *ngFor="let r of question.ratingOptions"
+              class="option-row two-col rating-option-row"
+              [attr.aria-checked]="question.selectedOption === r.id ? 'true' : 'false'"
+            >
+              <div class="col-label rating-text-cell">
+                <div class="rating-title">{{ r.label }}</div>
+                <div class="rating-description" *ngIf="r.description">
+                  {{ r.description }}
                 </div>
-                <div class="rating-radio-cell col-radio">
-                  <ion-radio [value]="r.id"></ion-radio>
-                </div>
+              </div>
+              <div class="col-radio rating-radio-cell">
+                <ion-radio [value]="r.id"></ion-radio>
               </div>
             </div>
           </ion-radio-group>
@@ -216,8 +196,7 @@
       </div>
     </div>
 
- 
-
+    <!-- Feedback sections -->
     <div
       class="feedback-card"
       *ngFor="let feedbackItem of feedbackImages; let idx = index"
@@ -241,12 +220,7 @@
         ></ion-icon>
       </div>
 
-      <!-- OLD -->
-      <!-- <div class="feedback-preview" *ngIf="feedbackItem.base64">
-  <img [src]="feedbackItem.base64" alt="Feedback Image" />
-</div> -->
-
-      <!-- NEW -->
+      <!-- Multiple feedback images preview -->
       <div class="feedback-preview-multi" *ngIf="feedbackItem.images.length">
         <div
           class="image-thumbnail"
@@ -261,7 +235,6 @@
         </div>
       </div>
     </div>
-
 
     <div class="add-feedback-btn">
       <ion-button
@@ -285,10 +258,6 @@
       </ion-button>
     </div>
   </div>
-
-  <!-- <ion-button class="back-button-bottom-right" color="dark" (click)="showExitConfirmationQues()">
-    <ion-icon name="chevron-back-outline"></ion-icon>
-  </ion-button> -->
 </ion-content>
 
 <app-footer></app-footer>
