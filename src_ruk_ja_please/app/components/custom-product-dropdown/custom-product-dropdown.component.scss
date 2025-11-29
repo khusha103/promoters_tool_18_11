@@ -1,0 +1,35 @@
+.custom-dropdown {
+    border-radius: 5px; /* Adjust as needed */
+    background-color: #f9f9f9; /* Light background color */
+    // border: 1px solid #ccc; /* Border color */
+    // padding: 10px; /* Padding for better spacing */
+    // width: 185px;
+    width: 167px;
+    height: 41px;
+  }
+  
+  // .dropdown-text {
+  //   color: gray; 
+  //   font-size: 13px; 
+  //   padding: 5px;
+  // }
+  
+  
+  // .select-icon {
+  //   margin-left: auto; 
+  // }
+
+  .dropdown-text {
+    color: gray; 
+    font-size: 13px; 
+    flex-grow: 1; /* Ensures text fills remaining space */
+    text-align: left; /* Align text properly */
+    padding: 0 5px;
+}
+
+.select-icon {
+  margin-left: auto !important; /* Pushes icon to the right */
+  margin-right: 8px !important; /* Ensures no extra right margin */
+  order: 1; /* Ensures it stays at the end */
+}
+

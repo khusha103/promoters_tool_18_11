@@ -1,0 +1,165 @@
+/* store-list.page.scss - cleaned & minimal */
+
+/* Header */
+.maincontainer {
+  --background: url(../../../assets/icon/home.jpg) no-repeat 0 -7px;
+  --background-size: 100% 100%;
+  --opacity: 1;
+  padding-top: 44px;
+  --border-color: white;
+  text-align: center;
+}
+
+.toolbar-row { align-items: center; height: 100%; }
+.toolbar-col { display: flex; align-items: center; }
+.second_col_img { display: flex; justify-content: center; text-align: center; }
+.SONY_mail_logo { width: 90px; }
+
+/* Back button */
+.back-button {
+  font-size: 16px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  padding: 3px;
+  margin-top: 8px;
+  --line-height: 10px;
+}
+.back_link { color: black; cursor: pointer; }
+
+/* Page background */
+ion-content {
+  --background: url(../../../assets/icon/home.jpg) no-repeat 0 -114px;
+  --background-size: 100% 100%;
+}
+
+/* Header border */
+.custom-border-header {
+  box-shadow: none !important;
+  border-bottom: 1px solid white;
+}
+
+/* Heading */
+.heading-div {
+  padding: 0 20px;
+  margin-top: 20px;
+  h6.home-headings {
+    color: #4B5098;
+    font-family: SST;
+    font-size: 20px;
+    font-weight: 700;
+  }
+}
+
+/* Form fields */
+.fieldsclassdiv { margin-top: 14px; padding: 0 16px; }
+.labels {
+  font-family: SST;
+  font-size: 14px;
+  margin-left: 8px;
+  margin-bottom: 4px;
+}
+
+/* Ion items / inputs */
+ion-item {
+  --highlight-color-focused: #4B54CF;
+  --border-color: transparent;
+  --padding-start: 0;
+  margin-bottom: 8px;
+}
+ion-label { font-weight: 500; }
+ion-input { --padding-start: 8px; --padding-end: 8px; }
+
+.custom-input-item {
+  --background: transparent;
+  margin-right: -16px;
+  margin-top: 2px;
+  margin-bottom: 10px;
+}
+.custom-input-item ion-input {
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+/* Select styling (custom dropdown look) */
+ion-select.custom-select,
+ion-select.custom-select.fieldss {
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  --padding-start: 10px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  background: #fff;
+  --padding-end: 15px;
+  width: 100%;
+}
+ion-select::part(icon) { display: none !important; }
+
+/* Dropdown item */
+.custom-dropdown {
+  --background: #fff;
+  --border-color: #ccc;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+}
+.dropdown-text { flex: 1; font-size: 14px; padding-left: 10px; color: #000; }
+.select-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #777;
+  font-size: 1.2rem;
+  z-index: 2;
+  background: #fff;
+}
+
+/* Buttons */
+.products_buttons {
+  width: 100%;
+  font-size: 12px;
+  --border-radius: 4px;
+  margin: 10px 0 0;
+  --background: radial-gradient(circle, rgba(92,135,255,1) 0%, rgba(24,64,136,1) 100%);
+  font-family: SST;
+  text-transform: capitalize;
+}
+
+/* Misc */
+.checkbutton { margin-bottom: 20px; }
+
+/* Alert buttons: make Cancel + Select turn orange on hover */
+
+/* Ensure rules apply to the ion-alert rendered in body */
+ion-alert .alert-button {
+  transition: color 150ms ease, background 150ms ease !important;
+  color: var(--ion-color-primary) !important; /* keep default color when not hovered */
+}
+
+/* Hover state for any alert button */
+ion-alert .alert-button:hover {
+  color: #ff7a00 !important;
+  background: rgba(255,122,0,0.08) !important;
+  border-radius: 6px;
+}
+
+/* Make the Select (confirm) button prominent by default */
+ion-alert .alert-button[role="confirm"],
+ion-alert .alert-button[aria-label="Select"] {
+  color: #ff7a00 !important;
+  font-weight: 600;
+}
+
+/* Ensure Cancel also has orange hover (explicit) */
+ion-alert .alert-button[role="cancel"] {
+  color: var(--ion-color-primary) !important;
+}
+ion-alert .alert-button[role="cancel"]:hover {
+  color: #ff7a00 !important;
+  background: rgba(255,122,0,0.06) !important;
+}
+

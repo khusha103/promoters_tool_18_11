@@ -1,0 +1,37 @@
+<ion-content fullscreen>
+  <div class="container-fluid xyz">
+    <div class="full_screen container-fluid">
+      <div class="login_main_div container">
+        <div class="first_div">
+          <ion-icon name="chevron-back-outline" class="arrow-icon" [routerLink]="['/app-selector']"></ion-icon>
+          <img src="\assets\icon\login-logo.svg" alt="">
+          <p>Welcome To <br>Happy Project</p>
+          <div class="form-group my-3">
+            <input type="text" class="form-control" placeholder="Username or Email" value="" [(ngModel)]="username" required>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" value="" [(ngModel)]="password" required>
+          </div>
+          <ion-toggle class="toggle-login" aria-label="Warning toggle" color="warning">Keep me logged in</ion-toggle><br /><br />
+        </div>
+        <div class="buttonss my-2">
+          <!-- <button class="btn btn-1" (click)="onLogin()">LOG IN</button> -->
+          <!-- <button class="btn forget">Forget Password?</button> -->
+          <button class="btn forget" [routerLink]="['/forgot-password']">Forgot Password?</button>
+
+        </div>
+        <div class="terms-notice">
+        </div>
+      </div>
+    </div>
+    <ion-footer>
+      <ion-toolbar>
+        <p class="terms">
+          <a (click)="openTerms()" class="no-underline">Terms & Conditions</a> | 
+          <a (click)="openPrivacyPolicy()" class="no-underline">Privacy Policy</a>
+        </p>
+        <p class="copyright">© 2024 Sony Middle East and Africa FZE</p>
+      </ion-toolbar>
+    </ion-footer>
+  </div>
+</ion-content>

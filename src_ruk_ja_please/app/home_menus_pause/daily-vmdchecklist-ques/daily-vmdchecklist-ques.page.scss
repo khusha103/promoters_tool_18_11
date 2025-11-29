@@ -1,0 +1,428 @@
+// Header, ion-content, footer CSS
+.maincontainer {
+    --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+        --background-size: 100% 100%;
+      --opacity: 1 !important;
+      padding-top: 20px;
+      --border-color: white !important;
+      text-align: center !important;
+    }
+    
+    .toolbar-row {
+      align-items: center;
+      height: 100%;
+    }
+    
+    .toolbar-col {
+      display: flex;
+      align-items: center;
+    }
+    
+    .second_col_img {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+  }
+  .SONY_mail_logo {
+    width: 90px;
+    /* text-align: center; */
+  }
+  ion-grid.ios.hydrated {
+    height: 50px;
+  }
+  
+    .back-button {
+      font-size: 16px;
+      border: 1px solid #000000;
+      border-radius: 50%;
+      --font-weight: 200 !important;
+      padding: 3px;
+    //   margin-left: 12px;
+      --line-height: 10px !important;
+      margin-top: 8px;
+    }
+    
+    .back_link {
+      color: black;
+      cursor: pointer;
+    }
+    
+    ion-title.center-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    
+      img {
+        max-height: 40px;
+      }
+    }
+    
+    ion-content {
+      --background: url(../../../assets/icon/home.jpg) no-repeat 0px -84px;
+      --background-size: 100% 100%;
+    }
+  
+  
+  
+    .custom-border-header {
+        box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+        border-bottom: 1px solid white;
+    }
+  
+  
+    // ////Header, ion-content, footer CSS
+  
+  
+    .heading-div {
+        padding: 0px 20px;
+        margin-top: 20px;
+        
+        h6.home-headings {
+        color: #4B5098;
+        font-family: SST;
+        font-size: 20px;
+        font-weight: bolder;
+        }
+        
+        // p {
+        // font-size: 10px;
+        // font-family: SST;
+        // margin-top: 12px;
+        // color: black!important;
+        // }
+        }
+  
+  
+  //fieldsCSS
+        ion-select.custom-select {
+            border: 1px solid #d1d1d1;
+            border-radius: 4px;
+            --padding-start: 10px;
+            --padding-top: 10px;
+            --padding-bottom: 10px;
+          }
+  
+          /* Input and Select Fields */
+  ion-item {
+    --highlight-color-focused: #4B54CF; /* Color of underline when focused */
+    // --min-height: 50px;
+    --border-color: transparent;
+    --padding-start: 0px;
+    margin-bottom: 8px;
+  }
+  
+  ion-label {
+    font-weight: 500; /* Bold labels */
+  }
+  
+  ion-input {
+    --padding-start: 8px; /* Padding inside input field */
+    --padding-end: 8px;
+  }
+  
+  .custom-input-item ion-input {
+    border: 1px solid #d1d1d1; /* Light grey border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 8px; /* Padding inside input field */
+   
+  }
+  .custom-input-item {
+    --background: #ffffff00 !important;
+    margin-right: -16px;
+    margin-left: 0px;
+    margin-top: 2px;
+    margin-bottom: 10px !important;
+  }
+  
+  ion-select.custom-select {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    background: white;
+  }
+  
+  ion-select::part(icon) {
+    display: none !important;
+  }
+  
+  ion-select {
+    --padding-end: 15px;
+  }
+  
+  .custom-select.fieldss {
+    --padding-end: 35px; // Increase to make room for our custom icon
+    width: 100%;
+  }
+  
+  // Optional: Style the select to match your design
+  ion-select.custom-select {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+  }
+  .fieldss {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    color: #636363;
+    padding: 0px 0px 0px 10px;
+    height: 10px;
+    font-family: SST;
+    font-size: 14px;
+    /* font-style: italic; */
+    font-weight: 400;
+  }
+  .custom-select.fieldss {
+    --padding-end: 35px; // Increase to make room for our custom icon
+    width: 100%;
+  }
+  
+  .select-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    color: var(--ion-color-step-650, var(--ion-text-color-step-350, #595959));
+    margin-left: 10rem;
+  }
+  .select-icon {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #777777;
+    font-size: 1.2rem;
+    z-index: 2;
+  }
+  .fieldsclassdiv {
+    margin-top: 14px;
+    padding: 0px 16px;
+  }
+  
+  
+  .products_buttons {
+  
+    width: 100%;
+    font-size: 12px;
+    --border-radius: 4px;
+    margin: 10px 0px 0px 0px;
+    --background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+    font-family: SST;
+    text-transform: capitalize;
+  }
+  .labels {
+    font-family: SST !important;
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+    margin-left: 8px !important;
+  }
+  //fieldsCSS
+  
+  // .checkbutton {
+  //   margin-bottom: 20px;
+  // }
+
+  // .transparent-item {
+  //   background-color: transparent !important; // Make the background transparent
+  //   --background: transparent; // For Ionic specific styling
+  //   --background-hover: rgba(255, 255, 255, 0.1); // Optional: Add a slight hover effect
+  // }
+
+  // .white-background {
+  //   background-color: white; // Set background color to white
+  //   --background: white; // For Ionic specific styling
+  //   --box-shadow: none; // Remove any shadow if necessary
+  //   border-radius: 4px; // Optional: Add rounded corners
+  // }
+
+
+
+  // .question-container {
+  //   padding: 20px;
+  // }
+  
+  // .question-card {
+  //   margin-bottom: 20px;
+  //   padding: 15px;
+  //   border: 1px solid #e0e0e0;
+  //   border-radius: 8px;
+  //   background-color: #f9f9f9;
+  // }
+  
+  // .options {
+  //   display: flex;
+  //   justify-content: space-between; /* Align options in one line */
+  // }
+  
+  // .transparent-item {
+  //   margin-right: 15px; /* Space between radio options */
+  // }
+  
+  // .submit-button {
+  //   margin-top: 20px;
+  // }
+
+  .options {
+    display: flex;
+    justify-content: space-between; /* Align options in one line */
+  }
+  
+  .transparent-item {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    margin-right: 15px; /* Space between radio options */
+  }
+  
+  .transparent-item ion-label {
+    margin-left: 10px; /* Adjust this value to increase/decrease space between label and radio */
+  }
+  
+  .question-card {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .submit-button {
+    margin-top: 20px;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  ion-img {
+    transition: transform 0.3s ease;
+  }
+
+
+//ques container new css
+
+  .remarks-upload-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .upload-button {
+    font-size: 20px;
+    color: var(--ion-color-primary);
+  }
+  
+  .image-preview-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-top: 10px;
+  }
+  
+  .image-thumbnail {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .image-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .delete-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 18px;
+    color: red;
+    cursor: pointer;
+  }
+  
+
+  .custom-textarea {
+    background-color: #f5f7fa; /* Light background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 12px; /* Inner spacing */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+  }
+  
+  .custom-textarea:focus {
+    background-color: #ffffff; /* White background on focus */
+    border: 2px solid #007bff; /* Blue border on focus */
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.3); /* Glow effect */
+  }
+
+  //----------------8april----------------
+  .feedback-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 16px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .textarea-container {
+    position: relative;
+  }
+  
+  .feedback-textarea {
+    --padding-end: 40px;
+    width: 100%;
+    border-radius: 8px;
+    --background: #ffffff;
+    --color: #333;
+  }
+  
+  .camera-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 20px;
+    color: #666;
+    z-index: 2;
+    cursor: pointer;
+  }
+  
+  .feedback-preview {
+    margin-top: 10px;
+    text-align: center;
+  
+    img {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .add-feedback-btn {
+    margin: 20px 0 10px;
+  }
+
+  .remove-icon {
+    position: absolute;
+    top: -11px;
+    right: -13px;
+    font-size: 20px;
+    color: #fffcfc;
+    background-color: #ff0000; /* White background for the icon */
+    z-index: 2;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  
+  
+  

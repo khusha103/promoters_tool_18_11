@@ -1,0 +1,90 @@
+<ion-content>
+  <div class="main-div">
+    <div class="upper-bg"></div>
+    <div class="second-bg">
+      <div class="from-padding">
+        <ion-content class="ion-padding form-content">
+          <div class="header-container">
+            <ion-icon name="chevron-back-outline" class="arrow-icon" [routerLink]="['/pta-login']"></ion-icon>
+            <h1 class="header-title">Register New Account</h1>
+          </div>
+          <div class="header-underline"></div>
+          <ion-list>
+            <ion-item class="custom-input-item">
+              <ion-label position="stacked" class="labels">First Name</ion-label>
+              <ion-input placeholder="First Name" type="text" class="fieldss" [(ngModel)]="firstName"></ion-input>
+            </ion-item>
+            <ion-item class="custom-input-item">
+              <ion-label position="stacked" class="labels">Last Name</ion-label>
+              <ion-input placeholder="Last Name" type="text" class="fieldss" [(ngModel)]="lastName"></ion-input>
+            </ion-item>
+            <ion-item class="custom-input-item">
+              <ion-label position="stacked" class="labels">Email</ion-label>
+              <ion-input placeholder="Email" type="email" class="fieldss" [(ngModel)]="email"></ion-input>
+            </ion-item>
+            <ion-item class="custom-input-item">
+              <ion-label position="stacked" class="labels">Password</ion-label>
+              <ion-input placeholder="Password" type="password" class="fieldss" [(ngModel)]="password"></ion-input>
+            </ion-item>
+            <ion-item class="custom-input-item">
+              <ion-label position="stacked" class="labels">Confirm Password</ion-label>
+              <ion-input placeholder="Confirm Password" type="password" class="fieldss" [(ngModel)]="confirmPassword"></ion-input>
+            </ion-item>
+            <ion-item class="custom-input-item">
+              <ion-label position="stacked" class="labels">Country</ion-label>
+              <ion-select placeholder="Select Country" class="custom-select fieldss" [(ngModel)]="selectedCountry"  (ionChange)="onCountryChange()"
+              name="country" [interfaceOptions]="countryOptions">
+                <ion-select-option *ngFor="let country of countries" [value]="country">{{ country.name }}</ion-select-option>
+              </ion-select>
+              <ion-icon name="chevron-down" class="select-icon down-arrow"></ion-icon>
+            </ion-item>
+
+            <ion-item class="custom-input-item">
+              <ion-label position="stacked" class="labels">Retailer</ion-label>
+              <ion-select placeholder="Select Retailer" class="custom-select fieldss" [(ngModel)]="selectedRetailer" (ionChange)="onRetailerChange()"
+              name="retailer" [disabled]="!selectedCountry" [interfaceOptions]="retailerOptions">
+                <ion-select-option *ngFor="let retailer of retailers" [value]="retailer">{{ retailer.name }}</ion-select-option>
+              </ion-select>
+              <ion-icon name="chevron-down" class="select-icon down-arrow"></ion-icon>
+            </ion-item>
+
+            <ion-item class="custom-input-item">
+              <ion-label position="stacked" class="labels">Store</ion-label>
+              <ion-select placeholder="Select Store" class="custom-select fieldss" [(ngModel)]="selectedOutlet"  name="outlet" [disabled]="!selectedRetailer" [interfaceOptions]="storeOptions">
+                <ion-select-option *ngFor="let outlet of outlets" [value]="outlet">
+                  {{ outlet.name }}
+                </ion-select-option>
+              </ion-select>
+              <ion-icon name="chevron-down" class="select-icon down-arrow"></ion-icon>
+            </ion-item>
+            <ion-item lines="none" class="termscondition">
+              <ion-checkbox slot="start" [(ngModel)]="termsAccepted" (ionChange)="onTermsChange()"></ion-checkbox>
+              <ion-label class="terms">
+                You must read and agree to 
+                <a href="#" (click)="openTerms(); $event.preventDefault();" class="anchortext">Terms & Conditions</a> 
+                to proceed.
+              </ion-label>
+            </ion-item>
+            <!-- <ion-button expand="full" class="tick" (click)="register()">Send Request to Join PTA</ion-button> -->
+            <ion-button expand="full" class="products_buttons" (click)="register()" [disabled]="true"><p style="margin: 0px;">Send Request to Join PTA</p></ion-button>
+          </ion-list>
+        </ion-content>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Alert Popup -->
+  <div class="custom-alert" *ngIf="showAlert">
+    <div class="alert-wrapper">
+      <div class="alert-head">
+        <h2 id="alert-1-hdr">{{ alertTitle }}</h2>
+      </div>
+      <div class="alert-message">
+        <p>{{ alertMessage }}</p>
+      </div>
+      <div class="alert-button-group">
+        <button class="alert-button" (click)="closeAlert()">{{ alertButtonText }}</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,189 @@
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <a href="#" class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button"
+              [routerLink]="['/planogram-ranging-feedback']"></ion-icon>
+          </a>
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="/assets/icon/homeicons/sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="/assets/icon/homeicons/sony_dark.svg" alt="" class="SONY_mail_logo light_pta">
+          <!-- <ion-title class="center-title">
+           
+
+          </ion-title> -->
+        </ion-col>
+        <ion-col size="4" class="toolbar-col">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="main-content dark light">
+  <div class="fieldsclassdiv">
+    <ion-grid>
+      <ion-row class="align-items-center">
+        <ion-col size="8" class="dailysales_all_cols" id="dailysales_all_cols_id">
+          <div class="heading-div">
+            <h6 class="home-headings">Ranging Feedback</h6>
+          </div>
+        </ion-col>
+        <ion-col size="4" class="submit-column">
+          <div class="checkbutton2">
+            <ion-button expand="full_screen" class="products_buttons" (click)="WIPsubmitFeedback()">
+              Submit
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-row>
+    <ion-col size="12">
+      <ion-card class="ion-padding small-card compact-card shadow-card">
+        <ion-card-header class="ion-no-padding compact-header">
+          <ion-card-title class="compact-title">
+            <span class="category-label">Selected Category:</span>
+            <ion-badge *ngIf="selectedCategoryName" color="primary" class="category-badge">
+              {{ selectedCategoryName }}
+            </ion-badge>
+            <span *ngIf="!selectedCategoryName">Loading...</span>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="compact-content">
+          <p *ngIf="!selectedCategoryName" class="compact-loading-text">
+            Select a category for details.
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <div class="progress-container" *ngIf="columnVisibility.availableOpenDisplay">
+    <div class="progress-bar" [style.width]="progressPercentage + '%'"></div>
+    <div class="progress-text">{{ progressPercentage | number: '1.0-2' }}%</div>
+  </div>
+
+  <div class="scroll-buttons">
+    <ion-button (click)="scrollTable('left')">
+      <ion-icon name="chevron-back"></ion-icon>
+    </ion-button>
+    <ion-button (click)="scrollTable('right')">
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-button>
+  </div>
+
+  <ion-item class="entry-limit-item" lines="none">
+    <ion-label class="entry-limit-label">Show entries:</ion-label>
+    <ion-select [(ngModel)]="displayLimit" interface="popover" class="custom-select" (ionChange)="updatePagination()">
+      <ion-select-option *ngFor="let count of [5, 10, 20, 50]" [value]="count">
+        {{ count }} entries
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <div class="scrollable-table-container" #scrollContainer>
+    <table class="sales_data_table">
+      <thead>
+        <tr>
+          <th class="sales_table_header">#</th>
+          <th class="sales_table_header" style="display:none;">Product ID</th>
+          <th class="sales_table_header custom" *ngIf="columnVisibility.productId">Product</th>
+          <th class="sales_table_header" *ngIf="columnVisibility.availableBoxDisplay">Available Box Display</th>
+          <th class="sales_table_header" *ngIf="columnVisibility.availableOpenDisplay">Available Open Display</th>
+          <th class="sales_table_header" *ngIf="columnVisibility.minStockLevel">Min Stock Level</th>
+          <th class="sales_table_header" *ngIf="columnVisibility.stock">Stock</th>
+          <th class="sales_table_header">Last Update</th>
+          <th class="sales_table_header" *ngIf="columnVisibility.attachment1">Attachment 1</th>
+          <th class="sales_table_header" *ngIf="columnVisibility.attachment2">Attachment 2</th>
+          <th class="sales_table_header" *ngIf="columnVisibility.attachment3">Attachment 3</th>
+          <th class="sales_table_header" *ngIf="columnVisibility.feedback">Feedback</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="displayedData && displayedData.length > 0">
+        <tr *ngFor="let detail of paginatedData; let i = index">
+          <td class="sales_table_data">{{ i + 1 + (currentPage * displayLimit) }}</td>
+          <td class="sales_table_data" style="display:none;">{{ detail.product_id }}</td>
+          <td class="sales_table_data" *ngIf="columnVisibility.productId">{{ detail.product_name || 'N/A' }}</td>
+          <td class="sales_table_data" *ngIf="columnVisibility.availableBoxDisplay">
+            <ion-toggle aria-label="Available Box Display" color="primary" [checked]="isAvailable(detail.available)"
+              (ionChange)="updateAvailable(detail, $event.detail.checked)"></ion-toggle>
+          </td>
+          <td class="sales_table_data" *ngIf="columnVisibility.availableOpenDisplay">
+            <ion-toggle aria-label="Available Open Display" color="primary" [checked]="isAvailable(detail.open_display)"
+              (ionChange)="updateOpenDisplay(detail, $event.detail.checked)">
+            </ion-toggle>
+          </td>
+          <td class="sales_table_data" *ngIf="columnVisibility.minStockLevel">0</td>
+          <td class="sales_table_data" *ngIf="columnVisibility.stock">
+            <ion-input type="number" [(ngModel)]="detail.stock" (ionInput)="onStockChange(detail.stock)"></ion-input>
+          </td>
+          <td class="sales_table_data">{{ feedbackData?.feedback_date || 'N/A' }}</td>
+          <td class="sales_table_data" *ngIf="columnVisibility.attachment1">
+            <app-search-dropdown [options]="allproducts" [(ngModel)]="detail.attachment1_model_id"
+              (optionSelected)="selectOption($event, 'attachment1')">
+            </app-search-dropdown>
+          </td>
+          <td class="sales_table_data" *ngIf="columnVisibility.attachment2">
+            <app-search-dropdown [options]="allproducts" [(ngModel)]="detail.attachment2_model_id"
+              (optionSelected)="selectOption($event, 'attachment2')">
+            </app-search-dropdown>
+          </td>
+          <td class="sales_table_data" *ngIf="columnVisibility.attachment3">
+            <app-search-dropdown [options]="allproducts" [(ngModel)]="detail.attachment3_model_id"
+              (optionSelected)="selectOption($event, 'attachment3')">
+            </app-search-dropdown>
+          </td>
+          <td class="sales_table_data" *ngIf="columnVisibility.feedback">
+            <ion-textarea [(ngModel)]="detail.feedback" autoGrow="true" style="width: 100%; resize: vertical;"
+              rows="3"></ion-textarea>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ion-grid class="pagination-controls" *ngIf="displayedData && displayedData.length > 0">
+    <ion-row class="align-items-center">
+      <ion-col size="4">
+        <ion-button fill="clear" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 0">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+          Previous
+        </ion-button>
+      </ion-col>
+      <ion-col size="4" class="cus_text-center">
+        <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+      </ion-col>
+      <ion-col size="4" class="text-right">
+        <ion-button fill="clear" (click)="changePage(currentPage + 1)" [disabled]="currentPage >= totalPages - 1">
+          Next
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item class="custom-input-item custom-margin" lines="none">
+    <div class="dropdown-container">
+      <app-custom-product-dropdown [products]="products" (productSelected)="onProductSelected($event)">
+      </app-custom-product-dropdown>
+      <ion-button (click)="addProduct()" [disabled]="!selectedProduct" class="add-product-button">
+        <ion-icon name="add" slot="start"></ion-icon>
+        Add Product
+      </ion-button>
+    </div>
+  </ion-item>
+
+  <ion-item class="custom-input-item textarea-item" color="white" lines="none">
+    <ion-textarea placeholder="Your feedback" class="custom-textarea fieldss feedback-textarea" [(ngModel)]="feedback"
+      rows="10">
+    </ion-textarea>
+  </ion-item>
+</ion-content>
+<app-footer></app-footer>

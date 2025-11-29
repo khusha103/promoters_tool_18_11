@@ -53,7 +53,12 @@
           <ion-item class="transparent-item">
             <ion-label class="low-percentage">&lt;60%</ion-label>
           </ion-item>
+          
 
+             <ion-item class="transparent-item" *ngIf="question.is_na === '1' || question.is_na === 1">
+            <ion-label>NA</ion-label>
+            <ion-radio [value]="4"></ion-radio>
+          </ion-item>
           <!-- Use scaleOptions array with correct IDs -->
           <ion-item class="transparent-item" *ngFor="let s of question.scaleOptions">
             <ion-label>{{ s.label }}</ion-label>
@@ -95,6 +100,16 @@
         <ion-radio-group
           [(ngModel)]="question.selectedOption"
           (ngModelChange)="onOptionChange(question, $event)">
+
+           <div
+              *ngIf="question.is_na === '1' || question.is_na === 1"
+              class="option-row two-col"
+            >
+              <div class="col-label">NA</div>
+              <div class="col-radio">
+                <ion-radio [value]="4"></ion-radio>
+              </div>
+            </div>
           
           <ng-container *ngFor="let r of question.ratingOptions">
             <ion-item lines="none"

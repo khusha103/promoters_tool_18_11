@@ -506,7 +506,7 @@ ion-grid.ios.hydrated {
   white-space: normal;    /* allow multi-line labels */
   text-overflow: clip;
   font-size: 14px;
-  color: #222;
+  color: #ffffff;
   line-height: 1.25;
 }
 
@@ -549,7 +549,7 @@ ion-grid.ios.hydrated {
   .rating-option-row,
   .option-row.two-col {
     grid-template-columns: 1fr 40px;
-    padding: 8px 10px;
+    padding: 8px 17px 8px 10px;
   }
   .col-label, .rating-text-cell { font-size: 13px; }
 }

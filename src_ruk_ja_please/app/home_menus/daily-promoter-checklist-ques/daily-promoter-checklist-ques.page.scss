@@ -1,0 +1,568 @@
+.maincontainer {
+  --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+      --background-size: 100% 100%;
+    --opacity: 1 !important;
+    padding-top: 44px;
+    --border-color: white !important;
+    text-align: center !important;
+  }
+  
+  .toolbar-row {
+    align-items: center;
+    height: 100%;
+  }
+  
+  .toolbar-col {
+    display: flex;
+    align-items: center;
+  }
+  
+  .second_col_img {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.SONY_mail_logo {
+  width: 90px;
+  /* text-align: center; */
+}
+ion-grid.ios.hydrated {
+  height: 100%;
+}
+
+  .back-button {
+    font-size: 16px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    --font-weight: 200 !important;
+    padding: 3px;
+  //   margin-left: 12px;
+    --line-height: 10px !important;
+    margin-top: 8px;
+  }
+  
+  .back_link {
+    color: black;
+    cursor: pointer;
+  }
+  
+  ion-title.center-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  
+    img {
+      max-height: 40px;
+    }
+  }
+  
+  ion-content {
+    --background: url(../../../assets/icon/home.jpg) no-repeat 0px -114px;
+    --background-size: 100% 100%;
+  }
+
+
+
+  .custom-border-header {
+      box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+      border-bottom: 1px solid white;
+  }
+
+
+  // ////Header, ion-content, footer CSS
+
+  
+  
+    .heading-div {
+        padding: 0px 20px;
+        margin-top: 20px;
+        
+        h6.home-headings {
+        color: #fd7e14;
+        font-family: SST;
+        font-size: 20px;
+        font-weight: bolder;
+        }
+        
+        // p {
+        // font-size: 10px;
+        // font-family: SST;
+        // margin-top: 12px;
+        // color: black!important;
+        // }
+        }
+  
+  
+  //fieldsCSS
+        ion-select.custom-select {
+            border: 1px solid #d1d1d1;
+            border-radius: 4px;
+            --padding-start: 10px;
+            --padding-top: 10px;
+            --padding-bottom: 10px;
+          }
+  
+          /* Input and Select Fields */
+  ion-item {
+    --highlight-color-focused: #fd7e14; /* Color of underline when focused */
+    // --min-height: 50px;
+    --border-color: transparent;
+    --padding-start: 0px;
+    margin-bottom: 8px;
+  }
+  
+  ion-label {
+    font-weight: 500; /* Bold labels */
+  }
+  
+  ion-input {
+    --padding-start: 8px; /* Padding inside input field */
+    --padding-end: 8px;
+  }
+  
+  .custom-input-item ion-input {
+    border: 1px solid #d1d1d1; /* Light grey border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 8px; /* Padding inside input field */
+   
+  }
+  .custom-input-item {
+    --background: #ffffff00 !important;
+    margin-right: -16px;
+    margin-left: 0px;
+    margin-top: 2px;
+    margin-bottom: 10px !important;
+  }
+  
+  ion-select.custom-select {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    background: white;
+  }
+  
+  ion-select::part(icon) {
+    display: none !important;
+  }
+  
+  ion-select {
+    --padding-end: 15px;
+  }
+  
+  .custom-select.fieldss {
+    --padding-end: 35px; // Increase to make room for our custom icon
+    width: 100%;
+  }
+  
+  // Optional: Style the select to match your design
+  ion-select.custom-select {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+  }
+  .fieldss {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    color: #636363;
+    padding: 0px 0px 0px 10px;
+    height: 10px;
+    font-family: SST;
+    font-size: 14px;
+    /* font-style: italic; */
+    font-weight: 400;
+  }
+  .custom-select.fieldss {
+    --padding-end: 35px; // Increase to make room for our custom icon
+    width: 100%;
+  }
+  
+  .select-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    color: var(--ion-color-step-650, var(--ion-text-color-step-350, #595959));
+    margin-left: 10rem;
+  }
+  .select-icon {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #777777;
+    font-size: 1.2rem;
+    z-index: 2;
+  }
+  .fieldsclassdiv {
+    margin-top: 14px;
+    padding: 0px 16px;
+  }
+  
+  
+  .products_buttons {
+  
+    width: 100%;
+    font-size: 12px;
+    --border-radius: 4px;
+    margin: 10px 0px 0px 0px;
+    --background: radial-gradient(circle, #fd7e14 0%, rgba(24, 64, 136, 1) 100%);
+    font-family: SST;
+    text-transform: capitalize;
+  }
+  .labels {
+    font-family: SST !important;
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+    margin-left: 8px !important;
+  }
+
+  .options {
+    // display: flex;
+    justify-content: space-between; /* Align options in one line */
+  }
+ 
+
+   .low-percentage {
+          background-color: #f8d7da; /* Light red background for <60% */
+          color: #d9534f; /* Red font color */
+          font-weight: bold;
+          font-size: 14px;
+          padding: 4px 8px;
+          border-radius: 4px;
+        }
+        
+        .high-percentage {
+          background-color: #d4edda; /* Light green background for >90% */
+          color: #5cb85c; /* Green font color */
+          font-weight: bold;
+          font-size: 14px;
+          padding: 4px 8px;
+          border-radius: 4px;
+        }
+
+        .submit-button {
+  padding-bottom: 20px;  /* adjust as needed */
+}
+
+  
+  .transparent-item ion-label {
+    margin-left: 10px; /* Adjust this value to increase/decrease space between label and radio */
+  }
+  
+  .question-card {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .submit-button {
+    margin-top: 20px;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  ion-img {
+    transition: transform 0.3s ease;
+  }
+
+
+//ques container new css
+
+  .remarks-upload-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .upload-button {
+    font-size: 20px;
+    color: var(--ion-color-primary);
+  }
+  
+  .image-preview-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-top: 10px;
+  }
+  
+  .image-thumbnail {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .image-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .delete-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 18px;
+    color: red;
+    cursor: pointer;
+  }
+  
+
+  .custom-textarea {
+    // background-color: #f5f7fa; /* Light background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 12px; /* Inner spacing */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+  }
+  
+  .custom-textarea:focus {
+    background-color: #ffffff; /* White background on focus */
+    border: 2px solid #fd7e14; /* Blue border on focus */
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.3); /* Glow effect */
+  }
+
+
+
+  //----------------8april----------------
+  .feedback-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 16px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .textarea-container {
+    position: relative;
+  }
+  
+  .feedback-textarea {
+    --padding-end: 40px;
+    width: 100%;
+    border-radius: 8px;
+    --background: #ffffff;
+    --color: #333;
+  }
+  
+  .camera-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 20px;
+    color: #666;
+    z-index: 2;
+    cursor: pointer;
+  }
+  
+  .feedback-preview {
+    margin-top: 10px;
+    text-align: center;
+  
+    img {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .add-feedback-btn {
+    margin: 20px 0 10px;
+  }
+
+  .remove-icon {
+    position: absolute;
+    top: -11px;
+    right: -13px;
+    font-size: 20px;
+    color: #fffcfc;
+    background-color: #ff0000; /* White background for the icon */
+    z-index: 2;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+ 
+
+  /* highlight unanswered questions after the check */
+.question-card.unanswered {
+  border-color: #ff5252 !important;
+  box-shadow: 0 0 0 2px rgba(255, 82, 82, 0.15);
+}
+
+.unanswered-banner {
+  position: sticky;
+  top: 8px;
+  z-index: 10;
+  background: #fff4f4;
+  color: #b52424;
+  border: 1px solid #f3bcbc;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 10px 12px 16px;
+  font-weight: 600;
+}
+
+/* Pulse highlight when auto-scrolling unanswered cards */
+.question-card.pulse {
+  animation: pulseBorder 0.8s ease-in-out 1;
+}
+
+.two-col-group,
+.options,
+.options-column {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 8px;
+}
+
+.two-col,
+.option-row,
+.rating-option-row {
+  display: grid;
+  grid-template-columns: 1fr 44px; /* left grows, right fixed to 44px */
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  border-radius: 6px;
+  transition: background .18s, border-left .18s;
+}
+
+/* Slightly tighter on small screens */
+@media (max-width: 480px) {
+  .two-col,
+  .option-row,
+  .rating-option-row {
+    grid-template-columns: 1fr 40px;
+    padding: 8px 10px;
+  }
+  .col-label, .rating-text-cell { font-size: 13px; }
+}
+
+/* Label cell (left) — allow multi-line labels and paragraph-like spacing */
+.col-label,
+.match-radio-label,
+.rating-text-cell {
+  text-align: left;
+  justify-self: start;
+  overflow: visible;
+  white-space: normal; /* allow wrapping */
+  text-overflow: clip;
+  font-size: 14px;
+  color: #222;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+/* Radio cell (right) — fixed column, center radio vertically */
+.col-radio,
+.rating-radio-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+  justify-self: end;
+}
+
+/* Make the ion-radio use default size and be visually centered */
+.rating-radio-cell ion-radio {
+  margin: 0;
+  transform: none !important;
+  width: auto;
+  height: auto;
+  --ion-radio-size: 18px; /* controls visual size on Ionic radios (if supported) */
+}
+
+/* Visual selected state — preserve aria-checked also used by ion-item */
+.option-row[aria-checked="true"],
+.rating-option-row[aria-checked="true"],
+.match-radio-item.checked {
+  background: rgba(253, 126, 20, 0.06); /* light highlight */
+  border-left: 4px solid #fd7e14;
+  padding-left: 8px; /* adjust so content doesn't jump under the border */
+}
+
+/* Nicer spacing for multi-line description under rating titles */
+.match-desc {
+  font-size: 13px;
+  color: #666;
+  margin-top: 4px;
+  line-height: 1.2;
+}
+
+/* FULL-WIDTH percentage bars like screenshot */
+.low-percentage,
+.high-percentage {
+  width: 110%;
+  display: flex;
+  justify-content: space-between;   /* text fills full row */
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 12px;               /* same padding as option rows */
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Colors */
+.low-percentage {
+  background: #f8d7da;
+  color: #d9534f;
+}
+
+.high-percentage {
+  background: #d4edda;
+  color: #5cb85c;
+}
+
+/* Important: let percentage row disable radio space visually */
+.two-col.option-row .col-radio:empty {
+  visibility: hidden;
+}
+
+
+/* Make sure transparent-item won't break layout — keep it neutral */
+.transparent-item {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+
+/* Unanswered / highlighted card outer style (kept) */
+.question-card.unanswered {
+  border-color: #ff5252 !important;
+  box-shadow: 0 0 0 2px rgba(255, 82, 82, 0.15);
+}
+
+/* accessibility: ensure focus states are visible */
+.two-col:focus-within,
+.option-row:focus-within {
+  box-shadow: 0 0 0 3px rgba(253,126,20,0.12);
+  outline: none;
+}
+
+/* small polish: reduced spacing between label text lines */
+.col-label p { margin: 0; }
+
+
+
+

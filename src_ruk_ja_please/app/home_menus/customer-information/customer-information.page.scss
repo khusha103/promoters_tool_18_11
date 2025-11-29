@@ -1,0 +1,494 @@
+.maincontainer {
+  --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+      --background-size: 100% 100%;
+    --opacity: 1 !important;
+    padding-top: 44px;
+    --border-color: white !important;
+    text-align: center !important;
+  }
+  
+  .toolbar-row {
+    align-items: center;
+    height: 100%;
+  }
+  
+  .toolbar-col {
+    display: flex;
+    align-items: center;
+  }
+  
+  .second_col_img {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.SONY_mail_logo {
+  width: 90px;
+  /* text-align: center; */
+}
+ion-grid.ios.hydrated {
+  height: 100%;
+}
+
+  .back-button {
+    font-size: 16px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    --font-weight: 200 !important;
+    padding: 3px;
+  //   margin-left: 12px;
+    --line-height: 10px !important;
+    margin-top: 8px;
+  }
+  
+  .back_link {
+    color: black;
+    cursor: pointer;
+  }
+  
+  ion-title.center-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  
+    img {
+      max-height: 40px;
+    }
+  }
+  
+  ion-content {
+    --background: url(../../../assets/icon/home.jpg) no-repeat 0px -96px;
+    --background-size: 100% 100%;
+  }
+
+
+
+  .custom-border-header {
+      box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+      border-bottom: 1px solid white;
+  }
+
+
+  // ////Header, ion-content, footer CSS
+
+
+/* Scrollbar Customization */
+ion-content {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+ion-content::-webkit-scrollbar { 
+  display: none; /* Safari and Chrome */
+}
+
+.form-content {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.form-content::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+  /* General icon styles */
+  img.homeicons {
+    border: 1px solid #2452cd;
+    background: radial-gradient(circle, rgba(38, 85, 217, 1) 0%, rgba(24, 64, 136, 1) 100%);
+    padding: 14px;
+    border-radius: 14px;
+  }
+  
+  /* Grid and box styles */
+  ion-grid {
+    text-align: center;
+    padding: 0px 10px 0px 10px;
+    margin-top: 0%;
+  }
+  
+  .box.homeicontext {
+    font-size: 11px;
+    padding-top: 10px;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Swiper slider fixed position */
+  .swiper_slider {
+    position: fixed;
+  }
+  
+  /* Home heading styles */
+  h6.home-headings {
+    color: #4B5098;
+    font-family: SST;
+    font-size: 20px;
+    font-weight: bolder;
+  }
+  
+  .heading-div > p {
+    font-size: 10px;
+    font-family: SST;
+    margin-top: 12px;
+  }
+  
+  .heading-div {
+    padding: 0px 20px 0px 20px;
+    margin-top: 20px;
+  }
+  
+  /* Product buttons styles */
+  .products_buttons {
+    width: 100%;
+    font-size: 12px;
+    --border-radius: 0px;
+    margin: 14px 0px 0px 0px;
+    --background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+    font-family: SST;
+  }
+  .SONY_mail_logo {
+    width: 90px;
+    /* text-align: center; */
+  }
+  
+  /* Product details container */
+  .product_detail_container {
+    padding: 0px 20px 16px 20px;
+  }
+
+
+  .product_detail_heading {
+    margin-top: -36px;
+    background: rgb(226 226 226 / 34%);
+    font-size: 15px;
+    padding: 9px 9px 9px 14px;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    font-family: SST;
+  }
+  
+  .product_detail_heading::before {
+    content: "";
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(4px);
+    z-index: -1;
+  }
+  .second_col_img {
+    display: flex;
+    justify-content: center;
+  }
+  /* Product icons styles */
+  .product_icons {
+    // background: linear-gradient(45deg, rgba(54, 66, 150, 1) 12%, rgba(98, 152, 214, 1) 39%, rgba(158, 200, 239, 1) 73%);
+    // padding: 8px;
+    // border-radius: 8px;
+    // cursor: pointer;
+    // text-transform: capitalize;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: background 0.3s ease;
+    // background: black; 
+    background: linear-gradient(45deg, rgba(68, 68, 68, 1) 36%, rgba(88, 88, 88, 1) 45%, rgba(111, 111, 111, 1) 77%);
+    
+  }
+  .product_icons_btn.active .product_icons {
+    background: linear-gradient(45deg, rgba(54, 66, 150, 1) 25%, rgba(98, 152, 214, 1) 60%, rgba(158, 200, 239, 1) 80%);  }
+  .product_icons_btn {
+    height: 50px;
+    width: 85px;
+    --background: transparent;
+  --box-shadow: none;
+  }
+  
+  .icons-div_row {
+    margin-bottom: 12px;
+  }
+  .custom-border-header {
+    box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+    border-bottom: 1px solid white;
+  }
+
+
+
+  .main-div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .upper-bg {
+    background-color: #4B54CF;
+    width: 100%;
+    height: 14%;
+    position: relative;
+    flex-shrink: 0; /* Prevents shrinking */
+  }
+  
+  .second-bg {
+    background: #FFE98B;
+    width: 100%;
+    flex: 1; /* Takes up remaining height */
+    overflow: hidden; /* Prevents the second-bg from scrolling */
+    display: flex;
+    flex-direction: column;
+    margin-top: -70px;
+  }
+  
+  .from-padding {
+    width: 100%;
+    flex: 1; /* Takes up remaining height */
+    display: flex;
+    flex-direction: column;
+    // padding: 0px 18px;
+  }
+  
+  .form-content {
+    // border-top-left-radius: 20px;
+    // border-top-right-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Enables scrolling within form content */
+    flex: 1; /* Takes up remaining height */
+    // padding: 16px; /* Adjust padding as needed */
+  }
+  
+
+
+
+  // .floating-label-select ion-label {
+  //   color: #666;
+  //   position: relative;
+  //   top: -11px;
+  //   left: 12px;
+  //   background-color: #fff;
+  // }
+
+
+  ion-label.sc-ion-label-md-h.sc-ion-label-md-s.md.label-floating.hydrated {
+    position: relative;
+    top: 3px;
+    left: 15px;
+    font-size: 21px;
+}
+  
+  // .floating-label-select ion-select {
+  //   border: 1px solid #ccc;
+  //   border-radius: 5px;
+  //   padding: 10px;
+  // }
+  
+  // .floating-label-select ion-select:focus {
+  //   border-color: #3880ff; 
+  // }
+
+
+  .custom-input-item {
+    cursor: pointer; /* Change cursor to indicate clickable item */
+  }
+  
+  .calender-icon {
+    margin-right: 8px; /* Space between icon and text */
+  }
+  
+  .popover-content {
+    padding: 16px; /* Padding inside the popover */
+  }
+  
+  .mine-calender {
+    width: 100%; /* Make datetime full width */
+  }
+
+
+//   ion-textarea.custom-textarea.fieldss.ng-untouched.ng-pristine.ng-valid.ion-untouched.ion-pristine.ion-valid.sc-ion-textarea-md-h.sc-ion-textarea-md-s.md.textarea-label-placement-start.hydrated {
+//     height: 50%;
+// }
+
+
+// --------------------------------------------searchable drodown design---------------------------------------
+// .custom-select {
+//   // background-color: #ff0; /* Light background for dropdown */
+//   border: 1px solid #ccc; /* Border for dropdown */
+//   border-radius: 8px; /* Rounded corners */
+//   padding: 1px 0px 1px 15px;
+// }
+
+// .custom-textarea{
+//   border:none; /* Border for dropdown */
+//   border-radius: 8px; /* Rounded corners */
+//   // padding: 1px 0px 1px 15px;
+//   height: 20%;
+//   color: #000000;
+// }
+
+// .selected-label {
+//   color: #000000; /* Color for selected item */
+// }
+
+// .custom-searchbar ion-input {
+//   color: #333; /* Text color in search bar */
+// }
+
+// .dropdown-content {
+//   max-height: 400px; /* Set a maximum height */
+//   overflow-y: auto; /* Enable vertical scrolling */
+//   background-color: white; /* Background color */
+//   border: 1px solid #ccc; /* Border for dropdown */
+//   border-radius: 8px; /* Rounded corners */
+//   box-shadow: 0px 2px 10px rgba(0,0,0,0.1); /* Optional shadow for better visibility */
+//   padding: 1px 8px 1px 8px;
+
+// }
+
+// // .custom-searchbar {
+  
+// // }
+
+// .custom-searchbar {
+//   position: sticky; /* Make it sticky */
+//   top: 0; /* Stick it to the top of the dropdown */
+//   z-index: 1; /* Ensure it stays above other elements in the dropdown */
+//   // background-color: white; /* Optional: Set a background color */
+//   --background: #f1f1f1; /* Light background for search bar */
+//   --placeholder-color: #888; /* Color for placeholder text */
+// }
+
+
+.custom-select {
+  border: 1px solid #ccc; /* Border for dropdown */
+  border-radius: 8px; /* Rounded corners */
+  padding: 1px 0px 1px 15px;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+.custom-select:hover {
+  background-color: #f9f9f9; /* Light gray on hover */
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.custom-textarea {
+  border: none; /* Border for dropdown */
+  border-radius: 8px; /* Rounded corners */
+  height: 20%;
+  color: #000000;
+}
+
+.selected-label {
+  color: #000000; /* Color for selected item */
+}
+
+.custom-searchbar ion-input {
+  color: #333; /* Text color in search bar */
+}
+
+.dropdown-content {
+  max-height: 400px; /* Set a maximum height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  background-color: white; /* Background color */
+  border: 1px solid #ccc; /* Border for dropdown */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0px 2px 10px rgba(0,0,0,0.1); /* Optional shadow for better visibility */
+  padding: 1px 8px; /* Padding inside dropdown content */
+  
+  transition: max-height 0.3s ease, opacity 0.3s ease; /* Smooth transitions for opening/closing */
+  position: relative;
+    top: -9px;
+}
+
+.dropdown-content.ng-enter {
+    max-height: 0;
+    opacity: 0;
+    transition: max-height .3s ease, opacity .3s ease;
+}
+
+.dropdown-content.ng-enter-active {
+    max-height: 400px;
+    opacity: 1;
+}
+
+.dropdown-content.ng-leave {
+    max-height: 400px;
+    opacity: 1;
+    transition: max-height .3s ease, opacity .3s ease;
+}
+
+.dropdown-content.ng-leave-active {
+    max-height: 0;
+    opacity: 0;
+}
+
+.custom-searchbar {
+  position: sticky; /* Make it sticky */
+  top: 0; /* Stick it to the top of the dropdown */
+  z-index: 1; /* Ensure it stays above other elements in the dropdown */
+  
+  --background: #f1f1f1; /* Light background for search bar */
+  --placeholder-color: #888; /* Color for placeholder text */
+
+  transition: background-color .3s ease; /* Smooth transition for background color change if needed */
+}
+
+
+// .selected-label {
+//   padding: 10px; /* Optional: Add some padding */
+// }
+
+.selected {
+  // background-color: #d1e7dd; /* Change this to your desired color */
+  // border-radius: 5px; /* Optional: Add rounded corners */
+  font-weight: bold;
+  // text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Adjust values as needed */
+}
+
+
+
+
+
+
+.truncate-text {
+  display: inline-block;
+  max-width: 150px; // Adjust based on your design
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info-icon {
+  margin-left: 8px; // Space between text and icon
+  color: #888; // Change icon color if needed
+}
+
+.tooltip-popover {
+  --background: rgba(0, 0, 0, 0.8);
+  --border-radius: 8px;
+  --padding: 8px;
+  --color: white;
+}
+
+.tooltip-content {
+  padding: 8px;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+
+.info-icon {
+  margin-left: 8px; // Space between text and icon
+  color: #888; // Change icon color if needed
+}
+
+
+
+.ios.flip-rtl.hydrated {
+  display: none;
+  }

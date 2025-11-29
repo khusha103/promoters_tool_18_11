@@ -1,0 +1,34 @@
+.splash_bg {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+       background: url('../../../assets/icon/splashfirstpage.png') no-repeat center center;
+      background-size: cover; /* Ensure the background image covers the entire container */
+      height: 100vh; /* Make sure the div takes up the full viewport height */
+  }
+  
+  .splash_div {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children vertically */
+    align-items: center; /* Center children horizontally */
+  }
+  
+  .spinner-container {
+    display: flex;
+    flex-direction: column; /* Stack spinner and text vertically */
+    justify-content: center; /* Center spinner and text */
+    align-items: center; /* Center spinner and text */
+    margin-top: 20px; /* Space between image and spinner */
+  }
+  
+  ion-spinner {
+    /* Optional: Adjust spinner size */
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+  }
+  
+  p {
+    margin-top: 8px; /* Space between spinner and text */
+    font-size: 16px; /* Adjust text size as needed */
+  }

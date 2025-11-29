@@ -1,0 +1,59 @@
+
+
+
+<ion-content fullscreen class="logincontent dark light"><!--[scrollY]="true"-->
+  <div class="container-fluid xyz">
+    
+    <!--<ion-row class="main_body_row">
+      <ion-col size="12" class="main_body_column">
+        <ion-row class="main_content_row">
+          <ion-col size="12" class="main_content_column">-->
+            <div class="full_screen container-fluid">
+              <div class="login_main_div container">
+                <div class="first_div">
+                  <img src="\assets\icon\homeicons\sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+                  <img src="\assets\icon\homeicons\sony_dark.svg" alt="" class="SONY_mail_logo light_pta">
+                  <p>Welcome To <br>Promoter Tool App</p>
+                  <div class="form-group my-3">
+                    <input type="text" class="form-control forplace" placeholder="Email" [(ngModel)]="username" required>
+                  </div>
+                  <!-- <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" required>
+                  </div> -->
+                  <div class="form-group password-field">
+                    <input [type]="passwordFieldType" class="form-control forplace" placeholder="Password" [(ngModel)]="password" required>
+                    <ion-icon [name]="passwordFieldType === 'password' ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility()"></ion-icon>
+                  </div>
+                  
+                </div>
+                <div class="buttonss my-2">
+                  <button class="btn btn-1" (click)="onLogin()">LOG IN</button>
+                  <button class="btn forget" [routerLink]="['/forgot-password']">Forgot Password?</button>
+                </div>
+              </div>
+            </div>
+            <div class="secdiv container">
+              <!-- <ion-col size="5">
+        
+              </ion-col> -->
+              <button type="button" class="btn rca" [routerLink]="['/register']">REGISTER ACCOUNT</button>
+            </div>
+            <div class="thirddiv container">
+              <button type="button" class="btn dmac" onclick="location.href='mailto:Andrew.Adel@sony.com?subject=Delete My Account&body=(provide the details of the Email Id which is registered on promoter app to delete your account)';">DELETE MY ACCOUNT</button>
+            </div>
+           
+          
+            <div class="deletion">
+              <p class="deletionp">(Please click here and send an email<br>to request your account deletion.)</p>
+            </div>
+       
+  </div>
+</ion-content>
+
+<ion-footer slot="fixed" >
+  <p class="terms">
+    <a (click)="openTerms()" class="no-underline">Terms & Conditions</a> | 
+    <a (click)="openPrivacyPolicy()" class="no-underline">Privacy Policy</a>
+  </p>
+  <p class="copyright">© {{ currentYear }} Sony Middle East and Africa FZE</p>
+</ion-footer>

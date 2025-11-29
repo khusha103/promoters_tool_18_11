@@ -48,11 +48,25 @@
         <ion-radio-group
           [(ngModel)]="question.selectedOption"
           (ngModelChange)="onOptionChange(question, $event)">
+
+          <div class="two-col option-row" *ngIf="question.is_na === '1' ">
+            <div class="col-label">N/A</div>
+            <div class="col-radio">
+              <ion-radio [value]="4" slot="end"></ion-radio>
+            </div>
+          </div>
           
           <div class="two-col option-row">
             <div class="col-label low-percentage">&lt;60%</div>
             <div class="col-radio"></div>
           </div>
+
+          <!-- <div class="two-col option-row" *ngIf="question.is_na === '1' ">
+            <div class="col-label">N/A</div>
+            <div class="col-radio">
+              <ion-radio [value]="4" slot="end"></ion-radio>
+            </div>
+          </div> -->
 
           <!-- scaleOptions uses IDs 1,2,3,8,9 (labels 1..5) -->
           <div class="two-col option-row" *ngFor="let s of scaleOptions">
@@ -99,26 +113,35 @@
       </div>
 
       <!-- ===== RATING (type_id === '4' OR option_type === '4') ===== -->
-      <ng-container *ngIf="isRating(question)">
-        <ion-radio-group
-          [(ngModel)]="question.selectedOption"
-          (ngModelChange)="onOptionChange(question, $event)">
-          
-          <ng-container *ngFor="let r of ratingOptions">
-  <div class="two-col option-row match-radio-item" [attr.aria-checked]="question.selectedOption === r.id ? 'true' : 'false'">
-    <div class="col-label match-radio-label">
-      <div class="match-title">{{ r.label }}</div>
-      <div class="match-desc" *ngIf="r.description">{{ r.description }}</div>
+<ng-container *ngIf="isRating(question)">
+  <ion-radio-group
+    [(ngModel)]="question.selectedOption"
+    (ngModelChange)="onOptionChange(question, $event)">
+
+    <!-- show N/A once if allowed -->
+    <div class="two-col option-row" *ngIf="question.is_na === '1'">
+      <div class="col-label">N/A</div>
+      <div class="col-radio">
+        <ion-radio [value]="4" slot="end"></ion-radio>
+      </div>
     </div>
-    <div class="col-radio">
-      <ion-radio [value]="r.id" slot="end"></ion-radio>
-    </div>
-  </div>
+
+    <!-- rating rows -->
+    <ng-container *ngFor="let r of question.ratingOptions">
+      <div class="two-col option-row match-radio-item" [attr.aria-checked]="question.selectedOption === r.id ? 'true' : 'false'">
+        <div class="col-label match-radio-label">
+          <div class="match-title">{{ r.label }}</div>
+          <div class="match-desc" *ngIf="r.description">{{ r.description }}</div>
+        </div>
+        <div class="col-radio">
+          <ion-radio [value]="r.id" slot="end"></ion-radio>
+        </div>
+      </div>
+    </ng-container>
+
+  </ion-radio-group>
 </ng-container>
 
-
-        </ion-radio-group>
-      </ng-container>
 
     </div> <!-- /.options -->
 

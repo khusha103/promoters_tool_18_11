@@ -1,0 +1,699 @@
+.maincontainer {
+    --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+    --background-size: 100% 100%;
+    --opacity: 1 !important;
+    padding-top: 20px;
+    --border-color: white !important;
+    text-align: center !important;
+  }
+  
+  .toolbar-row {
+    align-items: center;
+    height: 100%;
+  }
+  
+  .toolbar-col {
+    display: flex;
+    align-items: center;
+  }
+  
+  .second_col_img {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .SONY_mail_logo {
+    width: 90px;
+  }
+  
+  ion-grid.ios.hydrated {
+    height: 50px;
+  }
+  
+  .back-button {
+    font-size: 16px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    --font-weight: 200 !important;
+    padding: 3px;
+    --line-height: 10px !important;
+    margin-top: 8px;
+  }
+  
+  .back_link {
+    color: black;
+    cursor: pointer;
+  }
+  
+  ion-title.center-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  
+  ion-content {
+    --background: url(../../../assets/icon/home.jpg) no-repeat 0px -84px;
+    --background-size: 100% 100%;
+  }
+  
+  .custom-border-header {
+    box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+    border-bottom: 1px solid white;
+  }
+  
+  .heading-div {
+    padding: 0px 20px;
+    margin-top: 20px;
+  }
+  
+  h6.home-headings {
+    color: #4B5098;
+    font-family: SST;
+    font-size: 20px;
+    font-weight: bolder;
+  }
+  
+  p {
+    font-size: 10px;
+    font-family: SST;
+    margin-top: 12px;
+    color: black !important;
+  }
+
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+
+  
+  .details-container {
+    padding: 16px;
+    // background-color: #ffd700; // Golden yellow background
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .template-content {
+    background-color: #ffffff;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  
+  .input-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .input-item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  ion-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  ion-select, ion-input {
+    --background: #ffffff;
+    --padding-start: 10px;
+    --padding-end: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    height: 40px;
+  }
+  
+  .back-button {
+    margin-top: auto;
+    --background: #007bff;
+    --color: #ffffff;
+    font-weight: bold;
+  }
+
+
+  .grid-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .grid-item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  ion-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  ion-select, ion-input {
+    --background: #ffffff;
+    --padding-start: 10px;
+    --padding-end: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    height: 40px;
+  }
+  
+  // Additional styles for differentiation if needed
+  // .number-column {
+  //   // Styles specific to number column
+  // }
+  
+  // .c-series-column {
+  //   // Styles specific to c-series column
+  // }
+
+
+  .white-background {
+    --background: white; 
+    --color: black; 
+    // padding: 10px;  
+    border-radius: 5px; 
+    border: 1px solid #ccc;
+  }
+
+
+  /* Basic table styling */
+table {
+  width: 100%; /* Full width */
+  border-collapse: collapse; /* Collapse borders */
+  margin: 20px 0; /* Margin around the table */
+}
+
+/* Table header styling */
+th {
+  background-color: #4CAF50; /* Green background for headers */
+  color: white; /* White text color */
+  padding: 12px; /* Padding inside header cells */
+  text-align: left; /* Align text to the left */
+}
+
+/* Table cell styling */
+td {
+  border: 1px solid #ddd; /* Light gray border for cells */
+  padding: 8px; /* Padding inside cells */
+}
+
+/* Hover effect for rows */
+tr:hover {
+  background-color: #f1f1f1; /* Light gray background on hover */
+}
+
+/* Alternate row coloring for better readability */
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Light background for even rows */
+}
+
+/* Centering text in specific cells if needed */
+.center {
+  text-align: center; /* Center align text in cells with this class */
+}
+
+/* Optional: Add a caption style */
+caption {
+  font-size: 1.5em; /* Larger font size for caption */
+  margin: 10px; /* Margin around caption */
+}
+
+
+// Header, ion-content, footer CSS
+.maincontainer {
+  --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+      --background-size: 100% 100%;
+    --opacity: 1 !important;
+    padding-top: 20px;
+    --border-color: white !important;
+    text-align: center !important;
+  }
+  
+  .toolbar-row {
+    align-items: center;
+    height: 100%;
+  }
+  
+  .toolbar-col {
+    display: flex;
+    align-items: center;
+  }
+  
+  .second_col_img {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.SONY_mail_logo {
+  width: 90px;
+  /* text-align: center; */
+}
+ion-grid.ios.hydrated {
+  height: 50px;
+}
+
+  .back-button {
+    font-size: 16px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    --font-weight: 200 !important;
+    padding: 3px;
+  //   margin-left: 12px;
+    --line-height: 10px !important;
+    margin-top: 8px;
+  }
+  
+  .back_link {
+    color: black;
+    cursor: pointer;
+  }
+  
+  ion-title.center-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  
+    img {
+      max-height: 40px;
+    }
+  }
+  
+  ion-content {
+    --background: url(../../../assets/icon/home.jpg) no-repeat 0px -84px;
+    --background-size: 100% 100%;
+  }
+
+
+
+  .custom-border-header {
+      box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+      border-bottom: 1px solid white;
+  }
+
+
+  // ////Header, ion-content, footer CSS
+
+
+  .heading-div {
+      padding: 0px 20px;
+      margin-top: 20px;
+      
+      h6.home-headings {
+      color: #4B5098;
+      font-family: SST;
+      font-size: 20px;
+      font-weight: bolder;
+      }
+      
+      // p {
+      // font-size: 10px;
+      // font-family: SST;
+      // margin-top: 12px;
+      // color: black!important;
+      // }
+      }
+
+
+
+
+      //fieldsCSS
+      ion-select.custom-select {
+          border: 1px solid #d1d1d1;
+          border-radius: 4px;
+          --padding-start: 10px;
+          --padding-top: 10px;
+          --padding-bottom: 10px;
+        }
+
+        /* Input and Select Fields */
+ion-item {
+  --highlight-color-focused: #4B54CF; /* Color of underline when focused */
+  // --min-height: 50px;
+  --border-color: transparent;
+  --padding-start: 0px;
+  margin-bottom: 8px;
+}
+
+ion-label {
+  font-weight: 500; /* Bold labels */
+}
+
+ion-input {
+  --padding-start: 8px; /* Padding inside input field */
+  --padding-end: 8px;
+}
+
+.custom-input-item ion-input {
+  border: 1px solid #d1d1d1; /* Light grey border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 8px; /* Padding inside input field */
+ 
+}
+.custom-input-item {
+  --background: #ffffff00 !important;
+  margin-right: -16px;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 4px !important;
+}
+
+ion-select.custom-select {
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  --padding-start: 10px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  background: white;
+}
+
+ion-select::part(icon) {
+  display: none !important;
+}
+
+ion-select {
+  --padding-end: 15px;
+}
+
+.custom-select.fieldss {
+  --padding-end: 35px; // Increase to make room for our custom icon
+  width: 100%;
+  margin: 8px;
+}
+
+// Optional: Style the select to match your design
+ion-select.custom-select {
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  --padding-start: 10px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+}
+.fieldss {
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  color: #636363;
+  padding: 0px 0px 0px 10px;
+  height: 10px;
+  font-family: SST;
+  font-size: 14px;
+  /* font-style: italic; */
+  font-weight: 400;
+}
+.custom-select.fieldss {
+  --padding-end: 35px; // Increase to make room for our custom icon
+  width: 100%;
+}
+
+.select-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  color: var(--ion-color-step-650, var(--ion-text-color-step-350, #595959));
+  margin-left: 10rem;
+}
+.select-icon {
+  position: absolute;
+  right: 30px;
+  top: 74%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #777777;
+  font-size: 1.2rem;
+  z-index: 2;
+}
+.fieldsclassdiv {
+  margin-top: 0px;
+  padding: 0px 4px;
+}
+
+
+.products_buttons {
+  width: 100%;
+  font-size: 12px;
+  --border-radius: 4px;
+  margin: 0px 0px 0px 0px;
+  --background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+  font-family: SST;
+}
+ion-label {
+  font-weight: 500; /* Bold labels */
+}
+//fieldsCSS
+
+
+
+.labels {
+  font-family: SST !important;
+  font-size: 16px !important;
+  margin-bottom: 10px !important;
+  margin-left: 10px !important;
+}
+
+
+
+.viewbutton {
+  /* display: flex; */
+  /* width: 100%; */
+  margin-top: 35px;
+  /* padding: 0px; */
+}
+
+.spanbuttontext{
+  padding: 7px;
+}
+
+
+.percentagediv {
+  height: 80px;
+  display: flex;
+  background: black;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin: -14px 14px 14px 14px;
+}
+
+h3.percentagedivhead {
+  color: white;
+  font-size: 40px;
+}
+
+// ion-col.md.hydrated {
+//     height: 74px;
+// }
+
+.fieldsclassdiv ion-col {
+  height: 74px;
+}
+.checkbutton2 {
+  margin: 8px 14px;
+}
+
+
+
+  /* Table Styles */
+  .sales_data_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-family: SST;
+    font-size: 14px;
+  }
+  
+  .sales_data_table th, 
+  .sales_data_table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .sales_table_header {
+    // background-color: #4B5098;
+    color: white;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .sales_table_data {
+    background-color: #ffffff;
+    color: black;
+  }
+  thead {
+    background: radial-gradient(circle, rgb(92, 135, 255) 0%, rgb(24, 64, 136) 100%);
+}
+
+
+.scrollable-table-container {
+    // width: 100%;
+    overflow-x: auto;  /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on mobile devices */
+    margin: 0px 14px 0px 14px;
+  }
+  .total_bold {
+    font-weight: 500;
+}
+.yes {
+  
+  color: green;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.no {
+  color: red;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+
+
+
+
+.progress {
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 20px;
+  background-color: #4caf50; /* Green */
+}
+
+
+
+
+/* Ensure the dynamic-fields container is flex */
+.dynamic-fields {
+  display: flex;
+  align-items: center; /* Vertically align content */
+  margin-bottom: 15px;
+}
+
+/* Flex container for product dropdown and feedback input */
+.feedback-line {
+  display: flex;
+  align-items: center; /* Vertically center both items */
+  gap: 10px; /* Adds space between the dropdown and input */
+  width: 100%;
+}
+
+/* Style the input field to take up available space */
+.slider_input {
+  flex-grow: 1; /* This makes the input grow to take available space */
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px; /* Set a max width for input */
+}
+
+/* Optional: Ensure the custom product dropdown has a max width */
+app-custom-product-dropdown {
+  flex-shrink: 0; /* Prevent the dropdown from shrinking */
+  width: 150px; /* Optional: Set a fixed width for the dropdown */
+}
+
+
+// .back-button-bottom-right {
+//   position: fixed;
+//   bottom: 73px;
+//   right: 9px;
+//   z-index: 10;
+//   background-color: #111212;
+//   border-radius: 23%;
+//   padding: 7px;
+//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+//   color: white;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   transition: background-color 0.3s ease;
+// }
+
+// .back-button-bottom-right ion-icon {
+//   font-size: 24px;
+//   color: white;
+// }
+
+
+// .back-button-bottom-right {
+//   position: fixed;
+//   bottom: 80px; /* Adjusted for better placement */
+//   right: 5px; /* Slightly moved for better reach */
+//   z-index: 10;
+//   background-color: #111212;
+//   border-radius: 50%;
+//   width: 50px;
+//   height: 50px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3); /* White shadow effect */
+//   transition: all 0.3s ease;
+// }
+
+// .back-button-bottom-right:active {
+//   transform: scale(0.92);
+//   box-shadow: 0 2px 6px rgba(255, 255, 255, 0.4); /* Stronger white shadow on press */
+// }
+
+// .back-button-bottom-right ion-icon {
+//   font-size: 28px;
+//   color: white;
+//   text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); /* White glow effect around icon */
+// }
+
+// .back-button-bottom-right:focus {
+//   outline: 3px solid rgba(255, 255, 255, 0.6);
+// }
+
+// /* Hover effect for a glowing white outline */
+// .back-button-bottom-right:hover {
+//   box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+// }
+
+.notification-message {
+  color: #d9534f; /* Red color for warning */
+  background-color: #f9d6d5; /* Light red background */
+  padding: 10px;
+  border: 1px solid #d9534f;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+
+  

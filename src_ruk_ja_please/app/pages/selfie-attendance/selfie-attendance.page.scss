@@ -1,0 +1,164 @@
+/* --- Wrapper --- */
+.selfie-wrapper {
+  --background: #dbd8d8;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+}
+  .page-card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  margin: 18px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+}
+
+/* --- Header Bubble --- */
+.box-header {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.bubble-text {
+  background: #e87838;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  position: relative;
+  max-width: 260px;
+  text-align: center;
+}
+
+.bubble-text::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0;
+  border-style: solid;
+  border-color: #e87838 transparent transparent transparent;
+}
+
+/* --- Selfie Area --- */
+.selfie-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+
+/* Button Wrapper */
+.avatar-container {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Circle Box */
+.avatar-placeholder,
+.avatar-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 5px solid rgba(0,0,0,0.06);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+  background: linear-gradient(180deg, #fdfdfd 0%, #e9e9e9 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.avatar-img {
+  object-fit: cover;
+}
+
+/* Placeholder icon */
+.avatar-placeholder ion-icon {
+  font-size: 48px;
+  color: #8b8f97;
+}
+
+/* Remove image btn */
+.remove-btn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.76);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* Below selfie note */
+.small-note {
+  font-size: 13px;
+  color: #666;
+  max-width: 250px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* --- Consent Row --- */
+.consent-box {
+  margin-top: 20px;
+  --inner-padding-start: 4px;
+  font-size: 14px;
+}
+
+/* --- Buttons Section --- */
+.btn-block {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Done button (theme orange) */
+.done-btn {
+  --background: #e87838;
+  --background-activated: #d1652e;
+  --background-hover: #e5732f;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+/* Disabled state fix */
+.done-btn[disabled] {
+  opacity: 0.55;
+}
+
+/* Cancel */
+.cancel-btn {
+  --background: #e0e0e0;
+  --color: #444;
+  border-radius: 10px;
+}
+
+/* --- Mobile optimization --- */
+@media (max-width: 420px) {
+  .avatar-placeholder,
+  .avatar-img {
+    width: 140px;
+    height: 140px;
+  }
+  .small-note {
+    font-size: 12px;
+  }
+}

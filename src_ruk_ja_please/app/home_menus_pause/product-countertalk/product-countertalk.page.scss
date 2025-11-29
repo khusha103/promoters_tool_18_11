@@ -1,0 +1,250 @@
+// .maindivv {
+//     background: url("../../../assets/icon/First.jpg") no-repeat 0px -30px;
+//     background-size: cover;
+//     // height: 100vh; /* Ensures the background takes up the full viewport height */
+// }
+.ion-content-bg{
+  background: url("../../../assets/icon/bg_banner.jpg") no-repeat 0px 0px;
+background-size: cover;
+}
+.headercol2 {
+display: flex;
+
+align-items: center;
+padding-left: 18px;
+}
+
+.header_logo {
+max-width: 100%; /* Ensures the logo scales down if necessary */
+height: auto; /* Maintains aspect ratio of the logo */
+}
+
+.header_back_icon {
+font-size: 18px;
+border: 1px solid;
+border-radius: 50%;
+padding: 2px;
+}
+.headercol1 {
+display: flex;
+align-items: center;
+}
+
+.maindivgrid{
+// margin-top: 18px;
+border-bottom: 1px solid white;
+padding-top: 26px;
+}
+
+// .maincontainer {
+//     --background: url(../../../assets/icon/home.png) no-repeat 0px 0px;
+//     --background-size: 100% 100%;
+//     --opacity: 1 !important;
+//     padding-top: 26px;
+//     --border-color: white !important;
+//     text-align: center !important;
+//   }
+
+//   .toolbar-row {
+//     align-items: center;
+//     height: 100%;
+//   }
+
+.toolbar-col {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.back-button {
+font-size: 16px;
+border: 1px solid #000000;
+border-radius: 50%;
+--font-weight: 200 !important;
+padding: 3px;
+margin-left: 12px;
+--line-height: 10px !important;
+margin-top: 8px;
+}
+
+.back_link {
+color: black;
+cursor: pointer;
+}
+
+ion-title.center-title {
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 0 auto;
+
+img {
+max-height: 40px;
+}
+}
+
+// ion-content {
+//     background: url("../../../assets/icon/First.jpg") no-repeat 0px -30px;
+//     background-size: cover;
+//  }
+.heading-div {
+padding: 0px 20px;
+margin-top: 20px;
+
+// h6.home-headings {
+// color: #4B5098;
+// font-family: SST;
+// font-size: 20px;
+// font-weight: bolder;
+// }
+
+p {
+font-size: 10px;
+font-family: SST;
+margin-top: 12px;
+color: black!important;
+}
+}
+
+.product_icons {
+padding: 6px;
+border-radius: 8px;
+cursor: pointer;
+text-transform: capitalize;
+transition: background 0.3s ease;
+background: linear-gradient(45deg, rgba(68, 68, 68, 1) 36%, rgba(88, 88, 88, 1) 45%, rgba(111, 111, 111, 1) 77%);
+}
+
+.product_icons_btn {
+height: 50px;
+width: 70px;
+--background: transparent;
+--box-shadow: none;
+margin-right: -14px;
+
+&.active .product_icons {
+background: linear-gradient(45deg, rgba(54, 66, 150, 1) 25%, rgba(98, 152, 214, 1) 60%, rgba(158, 200, 239, 1) 80%);
+}
+}
+
+.icons-div_row {
+margin-bottom: 0px;
+}
+
+.product-grid {
+padding: 0 10px;
+}
+
+
+
+.product-image {
+width: 100%;
+height: auto;
+border-radius: 8px;
+}
+
+.product-name {
+font-size: 12px;
+margin-top: 5px;
+color: #333;
+}
+
+//   .product_detail_container {
+//     background: url("../../../assets/icon/second.jpg") no-repeat 0px -30px;
+//     background-size: cover;
+//   }
+
+
+
+.products_buttons {
+width: 100%;
+font-size: 11px;
+--border-radius: 0px;
+margin: 14px 0px 0px 0px;
+--background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+font-family: SST;
+}
+
+
+
+
+.product-item {
+text-align: center;
+margin-bottom: 8px!important;
+
+
+img {
+  margin-bottom: 5px;
+  border: 2px solid #ffffff63;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 80px;
+  width: 80px;
+}
+p {
+  font-size: 12px;
+margin: 0;
+font-family: SST;
+font-weight: 500;
+letter-spacing: 1px;
+}
+}
+
+
+
+
+
+
+
+// .bg_banner {
+// background: url(../../../assets/icon/bg_banner.jpg) no-repeat 0px 0px;
+// background-size: cover;
+// position: fixed;
+
+// /* height: 100vh; */
+// }
+
+
+
+// 
+.product_detail_container {
+  height: 68vh;
+  overflow: scroll;
+  padding: 16px 0 123px;
+}
+.maindivv {
+// height: 40vh;
+// position: relative;
+
+z-index: 9999;
+position: fixed;
+width: 100%;
+}
+
+
+.product-main-div{
+height: 220px;
+}
+
+
+
+.SONY_mail_logo {
+  width: 80px;
+  /* text-align: center; */
+}
+
+
+.skeleton-image {
+  width: 80px;
+  height: 80px; // Adjust the height as per your design
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0; // Adjust the background color as desired
+  margin: 0px 20px;
+  border-radius: 10px;
+}
+
+.hidden {
+  display: none;
+}

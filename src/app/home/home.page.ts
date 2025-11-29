@@ -63,7 +63,7 @@ iconClick(icon: any) {
     // If user role is not allowed -> show toast and do not navigate
     // Allowed roles: 3 (promoter) and 16 (other permitted role)
     const roleNum = Number(this.roleId);
-    if (![3, 16].includes(roleNum)) {
+    if (![3, 16 ,14].includes(roleNum)) {
       // Use existing helper which displays toast
       this.showToast('Attendance module is not available for your role.');
       return;
@@ -130,16 +130,17 @@ async handleAttendanceNavigation() {
   const role = Number(this.roleId);
 
   // Only roles 3 and 16 are allowed — otherwise show message and do not navigate
-  if (![3, 16].includes(role)) {
+  if (![3, 16 ,14].includes(role)) {
     this.showToast('Attendance module is not available for your role.');
     return;
   }
 
   // Role 16: navigate to store-list (existing behavior)
-  if (role === 16) {
-    this.router.navigate(['/store-list']);
-    return;
-  }
+if (role === 16 || role === 14) {
+  this.router.navigate(['/store-list']);
+  return;
+}
+
 
   // If promoter (role 3) and we don't yet have the outlet loaded, attempt to fetch it synchronously
   if (role === 3) {

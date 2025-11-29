@@ -1,0 +1,234 @@
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <a href="#" class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/daily-promoter-checklist']"></ion-icon>
+          </a>
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="/assets/icon/homeicons/sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="/assets/icon/homeicons/sony_dark.svg" alt="" class="SONY_mail_logo light_pta">
+        </ion-col>
+        <ion-col size="4" class="toolbar-col"></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content dark light">
+  <!-- Sticky banner for unanswered items -->
+  <div *ngIf="hasTriedSubmit && unansweredCount > 0" class="unanswered-banner">
+    {{ unansweredCount }} question(s) need an answer. Please complete them.
+  </div>
+
+  <div *ngFor="let question of questions; let i = index"
+       class="question-card margin-bottom-20"
+       [ngClass]="{'unanswered': hasTriedSubmit && isUnanswered(question)}"
+       #qRef>
+
+    <h6 class="questionhead">Question {{ i + 1 }}:</h6>
+
+    <!-- Question body -->
+    <p class="question-body questionpara">{{ question.body }}</p>
+
+    <!-- Optional image -->
+    <img *ngIf="question.file_name"
+         [src]="baseUrl + question.file_name"
+         alt="Question Image"
+         class="question-image"
+         (click)="openImageInBrowser(baseUrl + question.file_name)" />
+
+    <!-- OPTIONS block -->
+    <div class="options margin-top-10">
+
+      <!-- ===== SCALE (type_id === '2') ===== -->
+      <div *ngIf="isScale(question)" class="two-col-group">
+        <ion-radio-group
+          [(ngModel)]="question.selectedOption"
+          (ngModelChange)="onOptionChange(question, $event)">
+          
+          <div class="two-col option-row">
+            <div class="col-label low-percentage">&lt;60%</div>
+            <div class="col-radio"></div>
+          </div>
+
+          <!-- scaleOptions uses IDs 1,2,3,8,9 (labels 1..5) -->
+          <div class="two-col option-row" *ngFor="let s of scaleOptions">
+            <div class="col-label">{{ s.label }}</div>
+            <div class="col-radio">
+              <ion-radio [value]="s.id" slot="end"></ion-radio>
+            </div>
+          </div>
+
+          <div class="two-col option-row">
+            <div class="col-label high-percentage">&gt;90%</div>
+            <div class="col-radio"></div>
+          </div>
+        </ion-radio-group>
+      </div>
+
+      <!-- ===== YES / NO / NA (type_id === '1') ===== -->
+      <div *ngIf="isYesNo(question)" class="two-col-group">
+        <ion-radio-group
+          [(ngModel)]="question.selectedOption"
+          (ngModelChange)="onOptionChange(question, $event)">
+          
+          <div class="two-col option-row" *ngIf="question.is_na === '1' ">
+            <div class="col-label">N/A</div>
+            <div class="col-radio">
+              <ion-radio [value]="4" slot="end"></ion-radio>
+            </div>
+          </div>
+
+          <div class="two-col option-row">
+            <div class="col-label">Yes</div>
+            <div class="col-radio">
+              <ion-radio [value]="5" slot="end"></ion-radio>
+            </div>
+          </div>
+
+          <div class="two-col option-row">
+            <div class="col-label">No</div>
+            <div class="col-radio">
+              <ion-radio [value]="6" slot="end"></ion-radio>
+            </div>
+          </div>
+        </ion-radio-group>
+      </div>
+
+      <!-- ===== RATING (type_id === '4' OR option_type === '4') ===== -->
+      <ng-container *ngIf="isRating(question)">
+        <ion-radio-group
+          [(ngModel)]="question.selectedOption"
+          (ngModelChange)="onOptionChange(question, $event)">
+          
+          <ng-container *ngFor="let r of ratingOptions">
+  <div class="two-col option-row match-radio-item" [attr.aria-checked]="question.selectedOption === r.id ? 'true' : 'false'">
+    <div class="col-label match-radio-label">
+      <div class="match-title">{{ r.label }}</div>
+      <div class="match-desc" *ngIf="r.description">{{ r.description }}</div>
+    </div>
+    <div class="col-radio">
+      <ion-radio [value]="r.id" slot="end"></ion-radio>
+    </div>
+  </div>
+</ng-container>
+
+
+        </ion-radio-group>
+      </ng-container>
+
+    </div> <!-- /.options -->
+
+
+      <div class="remarks-upload-container">
+        <ion-label class="remarks">Remarks:</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Enter Remark"
+          [(ngModel)]="question.remarks"
+          class="ionremarks"
+        ></ion-input>
+
+        <!-- Upload Image Button -->
+        <ion-button
+          class="upload-button camerabutton"
+          fill="clear"
+          (click)="selectImage(i)"
+        >
+          <ion-icon
+            name="camera-outline"
+            class="orange"
+            style="color: #e66b24 !important"
+          ></ion-icon>
+        </ion-button>
+      </div>
+
+      <!-- Uploaded Images Preview -->
+      <div
+        class="image-preview-container"
+        *ngIf="photos[i] && photos[i].length > 0"
+      >
+        <div
+          *ngFor="let photo of photos[i]; let j = index"
+          class="image-thumbnail"
+        >
+          <img [src]="photo.base64" alt="Captured Image" />
+          <ion-icon
+            name="close-circle"
+            class="delete-icon"
+            (click)="removeQuestionImage(i, j)"
+          ></ion-icon>
+        </div>
+      </div>
+    </div>
+
+ 
+
+    <div
+      class="feedback-card"
+      *ngFor="let feedbackItem of feedbackImages; let idx = index"
+    >
+      <div class="textarea-container">
+        <ion-textarea
+          [(ngModel)]="feedbackItem.caption"
+          placeholder="Enter feedback..."
+          autoGrow="true"
+          class="feedback-textarea"
+        ></ion-textarea>
+        <ion-icon
+          name="close"
+          class="remove-icon"
+          (click)="removeFeedbackSection(idx)"
+        ></ion-icon>
+        <ion-icon
+          name="camera-outline"
+          class="camera-icon"
+          (click)="selectFeedbackImage(idx)"
+        ></ion-icon>
+      </div>
+
+      <!-- NEW -->
+      <div class="feedback-preview-multi" *ngIf="feedbackItem.images.length">
+        <div
+          class="image-thumbnail"
+          *ngFor="let img of feedbackItem.images; let k = index"
+        >
+          <img [src]="img" alt="Feedback Image" />
+          <ion-icon
+            name="close-circle"
+            class="delete-icon"
+            (click)="removeFeedbackImage(idx, k)"
+          ></ion-icon>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="add-feedback-btn">
+      <ion-button
+        expand="full"
+        (click)="addFeedbackSection()"
+        class="products_buttons"
+      >
+        <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+        Add Feedback
+      </ion-button>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="submit-button">
+      <ion-button
+        expand="full"
+        (click)="onSubmitClick()"
+        class="products_buttons"
+      >
+        Submit Answers
+      </ion-button>
+    </div>
+</ion-content>
+
+
+<app-footer></app-footer>

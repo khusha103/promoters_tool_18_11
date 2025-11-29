@@ -1,0 +1,107 @@
+
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <a href="#" class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/home']"></ion-icon>
+          </a>
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="/assets/icon/homeicons/sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="/assets/icon/homeicons/sony_dark.svg" alt="" class="SONY_mail_logo light_pta">
+        </ion-col>
+        <ion-col size="4" class="toolbar-col">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-content 
+  class="main-content" 
+  [class.rtl]="userLang === 'ar'"
+  [dir]="userLang === 'ar' ? 'rtl' : 'ltr'">
+
+  <div class="header-section">
+    <ion-icon name="notifications-outline" class="bell-icon"></ion-icon>
+    <h2 class="header-title">
+      {{ userLang === 'ar' ? 'الإشعارات' : 'Notifications' }}
+    </h2>
+  </div>
+
+  <div *ngIf="notifications.length === 0" class="no-notifications">
+    {{ userLang === 'ar' ? 'لا توجد إشعارات!' : 'No Notifications!' }}
+  </div>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let notification of notifications">
+      <ion-item [class.read]="notification.isRead" class="notification-item" (click)="openNotification(notification)">
+        <ion-label>
+          <h6 class="notification-title">{{ notification.title }}</h6>
+          <p class="notification-message">{{ notification.message }}</p>
+          <p class="notification-date ltr-date">
+            <small>{{ notification.formattedDate }}</small>
+          </p>
+        </ion-label>
+      </ion-item>
+
+      
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="confirmDelete(notification.notification_id)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-button class="back-button-bottom-right" color="dark" [routerLink]="['/home']">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </ion-button>
+</ion-content> -->
+
+
+<ion-content 
+  class="main-content dark light" 
+  [class.rtl]="userLang === 'ar'"
+  [dir]="userLang === 'ar' ? 'rtl' : 'ltr'">
+
+  <div class="header-section">
+    <ion-icon name="notifications-outline" class="bell-icon"></ion-icon>
+    <h2 class="header-title">
+      {{ userLang === 'ar' ? 'الإشعارات' : 'Notifications' }}
+    </h2>
+  </div>
+
+  <div *ngIf="notifications.length === 0" class="no-notifications">
+    {{ userLang === 'ar' ? 'لا توجد إشعارات!' : 'No Notifications!' }}
+  </div>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let notification of notifications">
+      <ion-item [class.read]="notification.isRead" class="notification-item" (click)="openNotification(notification)">
+        <ion-label>
+          <h6 class="notification-title">{{ notification.title }}</h6>
+          <p class="notification-message">{{ notification.message }}</p>
+          <p class="notification-date ltr-date">
+            <small>{{ notification.formattedDate }}</small>
+          </p>
+        </ion-label>
+      </ion-item>
+
+      <!-- Swipe to Delete Button -->
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="confirmDelete(notification.notification_id)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <!-- <ion-button class="back-button-bottom-right" color="dark" [routerLink]="['/home']">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </ion-button> -->
+</ion-content>
+
+<app-footer></app-footer>

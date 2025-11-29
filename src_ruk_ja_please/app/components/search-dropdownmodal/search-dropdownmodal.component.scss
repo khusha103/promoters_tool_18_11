@@ -1,0 +1,36 @@
+.language-searchbar {
+    border-radius: 8px; /* Rounded corners for search bar */
+  }
+  
+  ion-list {
+    margin-top: 10px; /* Add spacing above the list */
+  }
+  
+  ion-item {
+    --background: #fff; /* White background for items */
+    
+    &:hover {
+      --background: #eaeaea; /* Highlight on hover */
+      transition: background-color 0.2s ease;
+    }
+  }
+
+
+  .custom-toolbar {
+    background: linear-gradient(to right, #007aff, #ffffff); /* Gradient background */
+    color: white; /* Default text color */
+  }
+  
+  .custom-toolbar ion-title {
+    color: white; /* Title text color */
+  }
+  
+  .custom-toolbar ion-button {
+    color: white; /* Button text color */
+  }
+  
+  /* Optional: Change button background color on hover */
+  .custom-toolbar ion-button:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent white on hover */
+  }
+  

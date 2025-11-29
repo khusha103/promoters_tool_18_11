@@ -1,0 +1,190 @@
+/* ---------------------------------------------------
+   HEADER / TOOLBAR
+----------------------------------------------------*/
+.maincontainer {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.custom-border-header {
+  border-bottom: 1px solid #ffffff33;
+  box-shadow: none !important;
+}
+
+.toolbar-row {
+  align-items: center;
+}
+
+.second_col_img {
+  display: flex;
+  justify-content: center;
+}
+
+.SONY_mail_logo {
+  width: 90px;
+  height: auto;
+}
+
+/* Back Button */
+.back-button {
+  font-size: 18px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  padding: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------
+   CONTENT BASE LAYOUT
+----------------------------------------------------*/
+
+.heading-div {
+  padding: 20px;
+}
+
+.home-headings {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.heading-div p {
+  color: #444;
+  font-size: 12px;
+  margin-top: -4px;
+}
+
+/* ---------------------------------------------------
+   BUTTONS (Sony Theme)
+----------------------------------------------------*/
+.products_buttons {
+  width: 100%;
+  font-size: 14px;
+  --border-radius: 6px;
+  margin-top: 14px;
+  font-family: SST, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --background: radial-gradient(circle, #eeb0b0 0%, #f36e22 100%);
+  --background-activated: #f36e22;
+  --background-hover: #e2afaf;
+  font-weight: 600;
+  --box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Disabled State Styling */
+.products_buttons.button-disabled {
+  opacity: 0.45 !important;
+  pointer-events: none !important;
+}
+
+/* ---------------------------------------------------
+   SELFIE PREVIEW
+----------------------------------------------------*/
+.attendance-selfie-preview {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.attendance-selfie-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  border: 3px solid rgba(255,255,255,0.4);
+}
+
+/* ---------------------------------------------------
+   TEXTAREA
+----------------------------------------------------*/
+.custom-textarea-item {
+  margin-top: 12px;
+  background: #ffffffcc;
+  border-radius: 8px;
+}
+
+.custom-textarea {
+  font-size: 14px;
+}
+
+/* ---------------------------------------------------
+   WEEKLY ATTENDANCE TABLE
+----------------------------------------------------*/
+.weekly-header h6 {
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Weekly Attendance Table */
+.table-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* FIXED: now 6 columns */
+  background: #ffffffcc;
+  padding: 8px;
+  margin: 6px 0;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.table-row.header {
+  background: linear-gradient(90deg, #f36e22, #e07e7e);
+  color: #fff;
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.cell {
+  padding: 6px;
+  text-align: center;
+}
+
+/* Duration default color */
+.duration-cell {
+  color: #000;
+  font-weight: 600;
+}
+
+/* Red only when < 8 hours */
+.red-text {
+  color: #e60e0e !important;
+  font-weight: 700;
+}
+
+
+/* ---------------------------------------------------
+   MOBILE OPTIMIZATION
+----------------------------------------------------*/
+@media (max-width: 420px) {
+  .home-headings {
+    font-size: 18px;
+  }
+
+  .attendance-selfie-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .table-row {
+    font-size: 11px;
+  }
+}
+
+.store-heading-wrap {
+  margin: 8px 0 12px 0;
+}
+
+.store-heading {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #222;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

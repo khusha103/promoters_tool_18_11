@@ -1,0 +1,64 @@
+<ion-content>
+  <div class="container-fluid xyz">
+    <div class="full_screen container-fluid">
+      <div class="login_main_div container">
+
+        <div class="first_div">
+          <!-- <ion-icon name="chevron-back-outline" class="arrow-icon" [routerLink]="['/app-selector']"></ion-icon> -->
+          <img src="..\assets\icon\login-logo.svg" alt="">
+          <p>Welcome To <br>Promoter Tool App</p>
+
+          <!-- Username or Email Input -->
+          <div class="form-group my-3">
+            <input type="text" class="form-control" placeholder="Email" [(ngModel)]="username" required>
+          </div>
+
+          <!-- Password Input -->
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" required>
+          </div>
+        </div>
+
+        <div class="buttonss my-2">
+          <!-- Update the LOG IN button to call the login method -->
+          <button class="btn btn-1" (click)="onLogin()">LOG IN</button>
+          <button class="btn forget" [routerLink]="['/forgot-password']">Forgot Password?</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="secdiv container">
+      <!-- <ion-col size="5">
+
+      </ion-col> -->
+      <button type="button" class="btn rca" [routerLink]="['/register']">REGISTER ACCOUNT</button>
+    </div>
+
+    <div class="thirddiv container">
+      <button type="button" class="btn dmac" onclick="location.href='mailto:Andrew.Adel@sony.com?subject=Delete My Account&body=(provide the details of the Email Id which is registered on promoter app to delete your account)';">DELETE MY ACCOUNT</button>
+     
+    </div>
+
+    <!-- <ion-button shape="round" mode="md" class="more-buttons"
+      onclick="location.href='mailto:Andrew.Adel@sony.com?subject=Delete My Account&body=(provide the details of the Email Id which is registered on promoter app to delete your account)';">Delete
+      My Account</ion-button> -->
+
+    <div class="deletion">
+      <p>(Please click here and send an email<br>to request your account deletion.)</p>
+    </div>
+
+    <div class="footer-overlay">
+      <div class="overlay-text">
+        <p class="terms">
+          <a (click)="openTerms()" class="no-underline">Terms & Conditions</a> | 
+          <a (click)="openPrivacyPolicy()" class="no-underline">Privacy Policy</a>
+        </p>
+        <p class="copyright">© 2024 Sony Middle East and Africa FZE</p>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+
+

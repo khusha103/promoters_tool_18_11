@@ -109,6 +109,17 @@
               <div class="col-radio"></div>
             </div>
 
+            <div
+              *ngIf="question.is_na === '1' || question.is_na === 1"
+              class="option-row two-col"
+            >
+              <div class="col-label">NA</div>
+              <div class="col-radio">
+                <ion-radio  [value]="4"></ion-radio>
+              </div>
+            </div>
+
+
             <!-- Scale options using correct IDs from scaleOptions array -->
             <div class="option-row two-col" *ngFor="let s of question.scaleOptions">
               <div class="col-label">{{ s.label }}</div>
@@ -135,6 +146,17 @@
             (ngModelChange)="onOptionChange(question, $event)"
             class="two-col-group"
           >
+
+           <div
+              *ngIf="question.is_na === '1' || question.is_na === 1"
+              class="option-row two-col"
+            >
+              <div class="col-label">NA</div>
+              <div class="col-radio">
+                <ion-radio [value]="4"></ion-radio>
+              </div>
+            </div>
+
             <div
               *ngFor="let r of question.ratingOptions"
               class="option-row two-col rating-option-row"

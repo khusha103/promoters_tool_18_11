@@ -1,0 +1,105 @@
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <a href="#" class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/promoter-kpi']"></ion-icon>
+          </a>
+        </ion-col>
+        <!-- <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="\assets\icon\homeicons\SONY_logo_main.svg" alt="" class="SONY_mail_logo">
+        </ion-col> -->
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="/assets/icon/homeicons/sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="/assets/icon/homeicons/sony_dark.svg" alt="" class="SONY_mail_logo light_pta">
+        </ion-col>
+        <ion-col size="4" class="toolbar-col">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content dark light">
+
+  <div class="heading-div">
+    <h6 class="home-headings">Promoter Rankings</h6>
+  </div>
+<div class="fieldsclassdiv">
+  <ion-item class="custom-input-item " lines="none">
+    <ion-select placeholder="Select Country" class="custom-select fieldss">
+      <ion-select-option >USA</ion-select-option>
+      <ion-select-option >USA1</ion-select-option>
+      <ion-select-option >USA2</ion-select-option>
+      <ion-select-option >USA3</ion-select-option>
+    </ion-select>
+    <ion-icon name="chevron-down" class="select-icon down-arrow"></ion-icon>
+  </ion-item>
+  <ion-item class="custom-input-item " lines="none">
+    <ion-select placeholder="Select Year" class="custom-select fieldss">
+      <ion-select-option >2000</ion-select-option>
+      <ion-select-option >2001</ion-select-option>
+      <ion-select-option >2002</ion-select-option>
+      <ion-select-option >2003</ion-select-option>
+    </ion-select>
+    <ion-icon name="chevron-down" class="select-icon down-arrow"></ion-icon>
+  </ion-item>
+  <ion-item class="custom-input-item " lines="none">
+    <ion-select placeholder="Select Month" class="custom-select fieldss">
+      <ion-select-option >January</ion-select-option>
+      <ion-select-option >February</ion-select-option>
+      <ion-select-option >March</ion-select-option>
+      <ion-select-option >April</ion-select-option>
+    </ion-select>
+    <ion-icon name="chevron-down" class="select-icon down-arrow"></ion-icon>
+  </ion-item>
+   <div class="checkbutton">
+  <ion-button  expand="full_screen" class="products_buttons">
+    Check Promoter Ranking
+   </ion-button>
+  </div>
+</div>
+
+<div class="table-container">
+  <table class="custom-table">
+    <!-- Table Header -->
+    <thead>
+      <tr class="tableheadingcss">
+        <th>Sr. No.</th>
+        <th>Name</th>
+        <th>Store</th>
+        <th>Ranking</th>
+      </tr>
+    </thead>
+
+    <!-- Table Body -->
+    <!-- <tbody class="tablebodycss"> 
+      <tr>
+        <td>1</td>
+        <td>John Doe</td>
+        <td>Store A</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Jane Smith</td>
+        <td>Store B</td>
+        <td>3</td>
+      </tr>
+    </tbody> -->
+    <tbody class="tablebodycss"> 
+      <tr *ngFor="let item of items | paginate: { itemsPerPage: 10, currentPage: page }">
+        <td>{{item.srNo}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.store}}</td>
+        <td>{{item.ranking}}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+</div>
+<pagination-controls (pageChange)="page = $event" class="paginationcss"></pagination-controls>
+
+</ion-content>
+<app-footer></app-footer>

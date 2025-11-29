@@ -353,28 +353,42 @@ ion-textarea.with-icon::part(native) {
   animation: pulseBorder 0.8s ease-in-out 1;
 }
 /* make rating/scale rows visually match the other radio rows */
-.match-radio-item {
-  --padding-start: 0;
-  --inner-padding-start: 8px;
-  --inner-padding-end: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  min-height: 44px; /* same comfortable tap target your other options use */
-  background: transparent;
-  box-sizing: border-box;
+/* === Rating / Scale option rows (looks like screenshot) === */
+.option-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;       /* light card background */
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin: 10px 0;            /* spacing between rows */
+  // border: 1px solid #e7e7e7; /* subtle border */
+  min-height: 56px;          /* comfortable touch area */
+  box-shadow: none;
 }
 
-/* label wrapper: stack title & small description */
-.match-radio-label {
+// /* change background when selected to a subtle highlight */
+// .option-row.checked {
+//   background: rgba(32,90,193,0.05); /* faint blue highlight */
+//   border-color: rgba(32,90,193,0.12);
+// }
+
+/* container for left text */
+.option-text {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+  flex: 1;            /* take available space so radio stays at far right */
+  overflow: hidden;
+  padding-right: 12px;
 }
 
-/* main title — identical font size/weight as other labels */
-.match-title {
+/* main label/title — bold and slightly larger */
+.option-title {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   color: #222;
   line-height: 1.1;
   white-space: nowrap;
@@ -382,26 +396,57 @@ ion-textarea.with-icon::part(native) {
   text-overflow: ellipsis;
 }
 
-/* small description underneath — subtle color */
-.match-desc {
+/* small description under title */
+.option-desc {
   font-size: 12px;
+  color: #6b6b6b;
   font-weight: 400;
-  color: #666;
-  line-height: 1.15;
+  line-height: 1.2;
+  margin-top: 2px;
+  max-width: 100%;
   white-space: normal; /* allow wrapping if needed */
 }
 
-/* visual highlight for selected row (match your app style) */
-.match-radio-item.checked,
-.match-radio-item[aria-checked="true"] {
-  background: rgba(32,90,193,0.06); /* adjust to match other rows highlight */
-  border-radius: 6px;
+/* N/A row slightly different color if you prefer */
+.na-row {
+  background: #fffaf0;     /* pale yellow-ish for NA */
 }
 
-/* keep radio aligned like other radios */
-.match-radio-item ion-radio {
-  margin-left: 4px;
+/* radio control alignment — ensure it sits at the far right */
+.option-row ion-radio[slot="end"] {
+  margin-left: 8px;
+  --padding-start: 0;
+  --padding-end: 0;
+  --size: 20px; /* control size, tweak as needed */
 }
+
+/* ensure ion-item default paddings don't push content */
+.option-row .item-inner, .option-row .item-native {
+  align-items: center;
+}
+
+/* small screens adjustments */
+@media (max-width: 420px) {
+  .option-title { font-size: 13px; }
+  .option-desc  { font-size: 11px; }
+  .option-row   { padding: 10px; min-height: 50px; }
+}
+
+/* remove extra spacing for other radio groups — make them consistent */
+.transparent-item {
+  margin: 8px 0;
+  padding: 8px 6px;
+  background: transparent;
+}
+
+/* keep your previously used .match-radio-item for other places but make sure it doesn't conflict */
+.match-radio-item {
+  --padding-start: 0;
+  --inner-padding-start: 8px;
+  --inner-padding-end: 8px;
+  background: transparent;
+}
+
 
 /* small screens tweak */
 @media (max-width: 420px) {
@@ -457,4 +502,8 @@ ion-textarea.with-icon::part(native) {
   }
 
 
+}
+
+.radio-na{
+     margin-left: 192px;
 }

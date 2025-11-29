@@ -1,0 +1,249 @@
+// Header, ion-content, footer CSS
+.maincontainer {
+    --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+        --background-size: 100% 100%;
+      --opacity: 1 !important;
+      padding-top: 20px;
+      --border-color: white !important;
+      text-align: center !important;
+    }
+    
+    .toolbar-row {
+      align-items: center;
+      height: 100%;
+    }
+    
+    .toolbar-col {
+      display: flex;
+      align-items: center;
+    }
+    
+    .second_col_img {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+  }
+  .SONY_mail_logo {
+    width: 90px;
+    /* text-align: center; */
+  }
+  ion-grid.ios.hydrated {
+    height: 50px;
+  }
+  
+    .back-button {
+      font-size: 16px;
+      border: 1px solid #000000;
+      border-radius: 50%;
+      --font-weight: 200 !important;
+      padding: 3px;
+    //   margin-left: 12px;
+      --line-height: 10px !important;
+      margin-top: 8px;
+    }
+    
+    .back_link {
+      color: black;
+      cursor: pointer;
+    }
+    
+    ion-title.center-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    
+      img {
+        max-height: 40px;
+      }
+    }
+    
+    ion-content {
+      --background: url(../../../assets/icon/home.jpg) no-repeat 0px -84px;
+      --background-size: 100% 100%;
+    }
+
+
+
+    .custom-border-header {
+        box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+        border-bottom: 1px solid white;
+    }
+
+
+    // ////Header, ion-content, footer CSS
+
+
+
+
+    .heading-div {
+        padding: 0px 20px;
+        margin-top: 20px;
+        
+        h6.home-headings {
+        color: #4B5098;
+        font-family: SST;
+        font-size: 20px;
+        font-weight: bolder;
+        }
+        
+        p {
+        font-size: 10px;
+        font-family: SST;
+        margin-top: 12px;
+        color: black!important;
+        }
+        }
+
+
+
+
+        .products_buttons {
+            width: 100%;
+            font-size: 12px;
+            --border-radius: 0px;
+            margin: 14px 0px 0px 0px;
+            --background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+            font-family: SST;
+        }
+
+
+
+        // main content furthrer design
+
+        .result-container {
+            padding: 16px;
+          
+            h2 {
+              color: #007bff; // Score color
+            }
+          
+            p {
+              margin: 16px 0;
+            }
+          
+            .results-details {
+              margin-top: 16px;
+              background-color: #f9f9f9; // Light background for results
+              padding: 16px;
+              border-radius: 8px;
+          
+              ion-item {
+                margin-bottom: 8px;
+          
+                .correct {
+                  color: green; // Correct answer color
+                  font-weight: bold;
+                }
+          
+                .incorrect {
+                  color: red; // Incorrect answer color
+                  font-weight: bold;
+                }
+              }
+            }
+          }
+
+
+          // result show css
+
+        //   .correct-answer {
+        //     --background: rgba(0, 255, 0, 0.1);
+        //     padding: 10px; /* Adjust the padding value as needed */
+        // }
+          
+        //   .incorrect-answer {
+        //     --background: rgba(255, 0, 0, 0.1);
+        //   }
+          
+        //   .selected-answer {
+        //     font-weight: bold;
+        //   }
+          
+        //   .correct-option {
+        //     color: green;
+        //   }
+        
+        //   .incorrect-option {
+        //     color: red;
+        //   }
+        
+        //   .option-item {
+        //     --background: transparent;
+        //   }
+        
+        //   .error-message {
+        //     color: red;
+        //     margin-top: 10px;
+        //   }
+
+        .results-details {
+          padding: 20px;
+          background-color: #f7f7f7;
+          border-radius: 10px;
+        }
+        
+        .results-details h3 {
+          font-size: 1.4em;
+          font-weight: bold;
+          color: #333;
+          margin-bottom: 20px;
+        }
+        
+        ion-list {
+          padding: 0; /* Remove default padding */
+        }
+        
+        ion-item {
+          padding: 15px;
+          margin-bottom: 10px;
+          background-color: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        ion-item.option-item {
+          padding: 10px;
+        }
+        
+        .selected-answer {
+          font-weight: bold;
+          color: #007bff; /* Highlight selected answers */
+        }
+        
+        .correct-option {
+          color: #28a745; /* Correct answer in green */
+        }
+        
+        .incorrect-option {
+          color: #dc3545; /* Incorrect answer in red */
+        }
+        
+        .error-message {
+          font-size: 0.9em;
+          color: #dc3545;
+          margin-top: 10px;
+        }
+        
+        .correct-answer {
+          border-left: 5px solid #28a745; /* Add green border for correct answers */
+        }
+        
+        .incorrect-answer {
+          border-left: 5px solid #dc3545; /* Add red border for incorrect answers */
+        }
+        
+        ion-icon {
+          font-size: 1.2em;
+          margin-left: 10px;
+        }
+
+        .result-btn{
+          // margin-top: 16px;
+          --background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+          --color: #fff; // Button text color
+          --border-radius: 8px;
+        }
+
+        
+        

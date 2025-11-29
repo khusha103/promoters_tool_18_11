@@ -1,0 +1,69 @@
+// .title-container {
+//     display: flex;
+//     justify-content: center; /* Centers the title horizontally */
+//     align-items: center; /* Centers the title vertically */
+//     width: 100%; /* Ensures the container takes full width */
+//   }
+  
+//   ion-title {
+//     font-weight: bold; /* Makes the title bold */
+//   }
+
+//   .container-fluid.xyz {
+//     padding: 0px;
+//     background: #ffd553;
+//     background: url('../../../assets/icon/mine.jpg') no-repeat center center;
+//     background-size: 100% 100%;
+//     position:relative;
+//     min-height: -webkit-fill-available;
+//     color: #000;
+//   }
+
+//   h1{
+//     --color: #000;
+//   }
+
+//   .custm_btn{
+//     background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+//     color: white;
+//     margin: 30px 32px;
+//     border-radius: 10px;
+//     padding: 6px 5px;
+//   }
+
+  
+  //for center content css
+
+  .container-fluid.xyz {
+    display: flex; /* Use Flexbox */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    padding: 0px;
+    background: #ffd553;
+    background: url('../../../assets/icon/mine.jpg') no-repeat center center;
+    background-size: cover; /* Cover to maintain aspect ratio */
+    position: relative;
+    min-height: 100vh; /* Full height of the viewport */
+    color: #000;
+  }
+  
+  .title-container {
+    display: flex;
+    justify-content: center; /* Centers the title horizontally */
+    align-items: center; /* Centers the title vertically */
+    width: 100%; /* Ensures the container takes full width */
+  }
+  
+  h1 {
+    --color: #000;
+    margin: 0; /* Remove default margin */
+  }
+  
+  .custm_btn {
+    background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+    color: white;
+    margin: 15px 0; /* Adjust margin for better spacing */
+    border-radius: 10px;
+    padding: 6px 5px;
+  }

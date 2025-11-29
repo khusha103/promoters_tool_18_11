@@ -1,0 +1,180 @@
+.maincontainer {
+  --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+      --background-size: 100% 100%;
+    --opacity: 1 !important;
+    padding-top: 44px;
+    --border-color: white !important;
+    text-align: center !important;
+  }
+  
+  .toolbar-row {
+    align-items: center;
+    height: 100%;
+  }
+  
+  .toolbar-col {
+    display: flex;
+    align-items: center;
+  }
+  
+  .second_col_img {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.SONY_mail_logo {
+  width: 90px;
+  /* text-align: center; */
+}
+ion-grid.ios.hydrated {
+  height: 100%;
+}
+
+  .back-button {
+    font-size: 16px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    --font-weight: 200 !important;
+    padding: 3px;
+  //   margin-left: 12px;
+    --line-height: 10px !important;
+    margin-top: 8px;
+  }
+  
+  .back_link {
+    color: black;
+    cursor: pointer;
+  }
+  
+  ion-title.center-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  
+    img {
+      max-height: 40px;
+    }
+  }
+  
+  ion-content {
+    // --background: url(../../../assets/icon/home.jpg) no-repeat 0px -114px;
+    --background-size: 100% 100%;
+  }
+
+
+
+  .custom-border-header {
+      box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+      border-bottom: 1px solid white;
+  }
+
+
+  // ////Header, ion-content, footer CSS
+
+
+
+    .heading-div {
+        padding: 0px 20px;
+        margin-top: 20px;
+        
+        h6.home-headings {
+        color: #4B5098;
+        font-family: SST;
+        font-size: 20px;
+        font-weight: bolder;
+        }
+        
+        p {
+        font-size: 10px;
+        font-family: SST;
+        margin-top: 12px;
+        color: black!important;
+        }
+        }
+
+
+
+
+        .products_buttons {
+            width: 100%;
+            font-size: 12px;
+            --border-radius: 0px;
+            margin: 14px 0px 0px 0px;
+            --background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+            font-family: SST;
+        }
+
+
+        .checkbutton {
+          margin-bottom: 20px;
+        }
+      
+        .transparent-item {
+          background-color: transparent !important; // Make the background transparent
+          --background: transparent; // For Ionic specific styling
+          --background-hover: rgba(255, 255, 255, 0.1); // Optional: Add a slight hover effect
+        }
+      
+        .white-background {
+          background-color: white; // Set background color to white
+          --background: white; // For Ionic specific styling
+          --box-shadow: none; // Remove any shadow if necessary
+          border-radius: 4px; // Optional: Add rounded corners
+        }
+
+        .question-card {
+          padding: 16px; /* Add padding around each question card */
+          // background-color: #ffffff; /* Background color for better contrast */
+          border-radius: 8px; /* Rounded corners */
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+        }
+        
+
+        .options {
+          // display: flex;
+          // justify-content: space-between; /* Align options in one line */
+        }
+        
+        .transparent-item {
+          display: flex; /* Use flexbox for alignment */
+          align-items: center; /* Center items vertically */
+          margin-right: 15px; /* Space between radio options */
+        }
+        
+        .transparent-item ion-label {
+          margin-left: 10px; /* Adjust this value to increase/decrease space between label and radio */
+        }
+        
+        .question-card {
+          margin-bottom: 20px;
+          padding: 15px;
+          border: 1px solid #e0e0e0;
+          border-radius: 8px;
+          background-color: #f9f9f9;
+        }
+        
+        .submit-button {
+          margin-top: 20px;
+        }
+
+        .low-percentage {
+          background-color: #f8d7da; /* Light red background for <60% */
+          color: #d9534f; /* Red font color */
+          font-weight: bold;
+          font-size: 14px;
+          padding: 4px 8px;
+          border-radius: 4px;
+        }
+        
+        .high-percentage {
+          background-color: #d4edda; /* Light green background for >90% */
+          color: #5cb85c; /* Green font color */
+          font-weight: bold;
+          font-size: 14px;
+          padding: 4px 8px;
+          border-radius: 4px;
+        }
+        
+        
+        

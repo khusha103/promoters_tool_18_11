@@ -148,22 +148,24 @@ export class DailyPromoterChecklistQuesPage implements OnInit {
           return;
         }
 
-        this.questions = raw.map((q: any) => {
-          const type_id = String(q.type_id ?? q.q_type ?? '');
-          const option_type = String(q.option_type ?? q.q_type ?? '');
+ this.questions = raw.map((q: any) => {
+  const type_id = String(q.type_id ?? q.q_type ?? '');
+  const option_type = String(q.option_type ?? q.q_type ?? '');
 
-          return {
-            ...q,
-            q_type: q.q_type ?? '',
-            type_id: type_id,
-            option_type: option_type,
-            selectedOption: null,
-            remarks: q.remarks || '',
-            images: q.images || [],
-            ratingOptions: q.ratingOptions && q.ratingOptions.length ? q.ratingOptions : this.ratingOptions,
-            scaleOptions: q.scaleOptions && q.scaleOptions.length ? q.scaleOptions : this.scaleOptions
-          };
-        }) as ChecklistQuestion[];
+  return {
+    ...q,
+    q_type: q.q_type ?? '',
+    type_id,
+    option_type,
+    // normalize is_na so template checks work (accept '1' or 1 downstream)
+    is_na: (q.is_na !== undefined && q.is_na !== null) ? q.is_na : '0',
+    selectedOption: q.selectedOption !== undefined ? q.selectedOption : null,
+    remarks: q.remarks || '',
+    images: q.images || [],
+    ratingOptions: q.ratingOptions && q.ratingOptions.length ? q.ratingOptions : this.ratingOptions,
+    scaleOptions: q.scaleOptions && q.scaleOptions.length ? q.scaleOptions : this.scaleOptions
+  };
+}) as ChecklistQuestion[];
 
         this.photos = this.questions.map(() => []);
 

@@ -1,0 +1,96 @@
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <!-- <ion-icon name="chevron-back-outline" class="back-button"
+            *ngIf="this.sourcepage === 'salestalk'; else countertalk" [routerLink]="['/product-salestalk']">
+          </ion-icon> -->
+
+          <ng-template #countertalk>
+            <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/product-countertalk']">
+            </ion-icon>
+          </ng-template>
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="\assets\icon\homeicons\sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="\assets\icon\homeicons\sony_dark.svg" alt="" class="SONY_mail_logo light_pta">
+        </ion-col>
+        <ion-col size="4" class="toolbar-col">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content dark light">
+  <div class="divimagetext">
+    <ion-card-title class="product_detail_heading">{{ productName }}</ion-card-title>
+  </div>
+
+  <div class="product_inner_second_bg">
+    <div class="product_inner_banner">
+      <img [src]="productImage" alt="{{ productName }}">
+    </div>
+
+    <!-- Section for PDF Documents -->
+    <div class="divforpdf">
+      <h6 class="pdfheading">Check sales talk PDFs</h6>
+      <swiper-container class="swiper_slider" loop="true" autoplay="true" autoplay-delay="3000"
+        autoplay-disable-on-interaction="false" slides-per-view="3.5" space-between="16">
+
+        <swiper-slide *ngFor="let pdf of documentPdfs">
+          <a (click)="openPdf(pdf)">
+            <div class="pdfnewdiv">
+            <img src="/assets/icon/pdfbutton.png" alt="" class="pdfbutton">
+            <!-- <span *ngIf="pdf.isNew" class="badge new-badge">New</span> -->
+            <p class="slidericontext">{{ pdf.title }}</p>
+            </div>
+          </a>
+          <!-- Conditionally display the 'New' badge for PDFs -->
+          <!-- <span *ngIf="pdf.isNew" class="badge new-badge">New</span> -->
+        </swiper-slide>
+
+      </swiper-container>
+    </div>
+
+    <div class="white_border"></div>
+
+    <!-- Section for Video Documents -->
+    <div class="divforpdf2">
+      <h6 class="pdfheading">Check sales talk videos</h6>
+      <swiper-container class="swiper_slider" loop="true" autoplay="true" autoplay-delay="3000"
+        autoplay-disable-on-interaction="false" slides-per-view="3.5" space-between="16">
+
+        <!-- <swiper-slide *ngFor="let video of videoPdfs">
+          <a (click)="openVideo(video)">
+            <img src="/assets/icon/videoplaybutton.png" alt="" class="videobutton">
+            <p class="slidericontext">{{ video.title }}</p>
+          </a>
+          <span *ngIf="video.isNew" class="badge new-badge">New</span>
+        </swiper-slide> -->
+
+
+        
+        <swiper-slide *ngFor="let video of videoPdfs">
+          <a (click)="openVideo(video)">
+            <div class="pdfnewdiv">
+            <img src="/assets/icon/videoplaybutton.png" alt="" class="videobutton">
+            <!-- <span *ngIf="video.isNew" class="badge new-badge">New</span> -->
+            <p class="slidericontext">{{ video.title }}</p>
+            </div>
+          </a>
+          <!-- Conditionally display the 'New' badge for PDFs -->
+          <!-- <span *ngIf="pdf.isNew" class="badge new-badge">New</span> -->
+        </swiper-slide>
+
+
+        
+
+      </swiper-container>
+    </div>
+  </div>
+
+</ion-content>
+
+<app-footer></app-footer>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33" height="33" viewBox="0 0 33 33">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.168" x2="0.853" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fbbf14"/>
+      <stop offset="0.481" stop-color="#e77023"/>
+      <stop offset="0.597" stop-color="#e66b24"/>
+      <stop offset="1" stop-color="#f48120"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_2" data-name="Group 2" transform="translate(-1506 -1530)">
+    <rect id="Rectangle_28" data-name="Rectangle 28" width="33" height="33" transform="translate(1506 1530)" fill="none"/>
+    <path id="Union_11" data-name="Union 11" d="M7.447,29a1.013,1.013,0,0,1,0-2.027h3.184a1.013,1.013,0,1,1,0,2.027ZM5.71,26.1a1.013,1.013,0,1,1,0-2.026h6.658a1.013,1.013,0,1,1,0,2.026Zm0-2.894a1.013,1.013,0,1,1,0-2.027h6.658a1.013,1.013,0,1,1,0,2.027ZM4.672,19.919a13.3,13.3,0,0,0-1.749-3.633C1.533,14.129,0,12.482,0,9.418S2.683,0,9.137,0s8.835,6.091,8.892,9.418-1.936,5.506-3.014,6.868A11.091,11.091,0,0,0,13.4,19.919Z" transform="translate(1513 1532)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

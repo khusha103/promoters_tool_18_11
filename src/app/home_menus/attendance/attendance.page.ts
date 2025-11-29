@@ -104,12 +104,13 @@ export class AttendancePage implements OnInit {
       : (localStorage.getItem('userRoleId') ?? localStorage.getItem('roleId') ?? '');
     const roleNum = Number(roleStr);
 
-    if (roleNum === 16) {
+    if (roleNum === 16 || roleNum === 14) {
       this.router.navigate(['/store-list']);
       return;
     }
     this.router.navigate(['/home']);
   }
+
 
   // Button enable/disable derived from API-driven isCheckedIn, processing state, and store selection
   get disableCheckIn(): boolean {

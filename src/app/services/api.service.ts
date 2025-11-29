@@ -726,8 +726,6 @@ getOutletByUserId(userId: number): Observable<any> {
   return this.http.get<any>(`${this.apiUrl}/getoutletbyuserid/${userId}`);
 }
 
-
-
 PlanogramFinalFeedback(fid: number, feedback: string): Observable<any> {
   const payload = {
     feedback: feedback,

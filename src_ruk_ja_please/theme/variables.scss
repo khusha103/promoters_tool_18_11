@@ -1,0 +1,20 @@
+// For information on how to create your own theme, please see:
+// http://ionicframework.com/docs/theming/
+// src/theme/variables.scss
+
+// Existing Colors
+// $blue: #007bff !default; // Primary blue color
+// $blue-light: #66b3ff !default; // Light blue
+// $blue-dark: #0056b3 !default; // Dark blue
+
+// Named Color Variables
+// --------------------------------------------------
+:root {
+  --ion-color-primary:#e87838; /* Fallback solid color for components like dropdowns */
+  --ion-color-primary-gradient: radial-gradient(circle, rgba(74, 154, 248, 1) 41%, rgba(27, 91, 176, 1) 85%);
+  --ion-secondory-color: #e87838;
+}
+
+.page-class {
+  --ion-color-primary: var(--ion-color-primary-gradient); /* Apply gradient only where needed */
+}

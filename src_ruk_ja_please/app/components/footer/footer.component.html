@@ -1,0 +1,106 @@
+<!-- <ion-tabs class="tab_footer_bg">
+  <ion-tab-bar slot="bottom" class="mineclass">
+    <ion-tab-button (click)="home()">
+      <ion-icon name="home"></ion-icon>
+     HOME
+    </ion-tab-button>
+    <ion-tab-button (click)="Notifications()">
+      <ion-icon name="notifications"></ion-icon>
+      NOTIFICATIONS
+    </ion-tab-button>
+    <ion-tab-button (click)="settings()">
+      <ion-icon name="settings"></ion-icon>
+      SETTINGS
+    </ion-tab-button>
+    <ion-tab-button (click)="profile()">
+      <ion-icon name="person"></ion-icon>
+      PROFILE
+    </ion-tab-button>
+    <ion-tab-button (click)="logout()">
+      <ion-icon name="power-outline"></ion-icon>
+      LOG-OUT
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs> -->
+
+
+<ion-tabs class="tab_footer_bg" *ngIf="appSelection !== 0">
+  <ion-tab-bar slot="bottom" class="mineclass">
+    <ng-container *ngIf="appSelection === 1; else alternateMenu">
+      <!-- <ion-tab-button (click)="home()">
+        <ion-icon name="home"></ion-icon>
+        HOME
+      </ion-tab-button> -->
+      <ion-tab-button (click)="home()">
+         <img src="../assets/icon/footericons/home.svg" alt="" class="footericonsimg dark_pta">
+         <img src="../assets/icon/footer_light/home.svg" alt="" class="footericonsimg light_pta">
+      </ion-tab-button>
+
+      <ion-tab-button (click)="Notifications()">
+        <img src="../assets/icon/footericons/notification.svg" alt="" class="footericonsimg dark_pta">
+        <img src="../assets/icon/footer_light/notification.svg" alt="" class="footericonsimg light_pta">
+      </ion-tab-button>
+
+      <ion-tab-button (click)="settings()">
+      <img src="../assets/icon/footericons/setting.svg" alt="" class="footericonsimg dark_pta">
+      <img src="../assets/icon/footer_light/setting.svg" alt="" class="footericonsimg light_pta">
+      </ion-tab-button>
+
+      <ion-tab-button (click)="profile()">
+      <img src="../assets/icon/footericons/account.svg" alt="" class="footericonsimg dark_pta">
+      <img src="../assets/icon/footer_light/account.svg" alt="" class="footericonsimg light_pta">
+      </ion-tab-button>
+
+      <ion-tab-button (click)="logout()">
+      <img src="../assets/icon/footericons/logout.svg" alt="" class="footericonsimg dark_pta">
+      <img src="../assets/icon/footer_light/logout.svg" alt="" class="footericonsimg light_pta">
+      </ion-tab-button>
+
+
+      <!-- <ion-tab-button (click)="Notifications()">
+        <ion-icon name="notifications"></ion-icon>
+        NOTIFICATIONS
+      </ion-tab-button>
+      <ion-tab-button (click)="settings()">
+        <ion-icon name="settings"></ion-icon>
+        SETTINGS
+      </ion-tab-button>
+      <ion-tab-button (click)="profile()">
+        <ion-icon name="person"></ion-icon>
+        PROFILE
+      </ion-tab-button>
+      <ion-tab-button (click)="logout()">
+        <ion-icon name="power-outline"></ion-icon>
+        LOG-OUT
+      </ion-tab-button> -->
+    </ng-container>
+
+    <ng-template #alternateMenu>
+      <ion-tab-button (click)="home()">
+        <img src="../assets/icon/footericons/home.svg" alt="" class="footericonsimg dark_pta">
+        <img src="../assets/icon/footer_light/home.svg" alt="" class="footericonsimg light_pta">
+     </ion-tab-button>
+
+     <ion-tab-button (click)="Notifications()">
+       <img src="../assets/icon/footericons/notification.svg" alt="" class="footericonsimg dark_pta">
+       <img src="../assets/icon/footer_light/notification.svg" alt="" class="footericonsimg light_pta">
+     </ion-tab-button>
+
+     <ion-tab-button (click)="settings()">
+     <img src="../assets/icon/footericons/setting.svg" alt="" class="footericonsimg dark_pta">
+     <img src="../assets/icon/footer_light/setting.svg" alt="" class="footericonsimg light_pta">
+     </ion-tab-button>
+
+     <ion-tab-button (click)="profile()">
+     <img src="../assets/icon/footericons/account.svg" alt="" class="footericonsimg dark_pta">
+     <img src="../assets/icon/footer_light/account.svg" alt="" class="footericonsimg light_pta">
+     </ion-tab-button>
+
+     <ion-tab-button (click)="logout()">
+     <img src="../assets/icon/footericons/logout.svg" alt="" class="footericonsimg dark_pta">
+     <img src="../assets/icon/footer_light/logout.svg" alt="" class="footericonsimg light_pta">
+     </ion-tab-button>
+    </ng-template>
+
+  </ion-tab-bar>
+</ion-tabs>

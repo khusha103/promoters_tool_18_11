@@ -1,0 +1,176 @@
+// Header, ion-content, footer CSS
+.maincontainer {
+    --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+        --background-size: 100% 100%;
+      --opacity: 1 !important;
+      padding-top: 20px;
+      --border-color: white !important;
+      text-align: center !important;
+    }
+    
+    .toolbar-row {
+      align-items: center;
+      height: 100%;
+    }
+    
+    .toolbar-col {
+      display: flex;
+      align-items: center;
+    }
+    
+    .second_col_img {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+  }
+  .SONY_mail_logo {
+    width: 90px;
+    /* text-align: center; */
+  }
+  ion-grid.ios.hydrated {
+    height: 50px;
+  }
+  
+    .back-button {
+      font-size: 16px;
+      border: 1px solid #000000;
+      border-radius: 50%;
+      --font-weight: 200 !important;
+      padding: 3px;
+    //   margin-left: 12px;
+      --line-height: 10px !important;
+      margin-top: 8px;
+    }
+    
+    .back_link {
+      color: black;
+      cursor: pointer;
+    }
+    
+    ion-title.center-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    
+      img {
+        max-height: 40px;
+      }
+    }
+    
+    ion-content {
+      --background: url(../../../assets/icon/home.jpg) no-repeat 0px -84px;
+      --background-size: 100% 100%;
+    }
+
+
+
+    .custom-border-header {
+        box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+        border-bottom: 1px solid white;
+    }
+
+
+    // ////Header, ion-content, footer CSS
+
+
+
+
+    .heading-div {
+        padding: 0px 20px;
+        margin-top: 20px;
+        
+        h6.home-headings {
+   
+        font-size: 20px;
+        
+        }
+        
+        p {
+        font-size: 10px;
+        font-family: SST;
+        margin-top: 12px;
+        color: black!important;
+        }
+        }
+
+
+/*---------------------------*/
+.product_icons {
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: background 0.3s ease;
+    background: linear-gradient(45deg, rgba(68, 68, 68, 1) 36%, rgba(88, 88, 88, 1) 45%, rgba(111, 111, 111, 1) 77%);
+    }
+    
+    .product_icons_btn {
+    height: 50px;
+    width: 85px;
+    --background: transparent;
+    --box-shadow: none;
+    
+    &.active .product_icons {
+    background: linear-gradient(45deg, rgba(54, 66, 150, 1) 25%, rgba(98, 152, 214, 1) 60%, rgba(158, 200, 239, 1) 80%);
+    }
+    }
+    
+    .icons-div_row {
+    margin-bottom: 12px;
+    }
+    
+    .product-grid {
+    padding: 0 10px;
+    }
+    
+    
+    
+    .product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    }
+    
+    .product-name {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #333;
+    }
+
+
+    ion-col.md.hydrated {
+        text-align: center;
+    }
+
+
+
+    .pf_product_text {
+        font-family: SST;
+        font-size: 14px;
+    }
+
+
+    .heading-div {
+      text-align: center; // Centering the heading
+    }
+    
+    .icon-row {
+      margin-top: 20px; // Adding some space above the icons
+    }
+    
+    .icon-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center; // Centering icons and text
+    }
+    
+    .product_icons_btn {
+      display: flex;
+      justify-content: center; // Centering the button content
+    }
+    
+    .pf_product_text {
+      margin-top: 5px; // Space between icon and text
+      text-align: center; // Centering the text
+    }

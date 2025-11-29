@@ -1,0 +1,209 @@
+// Header, ion-content, footer CSS
+.maincontainer {
+    --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+        --background-size: 100% 100%;
+      --opacity: 1 !important;
+      padding-top: 20px;
+      --border-color: white !important;
+      text-align: center !important;
+    }
+    
+    .toolbar-row {
+      align-items: center;
+      height: 100%;
+    }
+    
+    .toolbar-col {
+      display: flex;
+      align-items: center;
+    }
+    
+    .second_col_img {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+  }
+  .SONY_mail_logo {
+    width: 90px;
+    /* text-align: center; */
+  }
+  ion-grid.ios.hydrated {
+    height: 50px;
+  }
+  
+    .back-button {
+      font-size: 16px;
+      border: 1px solid #000000;
+      border-radius: 50%;
+      --font-weight: 200 !important;
+      padding: 3px;
+    //   margin-left: 12px;
+      --line-height: 10px !important;
+      margin-top: 8px;
+    }
+    
+    .back_link {
+      color: black;
+      cursor: pointer;
+    }
+    
+    ion-title.center-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    
+      img {
+        max-height: 40px;
+      }
+    }
+    
+    ion-content {
+      --background: url(../../../assets/icon/home.jpg) no-repeat 0px -84px;
+      --background-size: 100% 100%;
+    }
+
+
+
+    .custom-border-header {
+        box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+        border-bottom: 1px solid white;
+    }
+
+
+    // ////Header, ion-content, footer CSS
+
+
+
+
+    .heading-div {
+        padding: 0px 20px;
+        margin-top: 20px;
+        
+        h6.home-headings {
+        color: #4B5098;
+        font-family: SST;
+        font-size: 20px;
+        font-weight: bolder;
+        }
+        
+        p {
+        font-size: 10px;
+        font-family: SST;
+        margin-top: 12px;
+        color: black!important;
+        }
+        }
+
+
+
+
+        .products_buttons {
+            width: 100%;
+            font-size: 12px;
+            --border-radius: 0px;
+            margin: 14px 0px 0px 0px;
+            --background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+            font-family: SST;
+        }
+
+
+        // online exam details main content design
+        .exam-details-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            // justify-content: center;
+            // height: 100%;
+            padding: 16px;
+          
+            ion-card {
+              width: 100%;
+              max-width: 400px;
+              border-radius: 8px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          
+              .exam-title {
+                font-size: 1.5rem;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 16px;
+              }
+          
+              .exam-info {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+          
+                .info-item {
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+          
+                  .info-icon {
+                    font-size: 1.2rem;
+                    color: #5786d9;
+                  }
+          
+                  .info-text {
+                    font-size: 1rem;
+                    color: #333;
+                  }
+                }
+              }
+            }
+          
+            .start-button {
+              margin-top: 24px;
+              width: 100%;
+              max-width: 400px;
+              --background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+              --color: #fff;
+              --border-radius: 8px;
+          
+              .button-icon {
+                font-size: 1.2rem;
+                margin-right: 8px;
+              }
+          
+              .button-text {
+                font-size: 1.1rem;
+                font-weight: bold;
+              }
+            }
+          }
+
+          // --------------------score result css---------------------
+          .result-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            // height: 100%;
+          }
+          
+          ion-card {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+          }
+          
+          .result-message {
+            text-align: center;
+            margin-top: 20px;
+          }
+          
+          .fail-message {
+            color: #e74c3c;
+            font-weight: bold;
+          }
+          
+          .pass-message {
+            color: #2ecc71;
+            font-weight: bold;
+          }
+
+
+          .result-container {
+            margin-top: 12px;
+        }
+          

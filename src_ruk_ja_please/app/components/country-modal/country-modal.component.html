@@ -1,0 +1,93 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Select Your Country</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    
+        <div>
+          <ion-item button (click)="toggleDropdown(0)" class="custom-select">
+           
+            <ion-label class="selected-label" [ngClass]="{'selected': selectedCountries[0] || selectedCountry}">
+              <ng-container *ngIf="selectedCountries[0]; else defaultCountryLabel">
+                {{ selectedCountries[0].name }}
+              </ng-container>
+              <ng-template #defaultCountryLabel>
+                <ng-container *ngIf="selectedCountry">
+                  {{ selectedCountry.name }}
+                </ng-container>
+                <ng-container *ngIf="!selectedCountry">
+                  Select Country
+                </ng-container>
+              </ng-template>
+            </ion-label>
+          </ion-item>
+  
+          <div *ngIf="openDropdownIndex === 0" class="dropdown-content">
+          
+
+            <ion-searchbar placeholder="Search country" (ionInput)="filterItems($event, 'country')"
+              class="custom-searchbar">
+            </ion-searchbar>
+            <ion-list>
+              <ion-item button *ngFor="let country of filteredCountries" (click)="selectItem(country, 0)">
+                {{ country.name }}
+              </ion-item>
+            </ion-list>
+          </div>
+        </div>
+
+  <ion-button expand="block" (click)="saveCountry()">Save</ion-button>
+</ion-content> -->
+
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Select Your Country</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Country Selection -->
+  <div class="dropdown-container">
+    <ion-item button (click)="toggleDropdown(0)" class="custom-select">
+      <ion-label class="selected-label" [ngClass]="{'selected': selectedCountries[0] || selectedCountry}">
+        <!-- <ng-container *ngIf="selectedCountries[0]; else defaultCountryLabel">
+          Selected country : {{ selectedCountries[0].name }}
+        </ng-container> -->
+        <ng-container *ngIf="selectedCountries[0]; else defaultCountryLabel">
+          <div class="selected-country-label">
+            🌍 Selected Country: <span>{{ selectedCountries[0].name }}</span>
+          </div>
+        </ng-container>
+        
+        <ng-template #defaultCountryLabel>
+          <ng-container *ngIf="selectedCountry">
+            Selected country : {{ selectedCountry.name }}
+          </ng-container>
+          <ng-container *ngIf="!selectedCountry">
+            Select Country
+          </ng-container>
+        </ng-template>
+      </ion-label>
+      <ion-icon name="chevron-down-outline"></ion-icon>
+    </ion-item>
+
+    <!-- Dropdown Content -->
+    <div *ngIf="openDropdownIndex === 0" class="dropdown-content">
+      <ion-searchbar placeholder="Search country" (ionInput)="filterItems($event, 'country')" class="custom-searchbar">
+      </ion-searchbar>
+      <ion-list class="country-list">
+        <ion-item button *ngFor="let country of filteredCountries" (click)="selectItem(country, 0)">
+          {{ country.name }}
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+  <ion-button expand="block" (click)="saveCountry()" class="save-button">Save</ion-button>
+</ion-content>
+
+

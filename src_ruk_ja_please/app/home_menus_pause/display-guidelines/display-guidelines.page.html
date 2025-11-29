@@ -1,0 +1,145 @@
+<!-- 
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+      
+        <ion-col size="4" class="toolbar-col">
+          <a href="" class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/home']"></ion-icon>
+          </a>
+        </ion-col>
+
+   
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="\assets\icon\homeicons\SONY_logo_main.svg" alt="" class="SONY_mail_logo">         
+        </ion-col>
+
+   
+        <ion-col size="4" class="toolbar-col">
+        </ion-col>
+        
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content">
+  <div class="heading-div">
+    <h6 class="home-headings">Display<br>Guidelines</h6>
+    <p>Find the proper display guidelines for your shopfront to maintain the display</p>
+  </div>
+
+  <div class="icon-row icons-div_row">
+    <ion-button fill="clear" *ngFor="let category of fixedCategories | keyvalue"
+      (click)="changeCategory(+category.key)" class="product_icons_btn" [class.active]="activeCategoryId === +category.key" >
+      <img [src]="category.value.imageUrl" alt="{{ category.value.title }}" class="product_icons">
+    </ion-button>
+  </div>
+
+  <div class="product_detail_container">
+    <img [src]="fixedCategories[selectedCategory].bannerImageUrl" />
+    <ion-card-title class="product_detail_heading">{{ fixedCategories[selectedCategory].title }}</ion-card-title>
+  
+    <div *ngFor="let pdf of guidelinesPdfs">
+      <ion-button expand="full" class="products_buttons" (click)="openPdf(pdf)">
+        {{ pdf.title }}
+        <ion-icon [name]="pdf.fileType === 'document' ? 'document' : 'videocam'" class="document-file-icon"></ion-icon>
+      </ion-button>
+  
+    <span *ngIf="pdf.isNew" class="badge new-badge">New</span>
+    </div>
+  </div>
+</ion-content>
+<app-footer></app-footer> -->
+
+
+<ion-header [translucent]="true" class="custom-border-header">
+  <ion-toolbar class="maincontainer">
+    <ion-grid>
+      <ion-row class="toolbar-row">
+        <ion-col size="4" class="toolbar-col">
+          <!-- <a href="" class="back_link">
+            <ion-icon name="chevron-back-outline" class="back-button" [routerLink]="['/home']"></ion-icon>
+          </a> -->
+        </ion-col>
+        <ion-col size="4" class="toolbar-col second_col_img">
+          <img src="\assets\icon\homeicons\sony_light.svg" alt="" class="SONY_mail_logo dark_pta">
+          <img src="\assets\icon\homeicons\sony_dark.svg" alt="" class="SONY_mail_logo light_pta">
+        </ion-col>
+        <ion-col size="4" class="toolbar-col"></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-content dark light">
+  <div class="heading-div">
+    <h6 class="home-headings">Display<br>Guidelines</h6>
+    <p>Find the proper display guidelines for your shopfront to maintain the display</p>
+  </div>
+
+  <!-- <div class="icon-row icons-div_row">
+    <ion-button 
+      fill="clear" 
+      *ngFor="let category of categories" 
+      (click)="changeCategory(category.id)" 
+      class="product_icons_btn" 
+      [ngClass]="{'active': activeCategoryId === category.id}">
+      <img [src]="category.imageUrl" alt="{{ category.title }}" class="product_icons">
+    </ion-button>
+  </div> -->
+  <div class="icon-row icons-div_row">
+    <ion-button fill="clear" *ngFor="let category of categories"
+      (click)="changeCategory(category.id)" class="product_icons_btn" 
+      [ngClass]="{'active': activeCategoryId === category.id}">
+      <img [src]="category.imageUrl" alt="{{ category.title }}" class="product_icons">
+    </ion-button>
+  </div>
+
+  <div class="product_detail_container">
+    <!-- <img [src]="categoryImages[selectedCategoryId].bannerImageUrl" /> -->
+    <img *ngIf="categoryImages[selectedCategoryId]" [src]="categoryImages[selectedCategoryId].bannerImageUrl" />
+    <ion-card-title class="product_detail_heading">
+      {{ selectedCategoryTitle }}
+    </ion-card-title>
+
+    <!-- <div *ngFor="let pdf of guidelinesPdfs">
+      <ion-button expand="full" class="products_buttons" (click)="openPdf(pdf)">
+        {{ pdf.title }}
+        <ion-icon [name]="pdf.fileType === 'document' ? 'document' : 'videocam'" class="document-file-icon"></ion-icon>
+      </ion-button>
+      <span *ngIf="pdf.isNew" class="badge new-badge">New</span>
+    </div> -->
+
+    <div *ngIf="guidelinesPdfs.length > 0; else noDataTemplate">
+      <div *ngFor="let pdf of guidelinesPdfs">
+        <ion-button expand="full" class="products_buttons" (click)="openPdf(pdf)">
+          {{ pdf.title }}
+          <ion-icon [name]="pdf.fileType === 'document' ? 'document' : 'videocam'" class="document-file-icon"></ion-icon>
+        </ion-button>
+        <!-- <span *ngIf="pdf.isNew" class="badge new-badge">New</span> -->
+      </div>
+    </div>
+
+    <ng-template #noDataTemplate>
+      <div class="no-data-message">
+        <p>No guidelines available for the selected category.</p>
+      </div>
+    </ng-template>
+    <!-- <ng-template #noDataTemplate>
+      <div class="no-data-message bg-gray-100 text-center p-6 rounded-lg shadow-md">
+        <p class="text-xl font-semibold text-gray-700">No guidelines available for the selected category.</p>
+        <p class="text-sm text-gray-500 mt-2">Please select another category or check back later.</p>
+      </div>
+    </ng-template> -->
+    
+  </div>
+
+
+  <!-- <ion-button class="back-button-bottom-right" color="dark" [routerLink]="['/home']">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </ion-button> -->
+</ion-content>
+
+<app-footer></app-footer>

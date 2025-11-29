@@ -1,0 +1,64 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Terms and Conditions</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <h2>Terms and Conditions</h2>
+    
+    <ion-button expand="full" (click)="openTerms()">View Terms</ion-button>
+
+    <ion-button expand="full" (click)="acceptTerms()">Accept</ion-button>
+  </div>
+</ion-content>
+ -->
+<!-- // terms-and-conditions.page.html -->
+<!-- <ion-header>
+   <ion-toolbar color="primary">
+     <ion-title>Terms and Conditions</ion-title>
+   </ion-toolbar>
+ </ion-header> -->
+
+<ion-content class="ion-padding">
+  <div class="terms-container">
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <ion-img src="\assets\icon\homeicons\SONY_logo_main.svg" alt="Sony Logo"></ion-img>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content-section">
+      <h2 class="ion-text-center">Terms and Conditions Update</h2>
+
+      <p class="ion-text-center ion-padding-horizontal">
+        Please review our Terms and Conditions before continuing to use the app.
+        Your acceptance indicates agreement to these terms.
+      </p>
+
+      <div class="icon-container">
+        <ion-icon name="document-text-outline" class="terms-icon"></ion-icon>
+      </div>
+
+      <!-- Terms Toggle -->
+      <ion-item lines="none" class="ion-padding terms-toggle">
+        <ion-toggle [(ngModel)]="termsAccepted" slot="start" class="ion-padding"></ion-toggle>
+        <ion-label>I have read and agree to the Terms</ion-label>
+      </ion-item>
+    </div>
+
+    <!-- Buttons Section -->
+    <div class="buttons-section">
+      <ion-button expand="block" class="view-terms-btn" (click)="openTerms()">
+        <ion-icon name="document-text-outline" slot="start"></ion-icon>
+        View Terms
+      </ion-button>
+
+      <ion-button expand="block" class="accept-btn" [disabled]="!termsAccepted" (click)="acceptTerms()" color="primary">
+        <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+        Accept and Continue
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

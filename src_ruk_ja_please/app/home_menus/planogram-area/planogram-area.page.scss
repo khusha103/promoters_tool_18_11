@@ -1,0 +1,583 @@
+// Header, ion-content, footer CSS
+.maincontainer {
+    --background: url(../../../assets/icon/home.jpg) no-repeat 0px -7px;
+        --background-size: 100% 100%;
+      --opacity: 1 !important;
+      padding-top: 20px;
+      --border-color: white !important;
+      text-align: center !important;
+    }
+    
+    .toolbar-row {
+      align-items: center;
+      height: 100%;
+    }
+    
+    .toolbar-col {
+      display: flex;
+      align-items: center;
+    }
+    
+    .second_col_img {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+  }
+  .SONY_mail_logo {
+    width: 90px;
+    /* text-align: center; */
+  }
+  ion-grid.ios.hydrated {
+    height: 50px;
+  }
+  
+    .back-button {
+      font-size: 16px;
+      border: 1px solid #000000;
+      border-radius: 50%;
+      --font-weight: 200 !important;
+      padding: 3px;
+    //   margin-left: 12px;
+      --line-height: 10px !important;
+      margin-top: 8px;
+    }
+    
+    .back_link {
+      color: black;
+      cursor: pointer;
+    }
+    
+    ion-title.center-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    
+      img {
+        max-height: 40px;
+      }
+    }
+    
+    ion-content {
+      --background: url(../../../assets/icon/home.jpg) no-repeat 0px -84px;
+      --background-size: 100% 100%;
+    }
+
+
+
+    .custom-border-header {
+        box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0) !important;
+        border-bottom: 1px solid white;
+    }
+
+
+    // ////Header, ion-content, footer CSS
+
+
+
+
+    .heading-div {
+        padding: 0px 20px;
+        margin-top: 20px;
+        
+        h6.home-headings {
+        color: #4B5098;
+        font-family: SST;
+        font-size: 20px;
+        font-weight: bolder;
+        }
+        
+        p {
+        font-size: 10px;
+        font-family: SST;
+        margin-top: 12px;
+        color: black!important;
+        }
+        }
+
+
+
+//fieldsCSS
+ion-select.custom-select {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+  }
+
+  /* Input and Select Fields */
+ion-item {
+--highlight-color-focused: #4B54CF; /* Color of underline when focused */
+// --min-height: 50px;
+--border-color: transparent;
+--padding-start: 0px;
+margin-bottom: 8px;
+}
+
+ion-label {
+font-weight: 500; /* Bold labels */
+}
+
+ion-input {
+--padding-start: 8px; /* Padding inside input field */
+--padding-end: 8px;
+}
+
+.custom-input-item ion-input {
+border: 1px solid #d1d1d1; /* Light grey border */
+border-radius: 4px; /* Rounded corners */
+padding: 8px; /* Padding inside input field */
+
+}
+.custom-input-item {
+--background: #ffffff00 !important;
+margin-right: -16px;
+margin-left: 0px;
+margin-top: 0px;
+margin-bottom: 4px !important;
+}
+
+ion-select.custom-select {
+border: 1px solid #d1d1d1;
+border-radius: 4px;
+--padding-start: 10px;
+--padding-top: 10px;
+--padding-bottom: 10px;
+background: white;
+}
+
+ion-select::part(icon) {
+display: none !important;
+}
+
+ion-select {
+--padding-end: 15px;
+}
+
+.custom-select.fieldss {
+--padding-end: 35px; // Increase to make room for our custom icon
+width: 100%;
+}
+
+// Optional: Style the select to match your design
+ion-select.custom-select {
+border: 1px solid #d1d1d1;
+border-radius: 4px;
+--padding-start: 10px;
+--padding-top: 10px;
+--padding-bottom: 10px;
+}
+.fieldss {
+border: 1px solid #d1d1d1;
+border-radius: 4px;
+color: #636363;
+padding: 0px 0px 0px 10px;
+height: 10px;
+font-family: SST;
+font-size: 14px;
+/* font-style: italic; */
+font-weight: 400;
+}
+.custom-select.fieldss {
+--padding-end: 35px; // Increase to make room for our custom icon
+width: 100%;
+}
+
+.select-icon {
+width: 1.125rem;
+height: 1.125rem;
+color: var(--ion-color-step-650, var(--ion-text-color-step-350, #595959));
+margin-left: 10rem;
+}
+.select-icon {
+margin-left: auto!important;
+/* margin-right: -3px!important; */
+order: 1!important;
+position: absolute!important;
+left: 0!important;
+right: 0!important;
+background: white!important;
+padding: 8px!important;
+height: 100%!important;
+z-index: 2!important;
+}
+.fieldsclassdiv {
+margin-top: 14px;
+padding: 0px 20px;
+}
+
+
+.products_buttons {
+width: 100%;
+font-size: 12px;
+--border-radius: 0px;
+margin: 14px 0px 0px 0px;
+--background: radial-gradient(circle, rgba(92, 135, 255, 1) 0%, rgba(24, 64, 136, 1) 100%);
+font-family: SST;
+}
+
+swiper-container.swiper_slider {
+  background: white;
+  // height: 349px;
+  /* padding: 20px; */
+  margin: 10px;
+  border-radius: 14px;
+}
+
+p.headone {
+  text-align: center;
+  font-weight: 900;
+  font-size: 18px;
+}
+
+p.headone {
+  text-align: center;
+  font-weight: 900;
+  font-size: 18px;
+}
+h2.headtwo {
+  font-weight: 900;
+  margin-top: 10px;
+}
+.slider_div {
+  padding: 18px;
+}
+:host ::ng-deep .selecter {
+  padding: 8px;
+  margin: 4px 6px 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 44%;
+}
+
+:host ::ng-deep .slider_input {
+  padding: 8px !important;
+  margin: 4px 0px 5px 0px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 5px !important;
+  width: 44% !important;
+}
+
+
+button {
+  padding: 8px 4px 8px 4px !important;
+  margin-top: 10px !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
+  display: block;
+  width: 35%;
+}
+
+button:first-of-type {
+  background-color: #ffffff00;
+  color: #007bff;
+  border: 2px solid #007bff;
+  font-weight: 600;
+}
+.submit_btn{
+  padding: 8px !important;
+  margin-top: 10px !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
+  display: block;
+  width: 26%;
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 30px;
+}
+
+// button:last-of-type {
+//   // background-color: #28a745;
+//   // color: white;
+// }
+span.numbers {
+  font-size: 16px;
+  font-weight: bold;
+}
+// 
+
+/* Custom styles for Swiper arrows */
+.custom-next-button, .custom-prev-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  color: #fff;
+  z-index: 10;
+}
+
+.custom-next-button {
+  right: 10px;
+}
+
+.custom-prev-button {
+  left: 10px;
+}
+
+
+
+/* Styling for the feedback container */
+.feedback-container {
+  margin-top: 15px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual feedback item styling */
+.feedback-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Number styling */
+.feedback-number {
+  font-weight: bold;
+  font-size: 16px;
+  
+  color: #333;
+}
+
+/* Grid styling for inline elements */
+.feedback-grid {
+  width: 100%;
+}
+
+/* Row alignment */
+.feedback-row {
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Custom dropdown styling */
+.custom-dropdown {
+  width: 100%;
+  // border: 1px solid #ccc;
+  // padding: 5px;
+  border-radius: 5px;
+  // background-color: white;
+}
+
+/* Dropdown column */
+.dropdown-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Custom feedback input field */
+.custom-feedback-input {
+  width: 100%;
+  padding: 8px;
+  // border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+/* Input column */
+.input-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button group */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+/* Add More Button */
+.add-more-btn {
+  padding: 8px 15px;
+
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+
+
+/* Delete Last Button */
+.delete-last-btn {
+  padding: 8px 15px;
+
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+
+
+/* Submit Button - Green */
+.submit-btn {
+  width: 100% !important; /* Full-width */
+  padding: 12px 0 !important; /* Top & Bottom Padding */
+
+  font-size: 16px !important; /* Text Size */
+  font-weight: bold !important; /* Bold Text */
+  border: none !important; /* Remove Border */
+  border-radius: 6px !important; /* Rounded Corners */
+  cursor: pointer !important; /* Pointer Cursor */
+  transition: background-color 0.3s ease-in-out !important; /* Smooth Hover Effect */
+}
+
+/* Hover Effect */
+
+
+
+
+/* Button Group - Ensures proper spacing */
+.button-group {
+  display: flex;
+  // flex-direction: column;
+  gap: 10px; /* Space between rows */
+}
+
+.button-group .flex {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px; /* Space between buttons */
+}
+
+
+.readonly-feedback-section {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.feedback-line {
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.feedback-line:last-child {
+  border-bottom: none;
+}
+
+.index {
+  font-weight: bold;
+  color: var(--ion-color-primary);
+  margin-right: 5px;
+}
+
+.image-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.feedback-image {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+// .back-button-bottom-right {
+//   position: fixed;
+//   bottom: 73px;
+//   right: 9px;
+//   z-index: 10;
+//   background-color: #111212;
+//   border-radius: 23%;
+//   padding: 7px;
+//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+//   color: white;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   transition: background-color 0.3s ease;
+// }
+
+// .back-button-bottom-right:hover {
+//   background-color: #214604; /* Darker shade when hovered */
+// }
+
+// .back-button-bottom-right ion-icon {
+//   font-size: 24px;
+//   color: white;
+// }
+
+// .back-button-bottom-right {
+//   position: fixed;
+//   bottom: 80px; /* Adjusted for better placement */
+//   right: 5px; /* Slightly moved for better reach */
+//   z-index: 10;
+//   background-color: #111212;
+//   border-radius: 50%;
+//   width: 50px;
+//   height: 50px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3); /* White shadow effect */
+//   transition: all 0.3s ease;
+// }
+
+// .back-button-bottom-right:active {
+//   transform: scale(0.92);
+//   box-shadow: 0 2px 6px rgba(255, 255, 255, 0.4); /* Stronger white shadow on press */
+// }
+
+// .back-button-bottom-right ion-icon {
+//   font-size: 28px;
+//   color: white;
+//   text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); /* White glow effect around icon */
+// }
+
+// .back-button-bottom-right:focus {
+//   outline: 3px solid rgba(255, 255, 255, 0.6);
+// }
+
+// /* Hover effect for a glowing white outline */
+// .back-button-bottom-right:hover {
+//   box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+// }
+
+// .unique-feedback-input {
+//   width: 100%;
+//   padding: 10px;
+//   font-size: 16px;
+//   border-radius: 8px;
+//   border: 1px solid #ccc;
+//   background-color: #f9f9f9;
+//   transition: all 0.3s ease-in-out;
+// }
+
+// .unique-feedback-input:focus {
+//   border-color: #007bff;
+//   background-color: #fff;
+//   outline: none;
+// }
+
+// .custom-feedback-item {
+//   --background: #fff;
+//   --border-radius: 8px;
+//   --border: 1px solid #ddd;
+//   // padding: 8px 12px;
+//   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+// }
+
+// .select-icon {
+//   font-size: 20px;
+//   color: #666;
+// }
+
+// .down-arrow {
+//   position: absolute;
+//   right: 12px;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   pointer-events: none;
+// }

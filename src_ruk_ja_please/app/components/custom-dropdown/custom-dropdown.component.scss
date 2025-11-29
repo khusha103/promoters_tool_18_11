@@ -1,0 +1,21 @@
+.custom-dropdown {
+    --background: #f9f9f900; /* Light background */
+    --border-radius: 8px; /* Rounded corners */
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin: 10px 0; /* Spacing between items */
+  
+    ion-label {
+      font-weight: bold; /* Make label bold */
+      color: #333; /* Dark text color */
+    }
+  
+    .language-text {
+      font-size: 16px; /* Adjust font size */
+      color: #666; /* Lighter text color for selected language */
+    }
+  
+    .select-icon {
+      font-size: 1.2em; /* Adjust icon size */
+      color: #888; /* Color for the down arrow */
+    }
+  }

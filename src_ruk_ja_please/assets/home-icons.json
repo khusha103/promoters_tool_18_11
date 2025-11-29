@@ -1,0 +1,170 @@
+
+
+
+{
+  "homeIcons": [
+    
+    {
+      "image": "/assets/icon/homeicons/productspecification.svg",
+      "imagelight": "/assets/icon/sonylight/productspecification.svg",
+      "routerLink": "/product-specification",
+      "name": "PRODUCT\nSPECIFICATIONS",
+      "app-selector": "1,2",
+      "menu-id": 1
+    },
+    {
+      "image": "/assets/icon/sonydark/productsalestalk.svg",
+      "imagelight": "/assets/icon/sonylight/salestalk.svg",
+      "routerLink": "/product-salestalk",
+      "name": "PRODUCT\nSALESTALK",
+      "app-selector": "1,2",
+      "menu-id": 2
+    },
+    {
+      "image": "/assets/icon/sonydark/countertalk.svg",
+      "imagelight": "/assets/icon/sonylight/countertalk.svg",
+      "routerLink": "/product-countertalk",
+      "name": "PRODUCT\nCOUNTERTALK",
+      "app-selector": "1,2",
+      "menu-id": 14
+    },
+    {
+      "image": "/assets/icon/homeicons/webinar.svg",
+      "imagelight": "/assets/icon/sonylight/webinar.svg",
+      "routerLink": "/online-webniar",
+      "name": "ONLINE\nWEBINAR",
+      "app-selector": "1,2",
+      "menu-id": 13
+    },
+    {
+      "image": "/assets/icon/sonydark/displayguidelines.svg",
+      "imagelight": "/assets/icon/sonylight/guidelines.svg",
+      "routerLink": "/display-guidelines",
+      "name": "DISPLAY\nGUIDELINES",
+      "app-selector": "1,2",
+      "menu-id": 3
+    },
+    {
+      "image": "/assets/icon/sonydark/exam.svg",
+      "imagelight": "/assets/icon/sonylight/onlinexams.svg",
+      "routerLink": "/online-exams",
+      "name": "ONLINE\nEXAMS",
+      "app-selector": "1,2",
+      "menu-id": 4
+    },
+    {
+      "image": "/assets/icon/homeicons/news.svg",
+      "routerLink": "/latest-news",
+      "name": "LATEST\nNEWS",
+      "app-selector": "1,2",
+      "menu-id": 0
+    },
+    {
+      "image": "/assets/icon/homeicons/service.svg",
+      "routerLink": "/service-related",
+      "name": "SERVICE\nRELATED",
+      "app-selector": "1,2",
+      "menu-id": 0
+    },
+    {
+      "image": "/assets/icon/sonydark/customerinfo.svg",
+      "imagelight": "/assets/icon/sonylight/info.svg",
+      "routerLink": "/customer-information",
+      "name": "CUSTOMER\nINFORMATION",
+      "app-selector": "1,2",
+      "menu-id": 7
+    },
+    {
+      "image": "/assets/icon/sonydark/dailysales.svg",
+      "imagelight": "/assets/icon/sonylight/sales.svg",
+      "routerLink": "/daily-sales",
+      "name": "DAILY\nSALES",
+      "app-selector": "1,2",
+      "menu-id": 8
+    },
+    {
+      "image": "/assets/icon/sonydark/planogram.svg",
+      "imagelight": "/assets/icon/sonylight/planogramranging.svg",
+      "routerLink": "/planogram-ranging",
+      "name": "PLANOGRAM &\nRANGING",
+      "app-selector": "1,2",
+      "menu-id": 10
+    },
+    {
+      "image": "/assets/icon/sonydark/onlinesurvey.svg",
+      "imagelight": "/assets/icon/sonylight/onlinesurvey.svg",
+      "routerLink": "/online-survey-feedback",
+      "name": "ONLINE SURVEY &\nFEEDBACK",
+      "app-selector": "1,2",
+      "menu-id": 11
+    },
+    {
+      "image": "/assets/icon/sonydark/promoterKPI.svg",
+      "imagelight": "/assets/icon/sonylight/KPI.svg",
+      "routerLink": "/promoter-kpi",
+      "name": "PROMOTER\nKPI",
+      "app-selector": "1,2",
+      "menu-id": 12
+    },
+    {
+      "image": "/assets/icon/sonydark/attendance.svg",
+      "imagelight": "/assets/icon/sonylight/attendance.svg",
+      "routerLink": "/attendance",
+      "name": "ATTENDANCE",
+      "app-selector": "1,2",
+      "menu-id": 15
+    },
+    {
+      "image": "/assets/icon/homeicons/future.svg",
+      "routerLink": null,
+      "name": "FUTURE\nMODULE ONE(testing)",
+      "app-selector": "0",
+      "menu-id": 0
+    },
+    {
+      "image": "/assets/icon/homeicons/future.svg",
+      "routerLink": null,
+      "name": "FUTURE\nMODULE TWO",
+      "app-selector": "0",
+      "menu-id": 0
+    },
+    {
+      "image": "/assets/icon/homeicons/future.svg",
+      "routerLink": null,
+      "name": "FUTURE\nMODULE THREE",
+      "app-selector": "0",
+      "menu-id": 0
+    },
+    {
+      "image": "/assets/icon/homeicons/future.svg",
+      "routerLink": null,
+      "name": "FUTURE\nMODULE FOUR",
+      "app-selector": "0",
+      "menu-id": 0
+    },
+    {
+      "image": "/assets/icon/sonydark/assementdark.svg",
+      "imagelight": "/assets/icon/sonylight/assessmentlight.svg",
+      "routerLink": "/daily-vmd-checklist",
+      "name": "DAILY\nVMD AUDIT",
+      "app-selector": "1,2",
+      "menu-id": 16
+    },
+    {
+      "name": "DAILY\nPROMOTER\nAUDIT",
+      "image": "/assets/icon/sonydark/p_assementdark.svg",
+      "imagelight": "/assets/icon/sonylight/p_assessmentlight.svg",
+      "routerLink": "/promoters-assessment",
+      "app-selector": "1,2",
+      "menu-id": 17
+    }, {
+      "name": "DAILY\nPROMOTER\nCHECKLIST",
+      "image": "/assets/icon/sonydark/p_assementdark.svg",
+      "imagelight": "/assets/icon/sonylight/p_assessmentlight.svg",
+      "routerLink": "/daily-promoter-checklist",
+      "app-selector": "1,2",
+      "menu-id": 18
+    }
+
+  ]
+}
